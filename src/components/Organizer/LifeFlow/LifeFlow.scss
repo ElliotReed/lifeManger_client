@@ -1,0 +1,13 @@
+.life-flow {
+  color: var(--darkN);
+  background: var(--mediumN);
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding);
+  margin: var(--margin);
+  box-shadow: var(--boxShadow);
+}
+
+.life-flow__lists {
+  display: inline;
+}

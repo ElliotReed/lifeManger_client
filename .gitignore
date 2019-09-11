@@ -1,0 +1,8 @@
+# folders
+node_modules
+
+__snapshots__
+
+# files
+CRA_README.md
+yarn.lock

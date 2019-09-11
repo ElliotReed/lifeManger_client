@@ -1,0 +1,14 @@
+.selector {
+  position: relative;
+  height: 100%;
+  padding: 0 var(--padding) var(--padding) var(--padding);
+  /* overflow: hidden; */
+}
+
+.selector > ul {
+  padding: var(--padding);
+  height: calc(100vh - 11rem);
+  overflow: auto;
+  background: pink;
+}
+

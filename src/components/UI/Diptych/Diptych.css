@@ -1,0 +1,40 @@
+.diptych {
+  position: absolute;
+  display: grid;
+  top: 0;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  width: 200vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: all 275ms ease-out;
+  overflow: hidden;
+}
+
+.diptych-selector {
+  transform: translate3d(0, 0, 0);
+}
+
+.diptych-facet {
+  transform: translate3d(-100vw, 0, 0);
+}
+
+.diptych__selector, .diptych__facet {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 900px) {
+  .diptych {
+    width: 100%;
+    position: relative;
+  }
+
+  .diptych-facet {
+    transform: translate3d(0, 0, 0);
+  }
+}

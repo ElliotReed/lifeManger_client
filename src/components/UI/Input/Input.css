@@ -1,0 +1,40 @@
+label {
+  display: block;
+  font-size: .618em;
+  padding: var(--padding);
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+select,
+textarea {
+  width: 100%;
+  padding: var(--padding);
+  margin: 0 0 var(--margin) 0;
+  border-radius: var(--borderRadius);
+  font-family: var(--fontStackSans)
+}
+
+.input-check__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--padding);
+}
+
+.input-check__container label {
+  font-size: 1em;
+}
+
+.placeholder {
+  color: var(--medium);
+}
+
+option {
+  background-color:rgba(var(--greenRGB), .1);
+}
+
+option:selected {
+  background-color: rgba(var(--greenRGB), .6);
+}

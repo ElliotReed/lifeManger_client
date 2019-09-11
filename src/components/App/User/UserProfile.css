@@ -1,0 +1,40 @@
+.user__profile {
+  position: relative;
+}
+
+.user__profile-button {
+  display: inline-flex;
+  align-items: center;
+  border: transparent;
+  background: transparent;
+  color: var(--light);
+}
+
+.user__profile-button p {
+  font-family: var(--fontStackSans);
+  font-size: 1em;
+  color: var(--light);
+}
+
+.user__account-menu {
+  position: absolute;
+  top: .5em;
+  right: 4.5em;
+  border: 1px solid var(--green);
+  background: linear-gradient(to right, var(--light) 62%, rgba(72,80,72, .062));
+  background-color: var(--light);
+  padding: var(--padding);
+}
+
+.user__account-header {
+  display: flex;
+  padding: var(--padding);
+}
+
+.user__account-header h4 {
+  margin: 0;
+}
+
+.user__account-logout {
+  cursor: pointer;
+}

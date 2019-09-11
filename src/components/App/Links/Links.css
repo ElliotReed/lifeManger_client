@@ -1,0 +1,12 @@
+a {
+  line-height: 24px;
+}
+
+.link__seperator {
+  margin-left: var(--margin);
+}
+
+.material-icons {
+  display: inline-flex;
+  vertical-align: top;
+}

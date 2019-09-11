@@ -1,0 +1,7 @@
+#ErrorMessage {
+  font-size: .618em;
+  background: var(--red);
+  color: var(--light);
+  margin: 0;
+  padding: var(--padding);
+}

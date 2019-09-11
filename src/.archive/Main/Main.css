@@ -1,0 +1,7 @@
+#main {
+  width: 100%;
+  height: calc(100vh - 3em);
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}

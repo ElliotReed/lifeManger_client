@@ -1,0 +1,45 @@
+.triptych {
+  position: relative;
+  background: #bbb;
+  width: 300vw;
+  padding: 0;
+  margin: 0;
+  transition: all 500ms ease-in-out;
+}
+
+
+.triptych-selector {
+  transform: translate3d(0, 0, 0);
+}
+.triptych-facet {
+  transform: translate3d(-100vw, 0, 0);
+}
+.triptych-detail {
+  transform: translate3d(-200vw, 0, 0);
+}
+
+.triptych__navigation {
+  display: grid;
+  grid-template-rows: 1rem auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.triptych__navigation-selector i,
+.triptych__navigation-detail i {
+  width: 100%;
+}
+.triptych__navigation-facet i {
+  width: 50%;
+}
+
+@media only screen and (min-width: 900px) {
+  .triptych {
+    width: 100%;
+  }
+  .triptych__navigation {
+    grid-template-rows: auto;
+  }
+  .triptych__navigation div > i {
+    display: none;
+  }
+}

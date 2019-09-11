@@ -1,0 +1,5 @@
+.facet {
+  position: relative;
+  height: 100%;
+  padding: 0 var(--padding) 0 var(--padding);
+}

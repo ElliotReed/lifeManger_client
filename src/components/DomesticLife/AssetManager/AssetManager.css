@@ -1,0 +1,12 @@
+.btn-add {
+	position: absolute;
+	bottom: 0.32em;
+	right: 0.32em;
+	color: var(--green);
+}
+
+.btn-add:hover,
+.btn-add:active {
+	color: var(--green-dark);
+	cursor: pointer;
+}

@@ -1,0 +1,19 @@
+#Form {
+  margin: var(--margin) auto;
+  max-width: calc(100vw * .618);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--boxShadow);
+  background: rgba(252, 252, 252, 0.618);
+  padding: var(--padding);
+  animation: var(--softIn);
+}
+
+#Form input[type=submit] {
+  width: 100%;
+  margin: 1.618em auto;
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+  background-image: linear-gradient(to bottom, var(--green-light) 32%, var(--green-dark) 100%);
+  color: var(--light);
+  padding: var(--padding);
+}
