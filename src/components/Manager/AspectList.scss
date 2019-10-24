@@ -1,0 +1,53 @@
+@import "../App/palette";
+
+.aspect__list {
+  font-size: 20px;
+  position: relative;
+  border: 1px solid black;
+  width: 100%;
+  background: lighten($foreground, 47%);
+  padding: var(--padding);
+  color: darken($foreground, 38%);
+  text-align: center;
+
+  & ul {
+    position: relative;
+    padding: 0;
+    height: 100px;
+    margin: var(--margin);
+  }
+  
+  & li {
+    position: absolute;
+    display: inline-block;
+    padding: calc(var(--padding) / 2) calc(var(--padding) * 2);
+    // border: 1px solid black;
+    // width: 10em;
+    color: darken($primary, 15%);
+    text-align: center;
+    
+    
+    & span {
+      font-size: 1rem;
+    }
+
+    &.selected {
+      color: lighten($primary, 62%);
+      border-radius: var(--borderRadius);
+      background: linear-gradient(to bottom, lighten($primary, 38%), 25%, darken($primary, 38%));
+      padding: var(1.618em) calc(var(1.618em) * 2);
+      color: lighten($primary, 62%);
+    }
+  }
+
+  &--center {
+    --size: 2em;
+    position: absolute;
+    top: calc(50% + -3px);
+    left: calc(50% - calc(var(--size) / 2));
+    width: var(--size);
+    height: var(--size);
+    border: 6px solid $primary;
+    border-radius: 50%;
+  }
+}

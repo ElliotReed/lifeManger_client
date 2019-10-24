@@ -1,4 +1,6 @@
-.heading h4 {
+@import '../../App/palette';
+
+.heading {
   margin: 0 auto;
-  color: var(--light);
+  color: darken($accent, 38%);
 }

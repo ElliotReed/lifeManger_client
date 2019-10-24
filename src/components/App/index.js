@@ -5,18 +5,22 @@ import { AppHeader } from './Header';
 import Gate from './Gate';
 import HomeManager from '../DomesticLife/HomeManager';
 import AssetManager from '../DomesticLife/AssetManager';
-import LifeManager from '../Organizer';
+import LifeManager from '../Manager';
+import AspectManager from '../Manager';
 import MealManager from '../DomesticLife/MealManager';
 import { User } from './User';
 import './utility.scss';
 import './App.scss';
 
-import ReactDOM from 'react-dom'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import {
+	faCheckSquare,
+	faCoffee,
+	faUserCog,
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(fab, faCheckSquare, faCoffee)
+library.add(fab, faCheckSquare, faCoffee, faUserCog);
 
 class App extends React.Component {
 	constructor(props) {
@@ -115,6 +119,13 @@ class App extends React.Component {
 						path="/asset"
 						render={props => (
 							<AssetManager {...props} isLoggedIn={isLoggedIn} />
+						)}
+					/>
+					<Route
+						exact
+						path="/aspect"
+						render={props => (
+							<AspectManager {...props} isLoggedIn={isLoggedIn} />
 						)}
 					/>
 					<Route

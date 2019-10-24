@@ -1,0 +1,32 @@
+@import "../App/palette";
+
+.todo-form {
+  display: grid;
+  margin: var(--margin) auto;
+  width: 62%;
+  max-width: var(--maxWidth);
+
+  &__duration {
+    & input {
+      margin: var(--margin);
+      width: 3rem;
+      padding: var(--padding);
+    }
+  }
+
+  &__description {
+    & textarea {
+      padding: var(--padding);
+    }
+  }
+
+  & button {
+    margin: var(--margin) 0;
+    width: 62%;
+    border-radius: var(--borderRadius);
+    background: linear-gradient(to bottom, lighten($primary, 38%), 25%, darken($primary, 38%));
+    padding: var(--padding) calc(var(--padding) * 2);
+    font-size: 0.618rem;
+    color: lighten($primary, 62%);
+  }
+}

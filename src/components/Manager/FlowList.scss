@@ -1,0 +1,25 @@
+@import "../App/palette";
+
+.life-flow__flow-list {
+  color: var(--darkN);
+  background: lighten($primary, 38%);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding);
+  margin: var(--margin);
+  box-shadow: var(--boxShadow);
+  font-size: 0.4rem;
+}
+
+.btn-settings {
+  position: absolute;
+  top: 0.32em;
+  right: 0em;
+  color: var(--green);
+}
+
+.btn-settings:hover,
+.btn-settings:active {
+  color: var(--green-dark);
+  cursor: pointer;
+}

@@ -1,3 +1,5 @@
+
+
 #deveop-manager {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,7 @@
 }
 
 :root {
+
   --light: hsl(120, 15%, 99%);
   --medium: rgb(72, 80, 72);
   --dark: hsl(120, 15%, 10%);
@@ -31,9 +34,9 @@
   --redComplimentRGB: 65, 87, 87;
 
   --primary: #6b947a;
-  --accent: #946B85;
-  --foreground: #6B7194;
-  --background: #948F6B;
+  --accent: #946b85;
+  --foreground: #6b7194;
+  --background: #948f6b;
 
   --color1: rgba(114, 110, 96, 1);
   --darkN: rgba(23, 42, 58, 1);
@@ -42,21 +45,21 @@
   --color5: rgba(176, 123, 172, 1);
 
   /* sizes */
-  --margin: .618em;
-  --padding: .618em;
+  --margin: 0.618em;
+  --padding: 0.618em;
   --maxWidth: 1024px;
 
   /* box model */
   /* --boxShadow: 0 0 10px rgba(40, 40, 10, 0.5); */
   --boxShadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   --border: 2px solid var(--dark);
-  --borderRadius: calc(.5rem * .618);
+  --borderRadius: calc(.618rem * 0.618);
 
   /* font */
-  --fontStackSans: 'Hind Siliguri', sans-serif;
-  --fontStackSerif: 'Georgia', serif;
-  --fontStackIcons: 'Material Icons';
-  --fontStackRoboto: 'Roboto', sans-serif;
+  --fontStackSans: 'Montserrat', sans-serif;
+  --fontStackSerif: "Georgia", serif;
+  --fontStackIcons: "Material Icons";
+  --fontStackRoboto: "Roboto", sans-serif;
 
   /* animations */
   --softIn: softIn 618ms ease-in;
@@ -64,11 +67,11 @@
 
 @keyframes softIn {
   from {
-    opacity: 0.0;
+    opacity: 0;
   }
 
   to {
-    opacity: 1.0;
+    opacity: 1;
   }
 }
 
@@ -172,11 +175,11 @@ blockquote {
 
 cite {
   font-family: var(--fontStackSans);
-  font-size: .66rem;
+  font-size: 0.66rem;
   font-weight: normal;
   color: var(--dark);
 }
 
 label {
-  font-family: var(--fontStackSans)
+  font-family: var(--fontStackSans);
 }

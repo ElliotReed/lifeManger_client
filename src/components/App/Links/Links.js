@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Links.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './Links.scss';
 
 export const AssetManagerLink = () => (
 	<Link to="/asset">
 		<i className="material-icons link__i">style</i>
 		<span className="link__seperator">Asset Manager</span>
+	</Link>
+);
+export const AspectManagerLink = () => (
+	<Link to="/aspect">
+		<FontAwesomeIcon icon="user-cog" />
+		<span className="link__seperator">Aspect Manager</span>
 	</Link>
 );
 export const HomeManagerLink = () => (
@@ -24,7 +31,7 @@ export const MealManagerLink = () => (
 export const LifeManagerLink = () => (
 	<Link to="/manager">
 		<i className="material-icons">alarm</i>
-		<span className="link__seperator">lifeManager</span>
+		<span className="link__seperator">lifeManager<span>Organize your life!</span></span>
 	</Link>
 );
 

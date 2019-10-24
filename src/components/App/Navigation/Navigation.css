@@ -45,3 +45,56 @@
 	border-bottom: 2px solid var(--green);
 	cursor: pointer;
 }
+
+.organizer__list-wrapper {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0;
+	margin: var(--margin) 0;
+}
+
+.link__card {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	height: 10em;
+	padding: var(--padding);
+	margin: var(--margin);
+	box-shadow: var(--boxShadow);
+}
+
+.link__card a {
+	color: white;
+}
+
+.link__card > a:hover {
+	color: white;
+	cursor: pointer;
+}
+
+.asset {
+	background: url(./asset.svg);
+	background-repeat: no-repeat;
+	background-color: rgba(var(--greenRGB), 0.32);
+	background-size: cover;
+	background-attachment: local;
+	background-position: center;
+}
+
+.maintenance {
+	background: url(./maintenance.svg);
+	background-repeat: no-repeat;
+	background-color: rgba(var(--greenRGB), 0.32);
+	background-size: cover;
+	background-attachment: local;
+	background-position: center;
+}
+
+.meal-planner {
+	background: url(./meal.svg);
+	background-repeat: no-repeat;
+	background-color: rgba(var(--greenRGB), 0.32);
+	background-size: cover;
+	background-attachment: local;
+	background-position: center;
+}

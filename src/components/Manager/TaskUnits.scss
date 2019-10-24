@@ -1,0 +1,16 @@
+@import "../App/palette";
+
+.life-units {
+  // width: 5rem;
+  // margin: var(--margin);
+  border-radius: var(--borderRadius);
+  background: lighten($primary, 38%);
+
+  & p {
+    color: darken($primary, 62%);
+  }
+
+  & ul li span::before {
+    content: '\0020';
+  }
+}

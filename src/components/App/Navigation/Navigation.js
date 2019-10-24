@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AssetManagerLink, HomeManagerLink, MealManagerLink } from '../Links';
+import {
+	AspectManagerLink,
+	AssetManagerLink,
+	HomeManagerLink,
+	MealManagerLink,
+} from '../Links';
 import UserProfile from '../User/UserProfile';
 import './Navigation.css';
 
@@ -36,45 +41,72 @@ class Navbar extends Component {
 
 		return (
 			<React.Fragment>
-				<NavigationMenu visibility={visibility} onClick={this.handleMenuMouseDown} />
+				<NavigationMenu
+					visibility={visibility}
+					onClick={this.handleMenuMouseDown}
+				/>
 				<HeaderContainer>
 					<div id="header__top-bar--left">
-						<button id="menu__button-flyout" onClick={this.handleMenuMouseDown}>
+						<button
+							id="menu__button-flyout"
+							onClick={this.handleMenuMouseDown}
+						>
 							<i className="material-icons">menu</i>
 						</button>
 						<div id="logo">
 							<a href="/" id="logo__link">
 								<i className="material-icons">alarm</i>
-								<div>lifeManager</div>
+								<div>
+									lifeManager
+								</div>
 							</a>
 						</div>
 					</div>
 					<div id="header__top-bar--right">
-						<UserProfile user={this.props.user} handleLogout={this.props.handleLogout} />
+						<UserProfile
+							user={this.props.user}
+							handleLogout={this.props.handleLogout}
+						/>
 						<ul id="nav__top-right">
 							<li className="show-on-small-only">
-								<a href="/home" data-activates="mobile-menu" className="button-collapse">
+								<a
+									href="/home"
+									data-activates="mobile-menu"
+									className="button-collapse"
+								>
 									<i className="material-icons">more_vert</i>
 								</a>
 								<ul id="mobile-menu" className="side-nav">
 									<li>
 										<Link to="/manager">
-											<i className="material-icons">home</i>Manager
+											<i className="material-icons">
+												home
+											</i>
+											Manager
 										</Link>
 									</li>
 									<li>
 										<Link to="/asset">
-											<i className="material-icons">style</i>asset
+											<i className="material-icons">
+												style
+											</i>
+											asset
 										</Link>
 									</li>
 									<li>
 										<Link to="/mealplan">
-											<i className="material-icons">kitchen</i>Meal Planner
+											<i className="material-icons">
+												kitchen
+											</i>
+											Meal Planner
 										</Link>
 									</li>
 									<li>
 										<Link to="/user">
-											<i className="material-icons">account_circle</i>Profile
+											<i className="material-icons">
+												account_circle
+											</i>
+											Profile
 										</Link>
 									</li>
 								</ul>
@@ -89,7 +121,11 @@ class Navbar extends Component {
 
 const NavigationMenu = props => {
 	return (
-		<nav id="mobile-menu" onClick={props.onClick} className={props.visibility}>
+		<nav
+			id="mobile-menu"
+			onClick={props.onClick}
+			className={props.visibility}
+		>
 			<ul className="side-nav">
 				<li>
 					<Link to="/user">
@@ -100,16 +136,35 @@ const NavigationMenu = props => {
 					<HomeManagerLink />
 				</li>
 				<li>
+					<AspectManagerLink />
+				</li>
+				<li>
 					<AssetManagerLink />
 				</li>
 				<li>
 					<MealManagerLink />
 				</li>
 			</ul>
+			<ul className="organizer__list-wrapper">
+				<li className="link__card asset">
+					<AspectManagerLink />
+				</li>
+				<li className="link__card asset">
+					<AssetManagerLink />
+				</li>
+				<li className="link__card meal-planner">
+					<MealManagerLink />
+				</li>
+				<li className="link__card maintenance">
+					<HomeManagerLink />
+				</li>
+			</ul>
 		</nav>
 	);
 };
 
-const HeaderContainer = props => <header className="header__top-bar">{props.children}</header>;
+const HeaderContainer = props => (
+	<header className="header__top-bar">{props.children}</header>
+);
 
 export { Navbar, NavigationMenu };

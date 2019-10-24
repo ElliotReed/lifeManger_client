@@ -1,0 +1,34 @@
+@import "../App/palette";
+
+.life-flow {
+  position: relative;
+  color: var(--darkN);
+  background: lighten($primary, 38%);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding);
+  margin: var(--margin);
+  box-shadow: var(--boxShadow);
+
+  &__aspect-list {
+    // width: 5rem;
+    font-size: 0.4rem;
+  }
+  &__flow-list {
+    // width: 5rem;
+    font-size: 0.4rem;
+  }
+}
+
+
+.current-flow-aspect {
+  & button {
+    margin: var(--margin) 0;
+    width: 62%;
+    border-radius: var(--borderRadius);
+    background: linear-gradient(to bottom, lighten($primary, 38%), 25%, darken($primary, 38%));
+    padding: var(--padding) calc(var(--padding) * 2);
+    font-size: 0.618rem;
+    color: lighten($primary, 62%);
+  }
+}
