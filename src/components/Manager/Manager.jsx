@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
-import FlowSettings from './FlowSettings';
 import AspectList from './AspectList';
 import TodoForm from './TodoForm';
 import RecurrenceForm from './RecurrenceForm';
 import TodoList from './TodoList';
+import LifeUnitsReward from './LifeUnitsReward';
 
 import OffscreenContainer from '../UI/OffscreenContainer';
 import './Aspect.scss';
@@ -99,6 +99,10 @@ export default function Manager(props) {
 	const [todos, setTodos] = useState(getTodos);
 	const [aspectId, setAspectId] = useState();
 	const [showTodoForm, setShowTodoForm] = useState(false);
+	const [
+		lifeUnitRewardsNeedsUpdate,
+		setLifeUnitRewardsNeedsUpdate,
+	] = useState(false);
 
 	const [form, setFormProperties] = useState(initialFormProperties);
 
@@ -134,19 +138,20 @@ export default function Manager(props) {
 		setShowTodoForm(!showTodoForm);
 	};
 
-
-
 	if (!props.isLoggedIn) {
 		return <Redirect to="/" />;
 	}
 
 	return (
 		<main className="manager">
-
-
+			<LifeUnitsReward
+				lifeUnitRewardsNeedsUpdate={lifeUnitRewardsNeedsUpdate}
+				setLifeUnitRewardsNeedsUpdate={setLifeUnitRewardsNeedsUpdate}
+			/>
 			<LifeFlow
 				setAspectId={setAspectId}
 				completedTodos={() => completedTodos(todos)}
+				setLifeUnitRewardsNeedsUpdate={setLifeUnitRewardsNeedsUpdate}
 			/>
 			<AspectList
 				aspectId={aspectId}

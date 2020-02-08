@@ -2,13 +2,14 @@
 
 .life-flow__flow-list {
   color: var(--darkN);
-  background: lighten($primary, 38%);
-  display: flex;
-  justify-content: space-between;
-  padding: var(--padding);
-  margin: var(--margin);
-  box-shadow: var(--boxShadow);
-  font-size: 0.4rem;
+
+  & ul {
+    font-size: 1rem;
+
+    & li:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .btn-settings {

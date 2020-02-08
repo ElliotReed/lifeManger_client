@@ -44,15 +44,21 @@
   --lightN: rgba(87, 87, 97, 1);
   --color5: rgba(176, 123, 172, 1);
 
+  // Monochromatic theme
+  --white: #fdfdfd;
+  --primaryLight: hsl(120, 14%, 50%);
+  --primary: #415741;
+  --primaryDark: hsl(120, 14%, 20%);
+  --black: #222222;
   /* sizes */
-  --margin: 0.618em;
-  --padding: 0.618em;
+  --margin: 1em;
+  --padding: 1.618em;
   --maxWidth: 1024px;
 
   /* box model */
   /* --boxShadow: 0 0 10px rgba(40, 40, 10, 0.5); */
   --boxShadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  --border: 2px solid var(--dark);
+  --border: 2px solid var(--primaryDark);
   --borderRadius: calc(.618rem * 0.618);
 
   /* font */

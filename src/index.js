@@ -21,14 +21,14 @@ const client = new ApolloClient({
 	link,
 });
 
-ReactDOM.render(
-	<BrowserRouter>
-		<ApolloProvider client={client}>
-			<App />
-		</ApolloProvider>
-	</BrowserRouter>,
-	root
-);
+// ReactDOM.render(
+// 	<BrowserRouter>
+// 		<ApolloProvider client={client}>
+// 			<App />
+// 		</ApolloProvider>
+// 	</BrowserRouter>,
+// 	root
+// );
 
 const render = Component => {
 	return ReactDOM.render(
