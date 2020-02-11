@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+// import { useMutation } from '@apollo/react-hooks';
 
 import { InputText } from '../../UI/Input';
 import './Login.css';
@@ -27,8 +27,7 @@ class Login extends Component {
 	// }
 	handleFormSubmit = event => {
 		event.preventDefault();
-
-	}
+	};
 
 	getInputValue = (name, value) => {
 		// console.log(`Name: ${name}, Value: ${value}`);

@@ -5,12 +5,12 @@ import { AppHeader } from './Header';
 import Gate from './Gate';
 import HomeManager from '../DomesticLife/HomeManager';
 import AssetManager from '../DomesticLife/AssetManager';
-import LifeManager from '../Manager';
-import AspectManager from '../Manager';
+import LifeManager from '../LifeManager';
+import AspectManager from '../LifeManager';
 import MealManager from '../DomesticLife/MealManager';
 import { User } from './User';
 import './utility.scss';
-import './App.scss';
+import './App.module.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';

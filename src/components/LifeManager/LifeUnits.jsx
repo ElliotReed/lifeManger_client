@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import Moment from 'react-moment';
 
-import './LifeUnits.scss';
+import styles from './LifeUnits.module.scss';
 
 export default function LifeUnits({ lifeUnits }) {
 	function getDaysLifeUnits() {
@@ -40,7 +40,7 @@ export default function LifeUnits({ lifeUnits }) {
 	}
 
 	return (
-		<div className="life-units">
+		<div className={styles.lifeUnits}>
 			<p>
 				You have completed{' '}
 				<span>

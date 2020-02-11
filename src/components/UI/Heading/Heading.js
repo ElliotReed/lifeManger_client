@@ -1,6 +1,6 @@
 import React from 'react';
-import './Heading.scss';
+import  styles from './Heading.module.scss';
 
-const Heading = props => <h4 className="heading">{props.children}</h4>;
+const Heading = props => <h4 className={styles.heading}>{props.children}</h4>;
 
 export default Heading;

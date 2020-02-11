@@ -21,34 +21,14 @@ const client = new ApolloClient({
 	link,
 });
 
-// ReactDOM.render(
-// 	<BrowserRouter>
-// 		<ApolloProvider client={client}>
-// 			<App />
-// 		</ApolloProvider>
-// 	</BrowserRouter>,
-// 	root
-// );
-
-const render = Component => {
-	return ReactDOM.render(
-		<BrowserRouter>
-			<ApolloProvider client={client}>
-				<App />
-			</ApolloProvider>
-		</BrowserRouter>,
-		root
-	);
-};
-
-render(App);
-
-// if (module.hot) {
-//   module.hot.accept('./App', () => {
-//     const NextApp = require('./components/App').default;
-//     render(NextApp);
-//   });
-// }
+ReactDOM.render(
+	<BrowserRouter>
+		<ApolloProvider client={client}>
+			<App />
+		</ApolloProvider>
+	</BrowserRouter>,
+	root
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

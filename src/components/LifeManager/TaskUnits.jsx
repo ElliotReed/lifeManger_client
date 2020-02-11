@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import Moment from 'react-moment';
 
-import './LifeUnits.scss';
+import styles from './LifeUnits.module.scss';
 
 export default function LifeUnits({ completedTodos }) {
 	const todos = completedTodos();
@@ -31,7 +31,7 @@ export default function LifeUnits({ completedTodos }) {
 	}
 
 	return (
-		<div className="life-units">
+		<div className={styles.lifeUnits}>
 			<p>
 				You have completed <span><b>{todos.length}</b></span> task
 				{todos.length !== 1 ? 's' : ''}!

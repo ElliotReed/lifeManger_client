@@ -1,5 +1,5 @@
 import React from 'react';
-import './AspectList.scss';
+import styles from './AspectList.module.scss';
 
 export default function AspectList({ aspectId, setAspectId, lifeAspects }) {
 	const aspectList = lifeAspects.sort((a, b) => {
@@ -37,14 +37,14 @@ export default function AspectList({ aspectId, setAspectId, lifeAspects }) {
 	}
 
 	return (
-		<section className="aspect__list">
+		<section className={styles.list}>
 			<ul>
 				{aspectList.map((aspect, index) => {
 					const aspectStyle = setAspectPosition(index);
 					return (
 						<li
 							className={
-								aspectId === aspect.id ? 'selected' : null
+								aspectId === aspect.id ? styles.selected : null
 							}
 							key={aspect.id}
 							style={aspectStyle}
@@ -55,7 +55,6 @@ export default function AspectList({ aspectId, setAspectId, lifeAspects }) {
 					);
 				})}
 			</ul>
-			{/* <div className="aspect__list--center"></div> */}
 		</section>
 	);
 }

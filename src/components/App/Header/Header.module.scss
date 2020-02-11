@@ -1,0 +1,63 @@
+@import '../../../base.scss';
+
+.header {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 2.62rem;
+  @include gradient($primary);
+  color: $white;
+  @include paddingBox;
+  line-height: 24px;
+}
+
+.header a {
+  color: $white;
+}
+
+.header-left i {
+  margin-right: $margin;
+  cursor: pointer;
+}
+
+.header-left span {
+  cursor: pointer;
+}
+
+.material-icons {
+  display: inline-flex;
+  vertical-align: top;
+}
+
+.barRight,
+.barLeft {
+  display: flex;
+  align-items: center;
+}
+
+.flyout {
+  background: transparent;
+  color: $white;
+  outline: none;
+  border: transparent;
+  cursor: pointer;
+}
+
+.lifeManagerLink {
+  font-family: $fontStackSans;
+  // font-size: 1rem;
+  font-weight: bold;
+}
+
+.lifeManagerLink a {
+  display: flex;
+  color: $white;
+}
+
+@media only screen and (max-width: 400px) {
+  .lifeManagerLink i {
+    display: none;
+  }
+}

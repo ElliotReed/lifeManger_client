@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+// import { useQuery, useMutation } from '@apollo/react-hooks';
+// import gql from 'graphql-tag';
 
-import AssetManagerCreateUpdateForm from './CreateUpdateForm';
-import AssetManagerItemDisplay from './ItemDisplay';
+// import AssetManagerCreateUpdateForm from './CreateUpdateForm';
+// import AssetManagerItemDisplay from './ItemDisplay';
 import AssetManagerSelectorList from './SelectorList';
 
-import LoadingSpinner from '../../UI/LoadingSpinner';
+// import LoadingSpinner from '../../UI/LoadingSpinner';
 
 import './AssetManager.css';
 
