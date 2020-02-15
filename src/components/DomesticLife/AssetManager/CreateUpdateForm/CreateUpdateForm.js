@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { PageHeader } from '../../../App/Header';
-import OffscreenContainer from '../../../UI/OffscreenContainer';
-import ScrollBox from '../../../UI/ScrollBox';
-import Tabs from '../../../UI/Tabs';
+import { PageHeader } from 'components/Header';
+import OffscreenContainer from 'components/UI/OffscreenContainer';
+import ScrollBox from 'components/UI/ScrollBox';
+import Tabs from 'components/UI/Tabs';
 import {
 	Input,
 	Select,

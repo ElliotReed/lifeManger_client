@@ -1,0 +1,32 @@
+@import "../../../base";
+
+.lifeFlow {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  // margin: $margin;
+  // @include boxShadow;
+  border: transparent;
+  // border-radius: $borderRadius;
+  @include gradient(lighten($primary, 66));
+  padding: $padding;
+  color: $primary;
+}
+
+.currentAspect {
+  & button {
+    margin: $margin 0;
+    width: 62%;
+    border: transparent;
+    border-radius: $borderRadius;
+    @include gradient(rgba($primary, .38));
+    @include paddingBox;
+    font-size: 0.618rem;
+    color: $white;
+
+    &:hover {
+      background-color: $primary;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@import "../../../base";
+
+.todos {
+  // border: 1px solid pink;
+  padding: var(--padding);
+  margin: 0 auto;
+  max-width: var(--maxWidth);
+  color: darken($primary, 38%);
+}
+
+.todo {
+  margin: 0;
+  padding: calc(var(--padding) * 1.618) 0 calc(var(--padding) * 0.38) 0;
+  border-bottom: 1px solid var(--medium);
+
+  & .todoHeader {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    font-size: 0.618rem;
+
+    & .headerAspect {
+      margin-right: var(--margin);
+      color: rgba(darken($primary, 38%), 0.618);
+    }
+
+    & .dateDue {
+      color: $primary;
+
+      & span {
+        display: block;
+        font-size: 0.38rem;
+        font-style: italic;
+        font-weight: 100;
+      }
+    }
+  }
+
+  & .body {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+
+    & .checkButton {
+      position: relative;
+      margin: 0 var(--margin) 0 0;
+      width: 1rem;
+      height: 1rem;
+
+      &.checked {
+        &::before {
+          content: "✓";
+          position: absolute;
+          top: 0;
+          left: 0;
+          line-height: 1rem;
+          font-weight: 900;
+          font-size: 1rem;
+          background: transparent;
+          color: var(--primary);
+        }
+      }
+    }
+
+    & .name {
+      margin-right: var(--margin);
+      flex-grow: 1;
+      // width: 8rem;
+    }
+
+    & .showDescription {
+      background: transparent;
+      border: 1px solid transparent;
+
+      &:hover {
+        cursor: pointer;
+      }
+      &:active,
+      :focus {
+        border: 1px solid transparent;
+      }
+    }
+
+    & .lowerWrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    & .duration {
+      font-size: 0.855rem;
+    }
+    & .edit {
+      color: rgba($primary, 0.618);
+
+      &:hover {
+        cursor: pointer;
+        color: $primary;
+      }
+    }
+
+    & .recurrence {
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: center;
+      // margin-right: var(--margin);
+      font-size: 0.618rem;
+      font-weight: bold;
+      width: 4rem;
+      text-align: center;
+    }
+  }
+}
+
+.description {
+  display: none;
+
+}
+
+  .show {
+    display: block;
+  }

@@ -4,11 +4,12 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import 'normalize.css';
 import './index.scss';
-import App from './components/App';
+
 import * as serviceWorker from './serviceWorker';
 
+import App from 'App';
 const root = document.getElementById('life-manager');
 
 const cache = new InMemoryCache();
@@ -22,13 +23,13 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-	<BrowserRouter>
-		<ApolloProvider client={client}>
-			<App />
-		</ApolloProvider>
-	</BrowserRouter>,
+	<ApolloProvider client={client}>
+		<App />
+	</ApolloProvider>,
 	root
 );
+
+module.hot && module.hot.accept();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

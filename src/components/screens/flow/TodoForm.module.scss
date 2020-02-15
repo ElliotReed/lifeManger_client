@@ -1,0 +1,32 @@
+@import "../../../base";
+
+.form {
+  display: grid;
+  margin: $margin auto;
+  width: 62%;
+  max-width: $maxWidth;
+
+  & .duration {
+    & input {
+      margin: $margin;
+      width: 5rem;
+      padding: $padding;
+    }
+  }
+
+  & .description {
+    & textarea {
+      padding: $padding;
+    }
+  }
+
+  & button {
+    margin: $margin 0;
+    width: 62%;
+    border-radius: $borderRadius;
+    @include gradient($primary);
+    @include paddingBox;
+    font-size: 0.618rem;
+    color: lighten($primary, 62%);
+  }
+}

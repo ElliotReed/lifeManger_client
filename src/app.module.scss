@@ -1,0 +1,37 @@
+@import "base.scss";
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  & main {
+    overflow-y: auto;
+  }
+}
+
+.nav {
+  height: 100%;
+
+  & ul {
+    margin: 0;
+    height: 100%;
+
+    & li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0;
+      height: 100%;
+
+      & a.activeLink {
+        background-color: $secondary;
+      }
+
+      & a {
+        padding: 0.38rem $padding;
+        color: $white;
+      }
+    }
+  }
+}

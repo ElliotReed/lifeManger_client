@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from '../../../App/Header';
+import { PageHeader } from 'components/Header';
 import './ItemDisplay.css';
 
 const AssetManagerItemDisplay = (props) => {

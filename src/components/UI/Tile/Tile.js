@@ -1,6 +1,6 @@
 import React from 'react';
-import './Tile.scss';
+import styles from './Tile.module.scss';
 
 export default function Tile(props) {
-	return <div className="tile">{props.children}</div>;
+	return <div className={styles.tile}>{props.children}</div>;
 }

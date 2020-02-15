@@ -1,9 +1,0 @@
-@import "../../App/palette";
-
-.tile {
-  color: var(--darkN);
-  background: lighten($primary, 38%);
-  padding: var(--padding);
-  box-shadow: var(--boxShadow);
-  width: 100%;
-}

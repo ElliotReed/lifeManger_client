@@ -2,12 +2,16 @@
 $fontStackSans: 'Montserrat', sans-serif;
 $fontStackSerif: "Georgia", serif;
 
+$primary: #6b947a;
+$accent: #946b85;
+$foreground: #6b7194;
+$background: #948f6b;
 // Monochromatic theme
 $white: #fdfdfd;
 $primaryLight: hsl(120, 14%, 50%);
-$primary: hsl(120, 14%, 30%);
+$primary: hsl(120, 10%, 30%);
 $primaryDark: hsl(120, 14%, 20%);
-$secondary: hsl(50, 14%, 70%);
+$secondary: hsl(50, 10%, 70%);
 $black: #222222;
 
   /* sizes */
@@ -42,4 +46,8 @@ $black: #222222;
 
 @mixin paddingBox {
   padding: calc(#{$padding} * 0.38) $padding;
+}
+
+@mixin root__fixed {
+  position: relative;
 }

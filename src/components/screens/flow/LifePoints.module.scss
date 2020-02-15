@@ -1,0 +1,36 @@
+@import "../../../base";
+
+.lifePoints {
+  display: flex;
+  justify-content: space-between;
+  @include gradient($secondary);
+  color: $white;
+  font-size: 0.618rem;
+  @include paddingBox;
+
+  & .points {
+    @include paddingBox;
+  }
+
+  & .rewards {
+    display: flex;
+
+    & div {
+      @include paddingBox;
+    }
+
+    & button {
+      margin-left: $margin;
+      border: $border;
+      border-radius: $borderRadius;
+      @include gradient($primary);
+      @include paddingBox;
+      color: $white;
+
+      &:hover {
+        cursor: pointer;
+        background: $primary;
+      }
+    }
+  }
+}

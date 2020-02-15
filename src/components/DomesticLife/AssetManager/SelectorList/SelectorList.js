@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { BackLink } from '../../../App/Links';
-import { HeaderContainer } from '../../../App/Header';
-import LoadingSpinner from '../../../UI/LoadingSpinner';
+import { BackLink } from 'components/Links';
+import { HeaderContainer } from 'components/Header';
+import LoadingSpinner from 'components/UI/LoadingSpinner';
 
 import './SelectorList.css';
 
