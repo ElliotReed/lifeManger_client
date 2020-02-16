@@ -83,7 +83,7 @@
 /* mobile */
 html {
   font-size: 16px;
-  font-family: var(--fontStackSans);
+  font-family: $fontStackSans;
 }
 
 /* tablet */
@@ -153,38 +153,38 @@ h4,
 h5,
 h6 {
   line-height: 1.33;
-  font-family: var(--fontStackSans);
-  color: var(--red);
+  font-family: $fontStackSans;
+  color: $primary;
 }
 
 p {
-  font-family: var(--fontStackSans);
-  color: var(--dark);
-  margin: var(--margin);
+  font-family: $fontStackSans;
+  color: $black;
+  margin: $margin;
 }
 
 a {
   text-decoration: none;
-  color: var(--green);
+  color: $primary;
 }
 
 ul {
-  font-family: var(--fontStackSans);
+  font-family: $fontStackSans;
   list-style-type: none;
 }
 
 blockquote {
-  font-family: var(--fontStackSans);
-  color: var(--dark);
+  font-family: $fontStackSans;
+  color: $black;
 }
 
 cite {
-  font-family: var(--fontStackSans);
+  font-family: $fontStackSans;
   font-size: 0.66rem;
   font-weight: normal;
-  color: var(--dark);
+  color: $black;
 }
 
 label {
-  font-family: var(--fontStackSans);
+  font-family: $fontStackSans;
 }

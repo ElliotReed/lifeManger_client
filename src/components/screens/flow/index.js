@@ -12,7 +12,7 @@ import OffscreenContainer from 'components/UI/OffscreenContainer';
 
 // import { Redirect } from 'react-router-dom';
 
-import styles from './index.module.scss';
+// import styles from './index.module.scss';
 
 import { lifeAspects } from './data';
 
@@ -71,15 +71,6 @@ function updateTodo(todo, todos, setTodos) {
 	setTodos(newTodos);
 	saveTodos(newTodos);
 }
-
-const completedTodos = todos => {
-	const oldestDate = moment().subtract(7, 'days');
-	return todos.filter(
-		todo =>
-			todo.date_completed !== null &&
-			moment(todo.date_completed) >= oldestDate
-	);
-};
 
 const initialFormProperties = {
 	id: '',
@@ -174,14 +165,14 @@ export default class LifeManager extends React.Component {
 		} = this.state;
 
 		return (
-			<main className={styles.manager}>
+			<main>
 				<LifePoints
 					lifePointsNeedsUpdate={lifePointsNeedsUpdate}
 					setLifePointsNeedsUpdate={this.setlifePointsNeedsUpdate}
 				/>
 				<LifeFlow
+				  todos={todos}
 					setAspectId={this.setAspectId}
-					completedTodos={() => completedTodos(todos)}
 					setlifePointsNeedsUpdate={this.setlifePointsNeedsUpdate}
 				/>
 				<AspectList

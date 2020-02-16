@@ -4,9 +4,8 @@ import moment from 'moment';
 import 'moment-timezone';
 
 import Heading from '../../UI/Heading';
-import LifeUnits from './LifeUnits';
 import SetFlow from './SetFlow';
-import TaskUnits from './TaskUnits';
+import History from './History';
 
 import OffscreenContainer from '../../UI/OffscreenContainer';
 import styles from './LifeFlow.module.scss';
@@ -42,6 +41,8 @@ function sortAspectFlow(aspectFlow) {
 		return a > b ? -1 : a < b ? 1 : 0;
 	});
 }
+
+
 
 function updateLifeUnits(setLifeUnits) {
 	const previousLifeflowUnits = getLifeUnits().filter(lifeUnit => {
@@ -131,8 +132,8 @@ function getAspectName(id) {
 }
 
 export default function LifeFlow({
+	todos,
 	setAspectId,
-	completedTodos,
 	setlifePointsNeedsUpdate,
 }) {
 	const [aspectFlow, setAspectFlow] = useState(getAspectFlow);
@@ -148,15 +149,8 @@ export default function LifeFlow({
 		setShowSettings(!showSettings);
 	};
 	return (
+		<React.Fragment>
 		<div className={styles.lifeFlow}>
-			<i
-				className="material-icons md-24 btn-settings"
-				onClick={handleSettingsOffscreenContainer}
-				title="More..."
-			>
-				more_vert
-			</i>
-			<LifeUnits lifeUnits={lifeUnits} completedTodos={completedTodos} />
 			<CurrentFlowAspect
 				aspectFlow={aspectFlow}
 				setAspectFlow={setAspectFlow}
@@ -164,7 +158,13 @@ export default function LifeFlow({
 				setAspectId={setAspectId}
 				setlifePointsNeedsUpdate={setlifePointsNeedsUpdate}
 			/>
-			<TaskUnits completedTodos={completedTodos} />
+			<i
+				className="material-icons md-24 btn-settings"
+				onClick={handleSettingsOffscreenContainer}
+				title="More..."
+			>
+				more_vert
+			</i>
 			<OffscreenContainer
 				isVisible={showSettings}
 				handleOffscreenContainer={handleSettingsOffscreenContainer}
@@ -176,5 +176,16 @@ export default function LifeFlow({
 				/>
 			</OffscreenContainer>
 		</div>
+		<div className={styles.history}>
+			<History
+			  array={lifeUnits}
+			  type="life"
+			/>
+			<History 
+			  array={todos}
+			  type="tasks"
+			/>
+		</div>
+		</React.Fragment>
 	);
 }

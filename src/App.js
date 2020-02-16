@@ -89,7 +89,10 @@ class App extends React.Component {
 	};
 
 	render() {
-		const { isLoggedIn, user } = this.state;
+		const {
+			isLoggedIn,
+			//  user
+		} = this.state;
 
 		return (
 			<BrowserRouter>
@@ -97,7 +100,11 @@ class App extends React.Component {
 					<nav className={styles.nav}>
 						<ul>
 							<li>
-								<NavLink exact to="/flow" activeClassName={styles.activeLink} >
+								<NavLink
+									exact
+									to="/flow"
+									activeClassName={styles.activeLink}
+								>
 									Flow
 								</NavLink>
 							</li>
@@ -105,7 +112,7 @@ class App extends React.Component {
 					</nav>
 				</Header>
 				<div className={styles.mainWrapper}>
-				{/* <div className={styles.main}> */}
+					{/* <div className={styles.main}> */}
 
 					<Switch>
 						<Route path="/flow" component={Flow} />
@@ -168,7 +175,7 @@ class App extends React.Component {
 							)}
 						/>
 					</Switch>
-				{/* </div> */}
+					{/* </div> */}
 				</div>
 			</BrowserRouter>
 		);
