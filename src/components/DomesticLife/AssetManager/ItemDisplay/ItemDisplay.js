@@ -1,8 +1,8 @@
 import React from 'react';
 import { PageHeader } from 'components/Header';
-import './ItemDisplay.css';
+import './ItemDisplay.module.scss';
 
-const AssetManagerItemDisplay = (props) => {
+const AssetManagerItemDisplay = props => {
 	const {
 		getSelectedItemDetails,
 		handleDiptych,
@@ -11,7 +11,7 @@ const AssetManagerItemDisplay = (props) => {
 		readSecondaryLocation,
 	} = props;
 
-	const item = {...getSelectedItemDetails};
+	const item = { ...getSelectedItemDetails };
 
 	return (
 		<React.Fragment>
@@ -20,12 +20,10 @@ const AssetManagerItemDisplay = (props) => {
 				onClick={handleCreateUpdateForm}
 				title="Click to edit."
 				data-name="edit"
-			>create
+			>
+				create
 			</i>
-			<PageHeader
-				onClick={handleDiptych}
-				title="Item"
-			/>
+			<PageHeader onClick={handleDiptych} title="Item" />
 			<div className="item-card">
 				<h3 className="item-card__title">{item.name}</h3>
 				<div className="item-card__group item-card__group-textarea">
@@ -34,7 +32,9 @@ const AssetManagerItemDisplay = (props) => {
 				</div>
 				<div className="item-card__group">
 					<label>Location:</label>
-					<div>{getOptionById(item.locationId, 'location', 'name')}</div>
+					<div>
+						{getOptionById(item.locationId, 'location', 'name')}
+					</div>
 				</div>
 				{readSecondaryLocation(item.locationId)}
 				<div className="item-card__group">
@@ -43,7 +43,9 @@ const AssetManagerItemDisplay = (props) => {
 				</div>
 				<div className="item-card__group">
 					<label>Condition:</label>
-					<div>{getOptionById(item.conditionId, 'condition', 'name')}</div>
+					<div>
+						{getOptionById(item.conditionId, 'condition', 'name')}
+					</div>
 				</div>
 				<div className="item-card__group">
 					<label>Purchase Date:</label>
@@ -55,7 +57,11 @@ const AssetManagerItemDisplay = (props) => {
 				</div>
 				<div className="item-card__group">
 					<label>Is this a Container?</label>
-					<div>{item.isContainer ? 'This is a container' : 'Not a container'}</div>
+					<div>
+						{item.isContainer
+							? 'This is a container'
+							: 'Not a container'}
+					</div>
 				</div>
 			</div>
 		</React.Fragment>

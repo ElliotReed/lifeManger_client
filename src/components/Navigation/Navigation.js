@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
 import {
 	AspectManagerLink,
@@ -8,7 +9,7 @@ import {
 	MealManagerLink,
 } from '../Links';
 import UserProfile from '../User/UserProfile';
-import './Navigation.css';
+import styles from './Navigation.module.scss';
 
 class Navbar extends Component {
 	constructor(props) {
@@ -56,9 +57,7 @@ class Navbar extends Component {
 						<div id="logo">
 							<a href="/" id="logo__link">
 								<i className="material-icons">alarm</i>
-								<div>
-									lifeManager
-								</div>
+								<div>lifeManager</div>
 							</a>
 						</div>
 					</div>
@@ -122,11 +121,10 @@ class Navbar extends Component {
 const NavigationMenu = props => {
 	return (
 		<nav
-			id="mobile-menu"
 			onClick={props.onClick}
-			className={props.visibility}
+			className={classnames(styles.mobileMenu, styles[props.visibility])}
 		>
-{props.children}
+			{props.children}
 			<ul className="side-nav">
 				<li>
 					<Link to="/user">
@@ -146,17 +144,17 @@ const NavigationMenu = props => {
 					<MealManagerLink />
 				</li>
 			</ul>
-			<ul className="organizer__list-wrapper">
-				<li className="link__card asset">
+			<ul className={styles.organizer}>
+				<li className={classnames(styles.card, styles.asset)}>
 					<AspectManagerLink />
 				</li>
-				<li className="link__card asset">
+				<li className={classnames(styles.card, styles.asset)}>
 					<AssetManagerLink />
 				</li>
-				<li className="link__card meal-planner">
+				<li className={classnames(styles.card, styles.mealPlanner)}>
 					<MealManagerLink />
 				</li>
-				<li className="link__card maintenance">
+				<li className={classnames(styles.card, styles.maintenance)}>
 					<HomeManagerLink />
 				</li>
 			</ul>
@@ -165,7 +163,7 @@ const NavigationMenu = props => {
 };
 
 const HeaderContainer = props => (
-	<header className="header__top-bar">{props.children}</header>
+	<header className="healoder__top-bar">{props.children}</header>
 );
 
 export { Navbar, NavigationMenu };

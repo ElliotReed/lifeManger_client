@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ErrorMessage from '../../components/UI/ErrorMessage';
-import './TextInput.css';
+import './TextInput.module.scss';
 
 class TextInput extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      value: '',
-      isValid: true,
+			value: '',
+			isValid: true,
 		};
 	}
 
@@ -29,7 +29,9 @@ class TextInput extends Component {
 					value={this.state.value}
 					onChange={this.handleOnChange}
 				/>
-				{!this.state.isValid && <ErrorMessage errorMessage={errorMessage}/>}
+				{!this.state.isValid && (
+					<ErrorMessage errorMessage={errorMessage} />
+				)}
 			</div>
 		);
 	}

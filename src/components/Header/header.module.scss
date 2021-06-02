@@ -1,4 +1,4 @@
-@import "../../base.scss";
+@import "styles";
 
 .header {
   // position: fixed;
@@ -46,7 +46,7 @@
 }
 
 .lifeManagerLink {
-  font-family: $fontStackSans;
+  // font-family: $fontStackSans;
   // font-size: 1rem;
   font-weight: bold;
 }

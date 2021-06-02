@@ -12,7 +12,7 @@ import {
 	InputCheck,
 } from '../components/UI/Input';
 import ErrorMessage from '../components/UI/ErrorMessage';
-// import './CreateUpdateForm.css';
+// import './CreateUpdateForm.module.scss';
 
 function isEmpty(obj) {
 	for (var key in obj) {
@@ -33,28 +33,30 @@ class AssetManagerCreateUpdateForm extends Component {
 			},
 		};
 
-		this.handleInputChange =  this.handleInputChange.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
 	handleInputChange(event) {
 		const target = event.target;
 		const name = target.name;
-		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const value =
+			target.type === 'checkbox' ? target.checked : target.value;
 
-		this.setState( prevState => {
+		this.setState(prevState => {
 			return {
 				item: {
-					...prevState.item, [name]: value
-				}
-			}
+					...prevState.item,
+					[name]: value,
+				},
+			};
 		});
-	};
+	}
 
 	componentDidMount() {
 		console.log(`componentDidMount`);
 		const { item, editMode } = this.props;
 		if (item && editMode) {
-			this.setState({ item })
+			this.setState({ item });
 		}
 	}
 
@@ -76,12 +78,11 @@ class AssetManagerCreateUpdateForm extends Component {
 				<PageHeader
 					title={editMode ? 'Edit Item' : 'Add Item'}
 					onClick={handleCreateUpdateForm}
-				>
-				</PageHeader>
+				></PageHeader>
 				<ScrollBox>
 					<form
 						className="create-update-form"
-						onSubmit={(event) => handleSubmit(event, item)}
+						onSubmit={event => handleSubmit(event, item)}
 					>
 						<Input
 							type="text"
@@ -148,28 +149,28 @@ class AssetManagerCreateUpdateForm extends Component {
 							</Tabs> */}
 						</div>
 						<Select
-						 	label={'Type'}
+							label={'Type'}
 							name={'typeId'}
-							options = {optionTables.typeOptions} 
-							value = {item.typeId}
-							placeholder = {'Select the item type...'}
-							handleChange = {this.handleInputChange}
+							options={optionTables.typeOptions}
+							value={item.typeId}
+							placeholder={'Select the item type...'}
+							handleChange={this.handleInputChange}
 						/>
 						<Select
-						 	label={'Type'}
+							label={'Type'}
 							name={'typeId'}
-							options = {optionTables.typeOptions} 
-							value = {item.typeId}
-							placeholder = {'Select the item type...'}
-							handleChange = {this.handleInputChange}
+							options={optionTables.typeOptions}
+							value={item.typeId}
+							placeholder={'Select the item type...'}
+							handleChange={this.handleInputChange}
 						/>
 						<Select
-						 	label={'Condition'}
+							label={'Condition'}
 							name={'conditionId'}
-							options = {optionTables.conditionOptions} 
-							value = {item.conditionId}
-							placeholder = {'Select the condition of the item...'}
-							handleChange = {this.handleInputChange}
+							options={optionTables.conditionOptions}
+							value={item.conditionId}
+							placeholder={'Select the condition of the item...'}
+							handleChange={this.handleInputChange}
 						/>
 						{/* <InputSelect
 							type="select"
@@ -203,6 +204,6 @@ class AssetManagerCreateUpdateForm extends Component {
 			</OffscreenContainer>
 		);
 	}
-};
+}
 
 export default AssetManagerCreateUpdateForm;

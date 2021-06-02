@@ -1,0 +1,93 @@
+.mobileMenu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--green);
+  top: 0;
+  left: 0;
+  transform: translate3d(-100vw, 0, 0);
+  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  overflow: auto;
+  z-index: 1000;
+  cursor: pointer;
+
+  a {
+    color: var(--light);
+  }
+}
+
+.hide {
+  transform: translate3d(-100vw, 0, 0);
+}
+.show {
+  transform: translate3d(0vw, 0, 0);
+  overflow: hidden;
+}
+
+.nav__main-list {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 2rem;
+  margin: 0;
+}
+
+.nav__main-list li {
+  margin-right: var(--margin);
+  padding: calc(var(--padding) / 1.618);
+  border-bottom: 2px solid transparent;
+}
+
+.nav__main-list li:hover {
+  border-bottom: 2px solid var(--green);
+  cursor: pointer;
+}
+
+.organizer {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0;
+  margin: var(--margin) 0;
+}
+
+.card {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 10em;
+  padding: var(--padding);
+  margin: var(--margin);
+  box-shadow: var(--boxShadow);
+
+  & a {
+    color: white;
+    & :hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.asset,
+.maintenance,
+.mealPlanner {
+  background-repeat: no-repeat;
+  background-color: rgba(var(--greenRGB), 0.32);
+  background-size: cover;
+  background-attachment: local;
+  background-position: center;
+}
+
+.asset {
+  background: url(./asset.svg);
+}
+
+.maintenance {
+  background: url(./maintenance.svg);
+}
+
+.mealPlanner {
+  background: url(./meal.svg);
+}

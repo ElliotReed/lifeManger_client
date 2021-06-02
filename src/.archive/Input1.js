@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ErrorMessage from '../components/UI/ErrorMessage';
-import './Input.css';
+import './Input.module.scss';
 
 export class InputText extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      value: '',
-      isValid: true,
+			value: '',
+			isValid: true,
 		};
 		this.inputElement = React.createRef();
 	}
@@ -29,7 +29,15 @@ export class InputText extends Component {
 	}
 
 	render() {
-		const { focus, name, labelText, placeholderText, type, errorMessage, presetValue } = this.props;
+		const {
+			focus,
+			name,
+			labelText,
+			placeholderText,
+			type,
+			errorMessage,
+			presetValue,
+		} = this.props;
 
 		return (
 			<div id="TextInput">
@@ -39,10 +47,12 @@ export class InputText extends Component {
 					name={name}
 					type={type}
 					placeholder={placeholderText}
-					value={(presetValue) ? presetValue : this.state.value}
+					value={presetValue ? presetValue : this.state.value}
 					onChange={this.handleOnChange}
 				/>
-				{!this.state.isValid && <ErrorMessage errorMessage={errorMessage}/>}
+				{!this.state.isValid && (
+					<ErrorMessage errorMessage={errorMessage} />
+				)}
 			</div>
 		);
 	}
@@ -52,14 +62,14 @@ export class InputText extends Component {
 		labelText: PropTypes.string,
 		placeholderText: PropTypes.string,
 	};
-};
+}
 
 export class InputEmail extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      value: '',
-      isValid: true,
+			value: '',
+			isValid: true,
 		};
 	}
 
@@ -84,7 +94,9 @@ export class InputEmail extends Component {
 					value={this.state.value}
 					onChange={this.handleOnChange}
 				/>
-				{!this.state.isValid && <ErrorMessage errorMessage={errorMessage}/>}
+				{!this.state.isValid && (
+					<ErrorMessage errorMessage={errorMessage} />
+				)}
 			</div>
 		);
 	}
@@ -94,14 +106,14 @@ export class InputEmail extends Component {
 		labelText: PropTypes.string,
 		placeholderText: PropTypes.string,
 	};
-};
+}
 
 export class InputPassword extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      value: '',
-      isValid: true,
+			value: '',
+			isValid: true,
 		};
 	}
 
@@ -122,7 +134,9 @@ export class InputPassword extends Component {
 					value={this.state.value}
 					onChange={this.handleOnChange}
 				/>
-				{!this.state.isValid && <ErrorMessage errorMessage={errorMessage}/>}
+				{!this.state.isValid && (
+					<ErrorMessage errorMessage={errorMessage} />
+				)}
 			</div>
 		);
 	}
@@ -132,14 +146,14 @@ export class InputPassword extends Component {
 		labelText: PropTypes.string,
 		placeholderText: PropTypes.string,
 	};
-};
+}
 
 export class InputTextArea extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      value: '',
-      isValid: true,
+			value: '',
+			isValid: true,
 		};
 		this.inputElement = React.createRef();
 	}
@@ -160,7 +174,15 @@ export class InputTextArea extends Component {
 	}
 
 	render() {
-		const { focus, name, labelText, placeholderText, type, errorMessage, presetValue } = this.props;
+		const {
+			focus,
+			name,
+			labelText,
+			placeholderText,
+			type,
+			errorMessage,
+			presetValue,
+		} = this.props;
 
 		return (
 			<div id="TextInput">
@@ -170,10 +192,12 @@ export class InputTextArea extends Component {
 					name={name}
 					type={type}
 					placeholder={placeholderText}
-					value={(presetValue) ? presetValue : this.state.value}
+					value={presetValue ? presetValue : this.state.value}
 					onChange={this.handleOnChange}
 				/>
-				{!this.state.isValid && <ErrorMessage errorMessage={errorMessage}/>}
+				{!this.state.isValid && (
+					<ErrorMessage errorMessage={errorMessage} />
+				)}
 			</div>
 		);
 	}
@@ -183,22 +207,22 @@ export class InputTextArea extends Component {
 		labelText: PropTypes.string,
 		placeholderText: PropTypes.string,
 	};
-};
+}
 
 export class InputSelect extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      value: '',
+			value: '',
 			isValid: true,
-			showOptions: false
-		}
+			showOptions: false,
+		};
 		this.mySelect = React.createRef();
 	}
 
 	showOptions = event => {
 		this.setState({ showOptions: true });
-	}
+	};
 
 	handleOptionClick = event => {
 		const value = event.target.value;
@@ -219,29 +243,34 @@ export class InputSelect extends Component {
 
 	showOptionsClasses = () => {
 		const showOptions = this.state.showOptions;
-		let classes = "select-items";
+		let classes = 'select-items';
 		if (!showOptions) {
-			classes += " select-hide";
+			classes += ' select-hide';
 		}
 		return classes;
-	}
+	};
 
 	handleSelectSelected = () => {
-		console.log(`${this.mySelect.current.getAttribute('name')}`)
+		console.log(`${this.mySelect.current.getAttribute('name')}`);
 		// console.log(`${this.mySelect.current.options[this.mySelect.selectedIndex]}`)
-	} 
+	};
 
 	render() {
-		const { name, labelText, options, errorMessage, required, presetValue } = this.props;
+		const {
+			name,
+			labelText,
+			options,
+			errorMessage,
+			required,
+			presetValue,
+		} = this.props;
 
 		return (
 			<div name="SelectInput">
 				<label htmlFor={name}>{labelText}</label>
 				<div className="custom-select">
-					<div
-						onClick={this.showOptions}
-						className="select-selected"
-					>Select...{this.handleSelectSelected()}
+					<div onClick={this.showOptions} className="select-selected">
+						Select...{this.handleSelectSelected()}
 					</div>
 					<div
 						className={this.showOptionsClasses()}
@@ -249,35 +278,47 @@ export class InputSelect extends Component {
 					>
 						{options.map(option => (
 							<div
-								className={`${(this.state.showOptions ? '' : 'same-as-selected')}`}
+								className={`${
+									this.state.showOptions
+										? ''
+										: 'same-as-selected'
+								}`}
 								key={option.id}
 								// value={option.id}
 								onClick={this.handleOptionClick}
 							>
 								{option.name}
 							</div>
-							))
-						}
-						<div className={this.showOptionsClasses()}>+ add to list</div>
+						))}
+						<div className={this.showOptionsClasses()}>
+							+ add to list
+						</div>
 					</div>
 					<select
 						ref={this.mySelect}
 						name={name}
 						required={required}
-						value={(presetValue) ? presetValue : this.state.value}
+						value={presetValue ? presetValue : this.state.value}
 						onChange={this.handleOnChange}
 					>
-						{!presetValue && <option value='' className="placeholder">Select...</option>}
+						{!presetValue && (
+							<option value="" className="placeholder">
+								Select...
+							</option>
+						)}
 						{options.map(option => (
-							<option key={option.id} value={option.id}>{option.name}</option>
-							))
-						}
-						<option
-							className="select-input__option-add"
-						>+ add to list</option>
+							<option key={option.id} value={option.id}>
+								{option.name}
+							</option>
+						))}
+						<option className="select-input__option-add">
+							+ add to list
+						</option>
 					</select>
 				</div>
-				{!this.state.isValid && <ErrorMessage errorMessage={errorMessage}/>}
+				{!this.state.isValid && (
+					<ErrorMessage errorMessage={errorMessage} />
+				)}
 			</div>
 		);
 	}
@@ -287,15 +328,15 @@ export class InputSelect extends Component {
 		labelText: PropTypes.string,
 		placeholderText: PropTypes.string,
 	};
-};
+}
 
 export class InputCheck extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-      value: '',
-      isValid: true,
-		}
+			value: '',
+			isValid: true,
+		};
 	}
 
 	handleOnChange = event => {
@@ -314,12 +355,16 @@ export class InputCheck extends Component {
 					value={this.state.value}
 					onChange={this.handleOnChange}
 				>
-					options={options.map(option => (
-						<option key={option.id} id={option.id}>{option.name}</option>
-						))
-					}
+					options=
+					{options.map(option => (
+						<option key={option.id} id={option.id}>
+							{option.name}
+						</option>
+					))}
 				</select>
-				{!this.state.isValid && <ErrorMessage errorMessage={errorMessage}/>}
+				{!this.state.isValid && (
+					<ErrorMessage errorMessage={errorMessage} />
+				)}
 			</div>
 		);
 	}
@@ -329,4 +374,4 @@ export class InputCheck extends Component {
 		labelText: PropTypes.string,
 		placeholderText: PropTypes.string,
 	};
-};
+}

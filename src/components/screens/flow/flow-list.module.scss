@@ -1,0 +1,26 @@
+@import "styles";
+
+.flowList {
+  color: var(--darkN);
+
+  & ul {
+    font-size: 1rem;
+
+    & li:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.btn-settings {
+  position: absolute;
+  top: 0.32em;
+  right: 0em;
+  color: var(--green);
+}
+
+.btn-settings:hover,
+.btn-settings:active {
+  color: var(--green-dark);
+  cursor: pointer;
+}

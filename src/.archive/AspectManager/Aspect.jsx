@@ -30,7 +30,7 @@ function getTodos() {
 	}
 }
 
-function saveTodos(todos) {
+function storeTodos(todos) {
 	localStorage.setItem('todos', JSON.stringify(todos));
 }
 
@@ -311,14 +311,14 @@ function createTodo(todo, todos, setTodos) {
 	if (newTodo.name.length > 0) {
 		const newTodos = todos ? [...todos, newTodo] : newTodo;
 		setTodos(newTodos);
-		saveTodos(newTodos);
+		storeTodos(newTodos);
 	}
 }
 
 function updateTodo(todo, todos, setTodos) {
 	const newTodos = [...todos.filter(item => item.id !== todo.id), todo];
 	setTodos(newTodos);
-	saveTodos(newTodos);
+	storeTodos(newTodos);
 }
 
 export default function Aspect() {

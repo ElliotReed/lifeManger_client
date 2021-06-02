@@ -1,4 +1,4 @@
-@import "../../../base";
+@import "styles";
 
 .recurrence {
   display: grid;
@@ -39,7 +39,7 @@
     & button {
       margin: $margin 0;
       width: 62%;
-      border-radius: $borderRadius;
+       @include border();
       @include paddingBox;
       @include gradient($primary);
       font-size: 0.618rem;

@@ -1,35 +1,36 @@
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { ApolloProvider } from '@apollo/react-hooks';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'normalize.css';
-import './index.scss';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import * as serviceWorker from './serviceWorker';
+import App from "App";
+import * as serviceWorker from "./serviceWorker";
 
-import App from 'App';
-const root = document.getElementById('life-manager');
+import "react-datepicker/dist/react-datepicker.css";
+import "./utils/fontawesome";
+import "styles/main.scss";
 
-const cache = new InMemoryCache();
-const link = new HttpLink({
-	uri: 'http://localhost:4011/graphql',
-});
+import {
+  IsAuthenticatedContextProvider,
+  IsAuthenticatedContextConsumer,
+} from "services/authService/IsAuthenticatedContext";
 
-const client = new ApolloClient({
-	cache,
-	link,
-});
+const root = document.getElementById("life-manager");
 
 ReactDOM.render(
-	<ApolloProvider client={client}>
-		<App />
-	</ApolloProvider>,
-	root
+  <React.StrictMode>
+    <IsAuthenticatedContextProvider>
+      <IsAuthenticatedContextConsumer>
+        {(context) => (
+          <App
+            isAuthenticated={context.isAuthenticated}
+            setIsAuthenticated={context.setIsAuthenticated}
+          />
+        )}
+      </IsAuthenticatedContextConsumer>
+    </IsAuthenticatedContextProvider>
+  </React.StrictMode>,
+  root
 );
-
-module.hot && module.hot.accept();
+// module.hot && module.hot.accept();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

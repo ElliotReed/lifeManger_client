@@ -12,7 +12,9 @@ const Header = props => {
 			<NavigationMenu
 				visibility={showMenu ? 'show' : 'hide'}
 				onClick={() => setShowMenu(!showMenu)}
-			>{props.children}</NavigationMenu>
+			>
+				{props.children}
+			</NavigationMenu>
 			<div className={styles.barLeft}>
 				<button
 					className={styles.flyout}
@@ -24,9 +26,7 @@ const Header = props => {
 					<LifeManagerLink />
 				</div>
 			</div>
-			<div className={styles.barRight}>
-			{props.children}
-			</div>
+			<div className={styles.barRight}>{props.children}</div>
 		</header>
 	);
 };

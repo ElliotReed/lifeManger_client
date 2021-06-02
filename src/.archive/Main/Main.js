@@ -6,7 +6,7 @@ import HomeManager from '../../components/HomeManager';
 import AssetManagerManagerManager from '../../components/AssetManager';
 import MealPlan from '../../components/MealPlan';
 import User from '../../components/User';
-import './Main.css';
+import './Main.module.scss';
 import ProtectedRoute from '../../components/ProtectedRoute';
 
 const Main = props => {
@@ -15,10 +15,26 @@ const Main = props => {
 	return (
 		<main id="main">
 			<Switch>
-				<Route exact path="/" render={props => <Splash {...props} isLoggedIn={isLoggedIn} />} />
+				<Route
+					exact
+					path="/"
+					render={props => (
+						<Splash {...props} isLoggedIn={isLoggedIn} />
+					)}
+				/>
 				<Route exact path="/manager" component={Manager} />
-				<ProtectedRoute exact path="/housemaintenance" component={HouseMaintenance} />
-				<Route exact path="/asset" render={props => <AssetManager {...props} isLoggedIn={isLoggedIn} />} />
+				<ProtectedRoute
+					exact
+					path="/housemaintenance"
+					component={HouseMaintenance}
+				/>
+				<Route
+					exact
+					path="/asset"
+					render={props => (
+						<AssetManager {...props} isLoggedIn={isLoggedIn} />
+					)}
+				/>
 				<ProtectedRoute exact path="/mealplan" component={MealPlan} />
 				<ProtectedRoute exact path="/user" component={User} />
 			</Switch>

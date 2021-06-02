@@ -1,4 +1,4 @@
-@import "../../../base";
+@import "styles";
 
 .lifePoints {
   display: flex;
@@ -21,8 +21,7 @@
 
     & button {
       margin-left: $margin;
-      border: $border;
-      border-radius: $borderRadius;
+      @include border();
       @include gradient($primary);
       @include paddingBox;
       color: $white;

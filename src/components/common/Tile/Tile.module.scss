@@ -1,0 +1,9 @@
+@import "styles";
+
+.tile {
+  color: $black;
+  background: lighten($primary, 38%);
+  padding: $padding;
+  @include boxShadow;
+  width: 100%;
+}

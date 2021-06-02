@@ -1,0 +1,104 @@
+// mixins
+@mixin appFixedContainer {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: 100vw;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+@mixin border($color: transparent, $width: 1px, $style: solid) {
+  border-width: $width;
+  border-color: $color;
+  border-style: $style;
+  border-radius: 1rem * $goldenRatioDecrease * $goldenRatioDecrease * $goldenRatioDecrease;
+}
+
+@mixin borderTest() {
+  border: 1px solid $errorColor;
+}
+
+@mixin boxShadow($color: $black) {
+  box-shadow: 0px 1px 1px rgba($color, 0.32), 0px 2px 2px rgba($color, 0.32), 0px 4px 4px rgba($color, 0.32),
+    0px 8px 8px rgba($color, 0.32), 0px 16px 16px rgba($color, 0.32);
+}
+
+@mixin gradient($color) {
+  background-image: linear-gradient(
+    173deg,
+    scale-color($color, $lightness: 10%) 0%,
+    scale-color($color, $lightness: 15%) 10%,
+    $color 62%,
+    scale-color($color, $lightness: -15%) 90%,
+    scale-color($color, $lightness: -10%) 100%
+  );
+}
+
+@mixin paddingBox {
+  padding: ($padding * $goldenRatioDecrease) $padding;
+}
+
+/* 
+* @include triangle within a pseudo element and add positioning properties (ie. top, left)
+* $direction: up, down, left, right
+*/
+@mixin triangle($direction, $size: 6px, $color: #222) {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 0;
+  width: 0;
+  @if ($direction == "up") {
+    border-bottom: $size solid $color;
+    border-left: 1/2 * $size solid transparent;
+    border-right: 1/2 * $size solid transparent;
+  } @else if ($direction == "down") {
+    border-top: $size solid $color;
+    border-left: 1/2 * $size solid transparent;
+    border-right: 1/2 * $size solid transparent;
+  } @else if ($direction == "left") {
+    border-top: 1/2 * $size solid transparent;
+    border-bottom: 1/2 * $size solid transparent;
+    border-right: $size solid $color;
+  } @else if ($direction == "right") {
+    border-top: 1/2 * $size solid transparent;
+    border-bottom: 1/2 * $size solid transparent;
+    border-left: $size solid $color;
+  }
+}
+
+// Breakpoints for each query
+$smartphone: 480px;
+$tabletPortrait: 767px;
+$tabletLandscape: 1024px;
+$desktop: 1174px;
+$largeScreen: 1400px;
+@mixin respondTo($media) {
+  @if $media == smartphone {
+    @media (max-width: $smartphone) {
+      @content;
+    }
+  } @else if $media == tablet {
+    @media (min-width: $tabletPortrait) and (max-width: $tabletLandscape) {
+      @content;
+    }
+  } @else if $media == smallScreen {
+    @media (max-width: $desktop) {
+      @content;
+    }
+  } @else if $media == desktop {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  }
+}
+
+// Example usage div {
+//   // regular styles here
+//   @include respondTo(desktop) {
+//     &:hover {
+//       background: blue;
+//     } // only add the hover effect on desktop browsers
+//   }
+// }

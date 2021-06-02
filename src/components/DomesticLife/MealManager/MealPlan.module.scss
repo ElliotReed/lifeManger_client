@@ -1,0 +1,141 @@
+@import "styles";
+
+.MealPlanner {
+  padding: $padding;
+
+  button {
+    display: none;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem * 0.7;
+  }
+
+  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+
+  th {
+    background: $primary;
+    color: $white;
+  }
+
+  td,
+  th {
+    padding: $padding;
+    @include border($primary);
+    border-radius: 0;
+    text-align: left;
+  }
+
+  .MealCard {
+    .hidden {
+      display: none;
+    }
+
+    .ingredients {
+      li {
+        display: inline;
+        &::after {
+          content: ", ";
+        }
+        &:last-of-type::after {
+          content: "";
+        }
+      }
+    }
+  }
+
+  .CurrentMeals .MealCard {
+    .hidden {
+      display: none;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      outline: transparent;
+      border: none;
+      color: lighten($primary, 32%);
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .MealPlanner {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      @include border($primary);
+      border-radius: 0;
+    }
+
+    td {
+      border: none;
+      border-bottom: 1px solid $primary;
+      position: relative;
+      padding-left: 50%;
+    }
+
+    td:before {
+      position: absolute;
+      top: $padding;
+      left: $padding;
+      width: 45%;
+      white-space: nowrap;
+    }
+
+    td:nth-of-type(1):before {
+      content: "Sunday";
+    }
+    td:nth-of-type(2):before {
+      content: "Monday";
+    }
+    td:nth-of-type(3):before {
+      content: "Tuesday";
+    }
+    td:nth-of-type(4):before {
+      content: "Wednesday";
+    }
+    td:nth-of-type(5):before {
+      content: "Thursday";
+    }
+    td:nth-of-type(6):before {
+      content: "Friday";
+    }
+    td:nth-of-type(7):before {
+      content: "Saturday";
+    }
+  }
+
+  .CurrentMeals {
+    td:nth-of-type(1):before {
+      content: "Breakfast";
+    }
+    td:nth-of-type(2):before {
+      content: "Lunch";
+    }
+    td:nth-of-type(3):before {
+      content: "Snack";
+    }
+    td:nth-of-type(4):before {
+      content: "Dinner";
+    }
+  }
+}

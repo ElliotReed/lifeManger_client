@@ -1,4 +1,4 @@
-@import "../../../base";
+@import "styles";
 
 .lifeFlow {
   position: relative;
@@ -6,8 +6,7 @@
   justify-content: space-between;
   // margin: $margin;
   // @include boxShadow;
-  border: transparent;
-  // border-radius: $borderRadius;
+  @include border();
   @include gradient(lighten($primary, 66));
   padding: $padding;
   color: $primary;
@@ -17,8 +16,7 @@
   & button {
     margin: $margin 0;
     width: 62%;
-    border: transparent;
-    border-radius: $borderRadius;
+    @include border();
     @include gradient(rgba($primary, .38));
     @include paddingBox;
     font-size: 0.618rem;
@@ -29,10 +27,4 @@
       cursor: pointer;
     }
   }
-}
-
-.history {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }

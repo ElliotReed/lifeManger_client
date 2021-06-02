@@ -6,7 +6,7 @@ import Selector from '../components/UI/Selector';
 import Facet from '../components/UI/Facet';
 import Modal from '../components/UI/Modal';
 import { InputText, InputSelect } from '../components/UI/Input';
-import './Asset.css';
+import './Asset.module.scss';
 
 class AssetManager extends Component {
 	constructor(props) {
@@ -34,7 +34,9 @@ class AssetManager extends Component {
 			this.setState({
 				optionTables: res.data,
 			});
-			console.log(`optionTables ${this.state.optionTables.conditionOptions[0].name}`);
+			console.log(
+				`optionTables ${this.state.optionTables.conditionOptions[0].name}`
+			);
 		});
 	};
 
@@ -115,7 +117,8 @@ class AssetManager extends Component {
 	handleInputChange = event => {
 		const target = event.target;
 		const name = target.name;
-		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const value =
+			target.type === 'checkbox' ? target.checked : target.value;
 
 		this.setState({
 			[name]: value,
@@ -161,12 +164,17 @@ class AssetManager extends Component {
 		let deleteButton;
 
 		if (this.state.id) {
-			deleteButton = <button onClick={this.deleteItem}>Delete Item</button>;
+			deleteButton = (
+				<button onClick={this.deleteItem}>Delete Item</button>
+			);
 		}
 
 		return (
 			<React.Fragment>
-				<Modal modalIsVisible={this.state.modalIsVisible} handleModal={this.handleModal}>
+				<Modal
+					modalIsVisible={this.state.modalIsVisible}
+					handleModal={this.handleModal}
+				>
 					<form onSubmit={this.handleSubmit}>
 						<InputText
 							type="text"
@@ -208,8 +216,16 @@ class AssetManager extends Component {
 							errorMessage="You must enter a condition"
 							getInputValue={this.getInputValue}
 						/>
-						<input type="submit" className="inventory__add" value="Add item" />
-						<input type="submit" className="inventory__edit" value="Edit item" />
+						<input
+							type="submit"
+							className="inventory__add"
+							value="Add item"
+						/>
+						<input
+							type="submit"
+							className="inventory__edit"
+							value="Edit item"
+						/>
 					</form>
 				</Modal>
 				<Triptych
@@ -218,7 +234,11 @@ class AssetManager extends Component {
 							<h1>Asset</h1>
 							<ul>
 								{this.state.inventory.map(item => (
-									<li key={item.id} id={item.id} onClick={this.handleSelectorClick}>
+									<li
+										key={item.id}
+										id={item.id}
+										onClick={this.handleSelectorClick}
+									>
 										{item.name}
 									</li>
 								))}

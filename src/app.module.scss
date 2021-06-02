@@ -1,14 +1,4 @@
-@import "base.scss";
-
-.mainWrapper {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
-  & main {
-    overflow-y: auto;
-  }
-}
+@import "styles";
 
 .nav {
   height: 100%;

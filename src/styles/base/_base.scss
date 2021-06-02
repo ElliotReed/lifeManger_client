@@ -1,0 +1,121 @@
+@import "../abstracts/colors";
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+/* #region Variables */
+:root {
+  /* animations */
+  --softIn: softIn 0.33s ease-in;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+/* set default base size for deveice and reading distance */
+/* mobile */
+html {
+  font-size: 16px;
+}
+
+/* tablet */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* desktop */
+@media only screen and (min-width: 1080px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  user-select: none;
+}
+
+body {
+  font-family: $fontStackSans;
+  line-height: 1.618rem;
+  background-color: $white;
+  color: $neutral;
+  // @include appFixedContainer;
+}
+
+html,
+body {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  min-width: 320px;
+}
+
+h1 {
+  font-size: 2.075rem;
+  line-height: 3.334rem;
+}
+
+h2 {
+  font-size: 1.725rem;
+  line-height: 2.791rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2.427rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 2.023rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+  line-height: 1.78rem;
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.618rem;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+cite {
+  font-size: 0.618rem;
+}
+
+@keyframes softIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

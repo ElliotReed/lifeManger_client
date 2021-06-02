@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './UserProfile.css';
+import './UserProfile.module.scss';
 
 const UserProfile = (props) => {
   const [showMenu, setShowMenu] = useState(false);

@@ -1,0 +1,11 @@
+@import "../../../styles/";
+
+.bgColor {
+  background: transparent;
+  @include border(transparent);
+
+   &:hover:enabled {
+  background: transparent;
+    color: $neutral;
+  }
+}

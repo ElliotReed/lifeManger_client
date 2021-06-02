@@ -1,9 +1,9 @@
-@import "../../../../base";
+@import "styles";
 
 .display {
   margin: 0 $margin;
   min-width: 4rem;
-  border-radius: $borderRadius;
+  @include border();
   color: darken($primary, 62);
 
   & h2 {

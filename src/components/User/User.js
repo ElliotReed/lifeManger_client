@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import './User.css';
+import './User.module.scss';
 
 class User extends Component {
 	constructor(props) {

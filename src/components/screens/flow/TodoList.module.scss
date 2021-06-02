@@ -1,17 +1,18 @@
-@import "../../../base";
+@import "styles";
 
 .todos {
   // border: 1px solid pink;
-  padding: var(--padding);
+  padding: $padding;
   margin: 0 auto;
-  max-width: var(--maxWidth);
+  max-width: $maxWidth;
   color: darken($primary, 38%);
 }
 
 .todo {
   margin: 0;
-  padding: calc(var(--padding) * 1.618) 0 calc(var(--padding) * 0.38) 0;
-  border-bottom: 1px solid var(--medium);
+  /* Good design bad expression? */
+  // padding: calc($padding * 1.618) 0 calc($padding * 0.38) 0;
+  border-bottom: 1px solid $gray;
 
   & .todoHeader {
     display: flex;
@@ -21,7 +22,7 @@
     font-size: 0.618rem;
 
     & .headerAspect {
-      margin-right: var(--margin);
+      margin-right: $margin;
       color: rgba(darken($primary, 38%), 0.618);
     }
 
@@ -45,7 +46,7 @@
 
     & .checkButton {
       position: relative;
-      margin: 0 var(--margin) 0 0;
+      margin: 0 $margin 0 0;
       width: 1rem;
       height: 1rem;
 
@@ -59,13 +60,13 @@
           font-weight: 900;
           font-size: 1rem;
           background: transparent;
-          color: var(--primary);
+          color: $primary;
         }
       }
     }
 
     & .name {
-      margin-right: var(--margin);
+      margin-right: $margin;
       flex-grow: 1;
       // width: 8rem;
     }
