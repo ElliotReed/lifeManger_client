@@ -1,6 +1,5 @@
-import React from 'react';
-import './ScrollBox.module.scss';
+import styles from "./ScrollBox.module.scss";
 
-export default function ScrollBox(props) {
-	return <div className="scrollbox">{props.children}</div>;
+export default function ScrollBox({ children }) {
+  return <div className={styles.scrollbox}>{children}</div>;
 }

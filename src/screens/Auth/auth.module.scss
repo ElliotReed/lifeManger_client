@@ -1,0 +1,56 @@
+@import "styles";
+
+.Auth {
+  padding: $padding;
+  form {
+    padding: 4rem 0;
+    display: grid;
+    place-content: center;
+
+    label {
+      text-transform: capitalize;
+      display: block;
+    }
+
+    input {
+      margin-bottom: $margin;
+      display: block;
+      color: $black;
+      @include paddingBox;
+      @include border();
+
+      &[type="checkbox"] {
+        display: inline-block;
+        margin-left: $margin * $goldenRatioDecrease;
+        width: initial;
+      }
+
+      &:not([type="submit"]) {
+        min-width: 25rem;
+        user-select: auto;
+      }
+
+      &[type="submit"] {
+        @include button();
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:disabled {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .Auth {
+    .form {
+      padding: 4rem 10rem;
+    }
+  }
+}

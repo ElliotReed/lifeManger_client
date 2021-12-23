@@ -1,0 +1,47 @@
+@import "styles";
+
+.Welcome {
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.jumbotron {
+  font-size: 1.618rem;
+  // padding: 5em;
+  background-color: $primary;
+  max-width: 76%;
+  justify-self: center;
+  // min-height: 61.8vh;
+  // display: grid;
+  // place-content: center;
+  @include border($width: 0);
+
+  // .head,
+  // .body {
+  //   // margin: 0 auto;
+  //   // padding: 2em;
+  // }
+
+  header {
+    padding: 1em;
+    text-align: center;
+  }
+
+  .body {
+    padding: 2em;
+    background-color: $white;
+    color: $primary;
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+    font-size: initial;
+    a {
+      @include button($bg-color: $white, $text-color: $primary);
+      @include button($bg-color: $white, $text-color: $primary);
+    }
+  }
+}

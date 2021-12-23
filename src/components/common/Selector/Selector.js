@@ -1,6 +1,20 @@
-import React from 'react';
-import './Selector.module.scss';
+import "./Selector.module.scss";
 
-const Selector = props => <div className="selector">{props.children}</div>;
+function SelectorHeader({ children }) {
+  return <header>{children}</header>;
+}
 
-export default Selector;
+function SelectorList({ children }) {
+  return <ul>{children}</ul>;
+}
+function SelectorFooter({ children }) {
+  return <footer>{children}</footer>;
+}
+
+export default function Selector({ children }) {
+  return <section className="selector">{children}</section>;
+}
+
+Selector.Header = SelectorHeader;
+Selector.List = SelectorList;
+Selector.Footer = SelectorFooter;

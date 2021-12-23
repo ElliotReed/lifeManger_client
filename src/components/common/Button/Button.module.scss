@@ -1,33 +1,25 @@
-@import "../../../styles";
+@import "styles";
 
 .button {
-  @include border($color: $primary);
-  margin: $margin;
-  @include paddingBox;
-  color: $text_light;
-  outline: none;
-
-  &:hover:enabled {
-    @include gradient(scale-color($primary, $lightness: 10%));
-    cursor: pointer;
-  }
-
-  &:disabled {
-    $disabledColor: scale-color($text_light, $lightness: -38%);
-    color: $disabledColor;
-    cursor: not-allowed;
-  }
-
-  &:focus {
-    outline: 1px solid invert($primary);
-  }
-
-  &:active {
-    transition: all 0.15s;
-    transform: scale(0.9, 0.9);
-  }
+  @include button;
 
   &.primary {
-  @include gradient($primary);
+    @include gradient($primary);
+  }
+
+  &.icon {
+    margin: 0;
+    padding: 0.29rem;
+  }
+}
+
+.bgColor {
+  background: transparent;
+  @include border(transparent);
+  color: $primary;
+
+  &:hover:enabled {
+    background: transparent;
+    color: $neutral;
   }
 }

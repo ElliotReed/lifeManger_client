@@ -8,7 +8,7 @@ import {
 	HomeManagerLink,
 	MealManagerLink,
 } from '../Links';
-import UserProfile from '../User/UserProfile';
+import {UserProfile} from 'screens/User';
 import styles from './Navigation.module.scss';
 
 class Navbar extends Component {

@@ -1,0 +1,12 @@
+$themes: (
+  light: (
+    background-color: map-get($colors, $white),
+    foreground: map-get($colors, $primary),
+    primary: map-get($colors, $primary),
+  ),
+  dark: (
+    background: map-get($colors, $black),
+    foreground: map-get($colors, $white),
+    primary: map-get($colors, $primary),
+  ),
+);

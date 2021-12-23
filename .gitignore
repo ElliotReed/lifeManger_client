@@ -1,5 +1,6 @@
 # folders
 node_modules
+.vscode
 
 __snapshots__
 
@@ -23,15 +24,16 @@ yarn.lock
 # misc
 .DS_Store
 .env.local
-.env.development
 .env.development.local
+.env.development
 .env.test.local
-.env.production
 .env.production.local
+.env.production
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+debug.log
 
 .archive
 

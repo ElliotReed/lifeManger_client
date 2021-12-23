@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
+import * as React from "react";
 import DateDisplay from "components/common/datetime/DateDisplay";
 
 export default function CurrentDateTime({ updateBy = "second" }) {
-  const [time, setTime] = useState(() => new Date());
-  const [updateInterval, setUpdateInterval] = useState(1000);
+  let updateInterval = updateBy === "second" ? 1000 : 1000 * 60;
+  const [time, setTime] = React.useState(() => new Date());
 
   let options = { includeShortTime: true };
-  useEffect(() => {
-    if (updateBy === "minute") {
-      setUpdateInterval(updateInterval * 60);
-    }
-  });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const timer = setInterval(() => {
       setTime(() => new Date());
-    }, updateInterval); // runs every second
+    }, [updateInterval]); // runs every second
 
     return () => {
       clearInterval(timer);

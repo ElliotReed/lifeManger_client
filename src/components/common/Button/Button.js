@@ -1,5 +1,5 @@
 import React from "react";
-import cx from 'classnames';
+import cn from "classnames";
 
 import styles from "./Button.module.scss";
 
@@ -10,13 +10,19 @@ const Button = ({
   children,
   onClick,
   bgColor = styles.primary,
+  style = "default",
 }) => {
+  const buttonClass = cn(
+    styles.button,
+    bgColor,
+    style === "icon" ? styles.icon : null
+  );
   return (
     <button
       title={title}
       type={type}
       disabled={disabled}
-      className={cx(styles.button, bgColor)}
+      className={buttonClass}
       onClick={onClick}
     >
       {children}

@@ -19,7 +19,6 @@ $errorColor: #662222;
 $warningColor: #e2e263;
 $successColor: #556655;
 
-
 $primary: #6b947a;
 $accent: #946b85;
 $foreground: #6b7194;
@@ -27,6 +26,76 @@ $background: #948f6b;
 // Monochromatic theme
 $white: #fdfdfd;
 $primaryLight: hsl(120, 14%, 50%);
-$primary: hsl(120, 10%, 30%);
+$primary: #455445;
 $primaryDark: hsl(120, 14%, 20%);
 $secondary: hsl(50, 10%, 70%);
+
+/* in use */
+$black: #111111;
+$white: invert($black);
+$neutral: mix($black, $white, 25);
+$primary: #448855;
+$white: invert($black);
+$black: #222222;
+$black: scale-color($primary, $lightness: -29%);
+$white: scale-color($primary, $lightness: 97%);
+$neutral: scale-color($primary, $lightness: 76%);
+
+// This variable must be outside of the colors map so the properties can reference it.
+$primary: #225522;
+$secondary: #887354;
+$tertiary: #552222;
+
+$main: scale-color($primary, $lightness: 92%);
+$support: $secondary;
+$accent: scale-color($main, $green: -12%, $red: 12%);
+
+$opacity: 29%;
+
+$colors: (
+  base: (
+    light: scale-color($main, $lightness: 76%),
+    neutral: scale-color($main, $saturation: -76%),
+    dark: scale-color($main, $lightness: -29%),
+  ),
+  main: (
+    base: $main,
+    light: scale-color($main, $lightness: 76%),
+    dark: scale-color($primary, $lightness: 83%),
+    alpha: rgba($main, $opacity),
+  ),
+  support: (
+    base: $support,
+    light: scale-color($support, $lightness: 92%),
+    dark: scale-color($support, $lightness: -29%),
+    alpha: rgba($support, $opacity),
+  ),
+  accent: (
+    base: $accent,
+    light: scale-color($accent, $lightness: 47%),
+    dark: scale-color($accent, $lightness: -29%),
+    trans: scale-color($accent, $alpha: -$opacity),
+  ),
+  primary: $primary,
+  primary-light: scale-color($primary, $lightness: 83%),
+  secondary: $secondary,
+  app-black: scale-color($primary, $lightness: -29%),
+  app-white: scale-color($primary, $lightness: 98%),
+  neutral: scale-color($primary, $lightness: 92%),
+  state: (
+    info: #e9f1f9,
+    error: #884455,
+    warning: #888800,
+    success: #448855,
+  ),
+);
+
+@function get-color($keys...) {
+  $value: $colors;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return $value;
+}

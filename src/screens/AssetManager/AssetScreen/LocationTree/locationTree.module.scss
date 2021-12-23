@@ -1,0 +1,144 @@
+@import "styles";
+
+.locationTreeContainer {
+  position: relative;
+  z-index: 1;
+
+  .treeHeader {
+    margin: 0 $margin;
+    font-size: 0.76rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .ancestors {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    padding: $padding;
+
+    .li {
+      transition: all $duration ease-in-out;
+
+      &:hover {
+        transform: scaleX(1.03);
+        transform-origin: center;
+      }
+
+      .mainListElement {
+        display: flex;
+        align-items: center;
+        color: get-color("secondary");
+
+        & .linkWrapper {
+          color: get-color("app-white");
+          border-radius: 100px;
+          background: get-color("secondary");
+          @include paddingBox;
+          @include boxShadow(get-color("app-black"));
+
+          &:hover {
+            box-shadow: 0 3px 5px rgba(get-color("app-black"), 0.29);
+          }
+
+          & > a {
+            white-space: nowrap;
+            padding: 1rem;
+            color: get-color("app-white");
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      &:first-child a {
+        font-weight: bold;
+        margin-right: 1rem;
+      }
+    }
+
+    &.hide {
+      & > .li:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  .angleIcon {
+    align-self: center;
+    @include paddingBox;
+    color: inherit;
+  }
+
+  .descendantsContainer {
+    .descendantList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex-basis: fit-content;
+      gap: 1rem;
+      padding: $padding;
+    }
+  }
+
+  .descendantsHeader {
+    display: inline-flex;
+    align-items: center;
+    $radius: 100px;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    cursor: pointer;
+    background-color: get-color("neutral");
+    @include paddingBox;
+    font-weight: $fontTriMedium;
+
+    & .number {
+      margin-left: $margin;
+      font-weight: $fontTriLarge;
+    }
+  }
+
+  .descendantListItem {
+    flex-grow: 0.25;
+    @include boxShadow(get-color("app-black"));
+    border-radius: 100px;
+    background-color: get-color("neutral");
+    @include paddingBox;
+    text-align: center;
+    transition: all $duration ease-in-out;
+
+    &:hover {
+      box-shadow: 0 3px 5px rgba(get-color("app-black"), 0.29);
+      transform: scaleX(1.03);
+      background: get-color("primary-light");
+    }
+
+    & > a {
+      white-space: nowrap;
+      cursor: pointer;
+      padding: 1rem;
+      font-size: get-size(500) * 1rem;
+      font-weight: 500;
+      color: inherit;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.listItemRow {
+  @include paddingBox;
+
+  & > button {
+    width: 100%;
+  }
+}
+
+.locationPicker {
+  margin-bottom: 1rem;
+}

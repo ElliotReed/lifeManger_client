@@ -10,16 +10,21 @@ function FormHeader({ title, children }) {
 }
 
 function FormBody({ children }) {
-  return <main className={styles.FormBody}>{children}</main>;
+  return <section className={styles.FormBody}>{children}</section>;
 }
 
 function FormFooter({ children }) {
   return <footer className={styles.FormFooter}>{children}</footer>;
 }
 
-export default function Form({ handleSubmit, children, name }) {
+export default function Form({ handleSubmit, children, name, dataId }) {
   return (
-    <form id={name} name={name} className={styles.Form} onSubmit={handleSubmit}>
+    <form
+      name={name}
+      className={styles.Form}
+      onSubmit={handleSubmit}
+      data-id={dataId}
+    >
       {children}
     </form>
   );

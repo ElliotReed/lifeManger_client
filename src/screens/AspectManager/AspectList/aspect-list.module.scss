@@ -1,0 +1,65 @@
+@import "styles";
+
+.list {
+  position: relative;
+  min-height: 100%;
+  background-color: get-get-color("white");
+  padding: 0.47em;
+
+  & ul {
+    position: relative;
+    height: clamp(15rem, 76vw, 20rem);
+    margin: 0 auto;
+    // background-image: url(/components/common/Background/tree_2c.svg);
+    // background-size: contain;
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-attachment: local;
+
+    .rotator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      $side: 76%;
+      width: $side;
+      height: $side;
+      transform-origin: center;
+      pointer-events: none;
+    }
+
+    & li {
+      @include enterAnimation;
+      z-index: 2;
+      position: absolute;
+      left: 50%;
+      @include button($bg-color: transparent);
+      margin: 0;
+      font-size: 1rem * $smaller;
+      font-weight: 500;
+      white-space: nowrap;
+      transform-origin: center;
+      pointer-events: auto;
+      transition: all $duration ease;
+
+      & span {
+        text-shadow: 2px 2px 0px $black, 2px 2px 1px $primary, -2px -2px 1px $primary;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba($primary, 76%);
+        z-index: -1;
+        filter: blur(1px);
+      }
+
+      &.selected {
+        background-color: $primary;
+      }
+    }
+  }
+}

@@ -1,17 +1,30 @@
-a {
-  line-height: 24px;
-}
+@import "styles";
 
-.link__seperator {
-  margin-left: var(--margin);
+.link {
+  display: inline-block;
+  transition: all $duration ease;
+  color: inherit;
+  padding: 0;
+
+  &.active {
+    opacity: 0.55;
+  }
+
+  &:hover {
+    color: lighten($white, 32);
+    letter-spacing: 1px;
+  }
+
+  svg {
+    font-size: 0.76rem;
+    vertical-align: baseline;
+  }
+
+  &__seperator {
+    margin-left: 1rem * $goldenRatioDecrease;
+  }
 
   & span {
-    font-size: 0.62rem;
-    margin-left: var(--margin);
+    text-transform: capitalize;
   }
-}
-
-.material-icons {
-  display: inline-flex;
-  vertical-align: top;
 }

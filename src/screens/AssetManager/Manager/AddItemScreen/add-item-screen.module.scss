@@ -1,0 +1,19 @@
+@import "styles";
+
+.AddItemScreen {
+  // @include backgroundImage($size: 400%, $bottom: 150%);
+}
+
+.create-update-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--light);
+  padding: var(--padding);
+  overflow: hidden;
+}
+
+.scroll-wrapper {
+  padding: var(--padding);
+  overflow: auto;
+}

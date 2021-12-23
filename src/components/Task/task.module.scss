@@ -1,17 +1,32 @@
 @import "styles";
 
 .task {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background-color: $black;
-  color: $white;
+  @include enterAnimation;
   padding: $padding;
+
+  @include respondTo(desktop) {
+    display: grid;
+    grid-template-columns: 1fr 1.618fr;
+  }
 
   header {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: $margin;
     align-items: center;
+
+    @include respondTo(desktop) {
+      grid-template-rows: auto 1fr;
+    }
   }
+}
+
+.theme__light {
+  background-color: $white;
+  color: $primary;
+}
+
+.theme__dark {
+  background-color: $black;
+  color: $white;
 }

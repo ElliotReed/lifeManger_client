@@ -3,12 +3,17 @@ $tablet: 768px;
 $desktop: 1080px;
 
 /* sizes */
-$margin: 1em;
+$margin: 1rem;
 $padding: 1em;
 $maxWidth: 960px;
 
 // speed
 $duration: 0.3s;
+
+/* font weights */
+$fontTriSmall: 400;
+$fontTriMedium: 500;
+$fontTriLarge: 700;
 
 //factors
 $goldenRatio: 1.618;
@@ -18,6 +23,7 @@ $small: 0.382;
 $largePercent: 61.8%;
 $smallPercent: 38.2%;
 $goldenPercent: 76%;
+$smaller: 0.76;
 
 $grp: 1.618%;
 $grp2: 2.618%;
@@ -31,6 +37,30 @@ $grp9: 75.999%;
 $grp10: 122.966%;
 $grp11: 198.959%;
 
+$sizes: (
+  000: 0.12,
+  100: 0.18,
+  200: 0.29,
+  300: 0.47,
+  400: 0.76,
+  500: 1,
+  600: 1.618,
+  700: 2.618,
+  800: 4.236,
+  900: 6.854,
+  1000: 11.089,
+);
+
+@function get-size($keys...) {
+  $value: $sizes;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return $value;
+}
+
 $fib: 1;
 $fib: 2;
 $fib: 3;
@@ -43,3 +73,26 @@ $fib: 55;
 $fib: 89;
 $fib: 144;
 
+$fibonacci: (
+  step0: 1,
+  step1: 2,
+  step2: 3,
+  step3: 5,
+  step4: 8,
+  step5: 13,
+  step6: 21,
+  step7: 34,
+  step8: 55,
+  step9: 89,
+  step10: 144,
+);
+
+@function fibonacci($keys...) {
+  $value: $fibonacci;
+
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+
+  @return $value;
+}

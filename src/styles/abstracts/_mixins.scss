@@ -8,11 +8,36 @@
   overflow: hidden;
 }
 
+@mixin backgroundImage($size: 100%, $left: 0, $bottom: 0) {
+  &::before {
+    z-index: -1;
+    content: "";
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    background: url(/components/common/Background/tree_2c.svg) no-repeat fixed;
+    background-size: $size;
+    // background-size: cover;
+    // background-clip: padding-box;
+    background-position: left $left bottom $bottom;
+    background-blend-mode: color-dodge;
+    // filter: blur(0.12rem);
+  }
+}
+
+@mixin borderRadius() {
+  border-radius: 1rem * $goldenRatioDecrease * $goldenRatioDecrease * $goldenRatioDecrease;
+}
+
 @mixin border($color: transparent, $width: 1px, $style: solid) {
   border-width: $width;
   border-color: $color;
   border-style: $style;
-  border-radius: 1rem * $goldenRatioDecrease * $goldenRatioDecrease * $goldenRatioDecrease;
+  @include borderRadius();
 }
 
 @mixin borderTest() {
@@ -20,8 +45,78 @@
 }
 
 @mixin boxShadow($color: $black) {
-  box-shadow: 0px 1px 1px rgba($color, 0.32), 0px 2px 2px rgba($color, 0.32), 0px 4px 4px rgba($color, 0.32),
-    0px 8px 8px rgba($color, 0.32), 0px 16px 16px rgba($color, 0.32);
+  $alpha: 0.18;
+  box-shadow: 0px 0px 1px rgba($color, $alpha), 0px 1px 2px rgba($color, $alpha), 0px 2px 4px rgba($color, 0.12);
+}
+
+@mixin btnPill($bg-color: get-color("neutral"), $text-color: $text_light) {
+  flex-grow: 0.25;
+  @include boxShadow(get-color(base, dark));
+  border-radius: 100px;
+  background-color: get-color("neutral");
+  @include paddingBox;
+  margin: $margin;
+  text-align: center;
+  transition: all $duration ease-in-out;
+
+  &:hover {
+    box-shadow: 0 3px 5px rgba(get-color(base, dark), 0.29);
+    transform: scaleX(1.03);
+    background: get-color(main, dark);
+  }
+}
+
+@mixin button($bg-color: $primary, $text-color: $text_light) {
+  // outline: none;
+  margin: $margin;
+  @include border($bg-color);
+  background-color: $bg-color;
+  @include paddingBox;
+  color: $text-color;
+  // font-weight: 600;
+  // position: relative;
+  transition: all $duration ease-in-out;
+
+  &:hover {
+    @include gradient(scale-color($primary, $lightness: 10%));
+    cursor: pointer;
+    letter-spacing: 0.038rem;
+  }
+
+  &:hover:disabled {
+    letter-spacing: normal;
+  }
+
+  &:disabled {
+    $disabledColor: rgba($neutral, 0.47);
+    color: $disabledColor;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    &:active {
+      transition: all 0.15s;
+      transform: scale(0.9, 0.9);
+    }
+
+    &.primary {
+      @include gradient($primary);
+    }
+
+    &::after {
+      position: absolute;
+      bottom: -0.618em;
+      left: -5%;
+      content: "";
+      background-color: rgba($bg-color, 47%);
+      width: 110%;
+    }
+  }
+}
+
+@mixin focus {
+  outline: thin dotted colors(primary);
+  outline-offset: 0.34em;
 }
 
 @mixin gradient($color) {
@@ -33,6 +128,12 @@
     scale-color($color, $lightness: -15%) 90%,
     scale-color($color, $lightness: -10%) 100%
   );
+}
+
+@mixin input {
+  padding: get-size(300) * 1em get-size(400) * 1em;
+  margin: 0 0 $margin 0;
+  @include border($color: $primary);
 }
 
 @mixin paddingBox {
@@ -69,36 +170,55 @@
 }
 
 // Breakpoints for each query
-$smartphone: 480px;
-$tabletPortrait: 767px;
-$tabletLandscape: 1024px;
-$desktop: 1174px;
-$largeScreen: 1400px;
+$smartphone: 767px;
+$tablet: 768px;
+$tabletLandscape: 900px;
+$desktop: 1080px;
+$largeScreen: 1800px;
 @mixin respondTo($media) {
   @if $media == smartphone {
     @media (max-width: $smartphone) {
       @content;
     }
   } @else if $media == tablet {
-    @media (min-width: $tabletPortrait) and (max-width: $tabletLandscape) {
+    @media (min-width: $tablet) {
       @content;
     }
-  } @else if $media == smallScreen {
-    @media (max-width: $desktop) {
+  } @else if $media == tabletLandscape {
+    @media (min-width: $tabletLandscape) {
       @content;
     }
   } @else if $media == desktop {
     @media (min-width: $desktop) {
       @content;
     }
+  } @else if $media == largeScreen {
+    @media (min-width: $largeScreen) {
+      @content;
+    }
   }
 }
+/* Example usage div {
+  // regular styles here
+  @include respondTo(desktop) {
+    &:hover {
+      background: blue;
+    } // only add the hover effect on desktop browsers
+  }
+}
+This can be done
+@media (min-width: $tabletPortrait) and (max-width: $tabletLandscape) {
+*/
 
-// Example usage div {
-//   // regular styles here
-//   @include respondTo(desktop) {
-//     &:hover {
-//       background: blue;
-//     } // only add the hover effect on desktop browsers
-//   }
-// }
+@mixin enterAnimation() {
+  animation: softIn 305ms ease-out;
+  @keyframes softIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}

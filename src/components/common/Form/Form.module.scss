@@ -1,44 +1,36 @@
 @import "styles";
 
 .Form {
-  width: 100%;
-  color: $text_light;
-  min-width: 62vw;
-  max-height: 90vh;
-  overflow-y: auto;
-}
+  .FormHeader {
+    padding: $padding;
+    font-size: $goldenPercent;
 
-@media screen and (min-width: $desktop) {
-  .Form {
-    min-width: 38vw;
+    .title {
+      margin: 0;
+      text-transform: capitalize;
+    }
   }
-}
 
-.FormHeader {
-  background-color: $primary;
-  padding: $padding;
-  padding-top: $padding * 2.62;
-  font-size: $goldenPercent;
+  .FormBody {
+    overflow: hidden;
+    padding: $padding;
+    font-size: 1rem;
 
-  .title {
-    margin: 0;
-    text-transform: capitalize;
-  }
-}
-
-.FormBody {
-  padding: $padding;
-
-  label {
-    text-transform: capitalize;
-    display: block;
+    label {
+      font-size: 1rem * $smaller;
+      font-weight: 500;
+      text-transform: capitalize;
+      display: block;
+    }
 
     input,
     textarea {
       margin-bottom: $margin;
       width: 100%;
-      display: block;
       color: $black;
+      background-color: $white;
+      box-shadow: inset -1px -1px 0px rgba($black, 38%);
+      @include border($color: $primary, $width: 0.11rem);
       @include paddingBox;
 
       &[type="checkbox"] {
@@ -49,18 +41,24 @@
 
       &:focus {
         outline: none;
+        @include border($color: $primary, $width: 0.15rem);
       }
 
       &:disabled {
         visibility: hidden;
       }
+
+      &::selection {
+        color: $white;
+        background-color: $primary;
+      }
     }
   }
-}
 
-.FormFooter {
-  display: flex;
-  justify-content: flex-end;
-  border-top: $neutral;
-  flex-wrap: wrap;
+  .FormFooter {
+    display: flex;
+    justify-content: flex-end;
+    border-top: $neutral;
+    flex-wrap: wrap;
+  }
 }

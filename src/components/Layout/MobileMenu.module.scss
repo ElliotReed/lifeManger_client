@@ -1,0 +1,47 @@
+@import "styles";
+
+.offCanvasContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 1;
+  display: flex;
+  // disable menu for now
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  transform: translate3d(100vw, -61.8vh, 0);
+  height: 100%;
+  width: 100%;
+  transition: all 0.2s ease-in;
+  background-color: $primary;
+  overflow: hidden;
+  z-index: -1;
+  @include respondTo($tablet) {
+    .offCanvasContainer {
+      display: none;
+    }
+  }
+}
+
+.offscreenNavWrapper {
+  opacity: 0;
+  z-index: 1;
+  transition: all $duration * 2 ease-in;
+  background-color: $primary;
+}
+
+.openNav {
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+
+  &.offCanvasContainer {
+    transition: all 0.25s ease-out;
+  }
+
+  & .offscreenNavWrapper {
+    opacity: 1;
+  }
+}

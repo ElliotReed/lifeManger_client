@@ -15,20 +15,23 @@ function parseRRule(rruleString) {
     }, {});
 }
 
-export default function RRule({ task }) {
+export default function RRule({ task, handleRRuleDirty }) {
   //  These functions are declared at the top
   //  to set the initial state of the rrule {}
-
   const setInitialState = (task) => {
-    if (!task.rrule) return { FREQ: "NONE", INTERVAL: "" };
+    if (!task.rrule) return { FREQ: "DAILY", INTERVAL: 0 };
     return parseRRule(task.rrule.rule);
   };
 
   const [rrule, setRRule] = useState(setInitialState(task));
   const frequencyOptions = ["daily", "weekly", "monthly", "yearly"];
 
-  // const setRRule = () => {};
-
+  const frequencyNames = {
+    daily: "day",
+    weekly: "week",
+    monthly: "month",
+    yearly: "year",
+  };
   const handleRRuleChange = (e) => {
     const target = e.target;
     if (target.type === "radio") {
@@ -38,22 +41,26 @@ export default function RRule({ task }) {
     if (target.type === "number") {
       setRRule({ ...rrule, INTERVAL: parseInt(target.value) });
     }
+    handleRRuleDirty();
   };
 
   const setTaskRule = () => {
     task.rrule = {
       rule: `FREQ=${rrule.FREQ};INTERVAL=${rrule.INTERVAL}`,
     };
-    console.log("task.rrule: ", task.rrule);
   };
 
   const removeRecurrence = async () => {
-    console.log("removeRecurrence");
     const response = await TaskService.deleteRrule(task.id);
     if (response) {
-      console.log("response: ", response);
       delete task.rrule;
     }
+  };
+
+  const getRecurrenceQualifier = () => {
+    return `${frequencyNames[rrule.FREQ.toLowerCase()]}${
+      rrule.INTERVAL !== 1 ? "s" : ""
+    }`;
   };
 
   return (
@@ -62,21 +69,24 @@ export default function RRule({ task }) {
         <p>Recurrence</p>
         <div className={styles.radioGroup}>
           {frequencyOptions.map((option, i) => (
-            <label className={styles.item} key={i}>
+            <div className={styles.radioItem}>
               <input
+                id={i}
                 type="radio"
                 name="recurrence-type"
                 value={option}
                 onChange={handleRRuleChange}
                 defaultChecked={rrule?.FREQ === option.toUpperCase()}
               />
-              {option}
-            </label>
+              <label className={styles.label} key={i} htmlFor={i}>
+                {option}
+              </label>
+            </div>
           ))}
         </div>
         <div className={styles.numberOf}>
-          <label>
-            Recur every
+          <div className={styles.intervalContainer}>
+            <label>Recur every</label>
             <input
               type="number"
               name="number-of"
@@ -84,11 +94,8 @@ export default function RRule({ task }) {
               onChange={handleRRuleChange}
               min="0"
             />
-            <span>
-              {/* {scope} */}
-              {/* {numberOf === 1 ? "" : "s"} */}
-            </span>
-          </label>
+            <span>{getRecurrenceQualifier()}</span>
+          </div>
           <button type="button" onClick={setTaskRule}>
             Set Recurrence
           </button>

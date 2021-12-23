@@ -1,12 +1,15 @@
-import { useState } from "react";
-
-import Fields from "./TaskFormFields";
+import * as React from "react";
+import { useHistory } from "react-router-dom";
+import DatePicker from "react-datepicker";
 
 import Button from "components/common/Button/Button";
 import Form from "components/common/Form";
+import MaxWidthContainer from "components/common/MaxWidthContainer";
+import RRule from "./RRule";
+
+import styles from "./add-edit-task.module.scss";
 
 export default function AddEditTask({
-  closeModal,
   foreignId,
   defaultTask = {
     task: "",
@@ -18,8 +21,9 @@ export default function AddEditTask({
   addTask,
   mode = "add",
 }) {
-  const [dirty, setDirty] = useState(false);
-  const [task, setTask] = useState({ ...defaultTask });
+  const history = useHistory();
+  const [dirty, setDirty] = React.useState(false);
+  const [task, setTask] = React.useState({ ...defaultTask });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +32,7 @@ export default function AddEditTask({
     } else {
       addTask(task);
     }
-
-    closeModal();
+    history.goBack();
   };
 
   const handleChange = (e) => {
@@ -43,8 +46,13 @@ export default function AddEditTask({
     }
   };
 
+  const handleRRuleDirty = () => {
+    if (!dirty) {
+      setDirty(true);
+    }
+  };
+
   const handleDateChange = (date) => {
-    console.log("date: ", date);
     setTask({ ...task, dtStart: date });
     if (!dirty) {
       setDirty(true);
@@ -53,18 +61,48 @@ export default function AddEditTask({
   };
 
   return (
-    <Form
-      handleSubmit={handleSubmit}
-      name={mode === "add" ? "addtask" : "edittask"}
-    >
-      <Form.Header title={mode === "add" ? "add task" : "edit task"} />
-      <Form.Body>{Fields(task, handleChange, handleDateChange)}</Form.Body>
-      <Form.Footer>
-        <Button onClick={closeModal}>Cancel</Button>
-        <Button type="submit" disabled={!dirty}>
-          Save
-        </Button>
-      </Form.Footer>
-    </Form>
+    <div className={styles.addEditTask}>
+      <MaxWidthContainer>
+        <Form
+          handleSubmit={handleSubmit}
+          name={mode === "add" ? "addtask" : "edittask"}
+        >
+          <Form.Header title={mode === "add" ? "add task" : "edit task"} />
+          <Form.Body>
+            <label htmlFor="task">task</label>
+            <input
+              id="task"
+              name="task"
+              type="text"
+              value={task.task}
+              onChange={handleChange}
+            />
+            <label htmlFor="description">description</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              value={task.description}
+              onChange={handleChange}
+            ></textarea>
+            <label htmlFor="dp">start date</label>
+            <DatePicker
+              id="dp"
+              selected={new Date(task.dtStart)}
+              onChange={(date) => handleDateChange(date)}
+              shouldCloseOnSelect={true}
+              className={styles.date}
+            />
+            <RRule task={task} handleRRuleDirty={handleRRuleDirty} />
+          </Form.Body>
+          <Form.Footer>
+            <Button onClick={() => history.goBack()}>Cancel</Button>
+            <Button type="submit" disabled={!dirty}>
+              Save
+            </Button>
+          </Form.Footer>
+        </Form>
+      </MaxWidthContainer>
+    </div>
   );
 }

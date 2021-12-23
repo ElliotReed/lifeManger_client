@@ -1,34 +1,41 @@
 @import "styles";
 
+.taskList__container {
+  position: relative;
+}
+
 .task__list {
-  overflow-y: auto;
   margin: 0;
+  padding: 0;
 
   li {
     position: relative;
-
-    // align-content: center;
-    // flex-wrap: wrap;
     @include border();
-    font-size: min(1rem, 18px);
     background-color: $primary;
     @include paddingBox;
+    font-size: max(1px, 1rem);
+    color: $white;
+
+    @include respondTo(tablet) {
+      max-width: 76%;
+      margin: 0 auto;
+    }
 
     &:nth-child(even) {
-      background-color: $black;
+      background-color: inherit;
+      color: inherit;
     }
 
     p {
-      font-size: 1rem;
-      color: $white;
-      margin: 0;
       display: inline-flex;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 400;
     }
     time {
-      font-size: 76%;
-      color: $white;
-      margin: 0;
       display: inline-flex;
+      margin: 0;
+      font-size: 76%;
     }
   }
 }
@@ -36,13 +43,21 @@
 .taskInfo {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  grid-template-rows: auto auto;
+
   gap: $margin;
-  // justify-content: space-between;
+  & :nth-child(2) {
+    align-self: start;
+  }
 }
 
 .checkbox {
+  $completedColor: scale-color(
+    $color: $primary,
+    $lightness: 47%,
+  );
+
   position: relative;
+  $boxSize: 1em;
 
   /* ???? */
   [type="checkbox"] {
@@ -57,21 +72,21 @@
   [type="checkbox"]:checked {
     cursor: pointer;
     position: absolute;
-    left: 0.25em;
-    top: 0.25em;
+    left: 0;
+    top: 0;
     opacity: 0.01;
   }
   [type="checkbox"]:not(:checked) + label,
   [type="checkbox"]:checked + label {
     position: relative;
-    font-weight: bold;
+    font-weight: 400;
     cursor: pointer;
   }
 
   [type="checkbox"]:checked + label {
     text-decoration: line-through;
-    font-weight: normal;
-    color: $gray;
+    font-weight: 400;
+    color: $completedColor;
     transition: all 0.275s;
   }
 
@@ -80,15 +95,20 @@
   [type="checkbox"]:checked + label:before {
     position: relative;
     display: inline-block;
-    margin-right: $margin;
+    margin-right: $margin * 0.5;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
-    width: 1rem;
-    height: 1rem;
-    @include border;
+    width: $boxSize;
+    height: $boxSize;
+    @include border($color: $primary);
     background-color: $white;
     content: "";
     cursor: pointer;
     transition: all $duration;
+    vertical-align: -7.6%;
+  }
+  [type="checkbox"]:checked + label:before {
+    @include border();
+    background-color: transparent;
   }
 
   /* checked mark aspect */
@@ -98,16 +118,13 @@
     top: -0.2em;
     left: 0.075em;
     background: transparent;
-    font-weight: 900;
-    font-size: 1.38em;
-    line-height: 1rem;
-    content: "\2714";
-    color: $primary;
-    transition: all $duration;
-  }
-  .task {
-    display: inline;
     font-weight: bold;
+    font-size: 1.38em;
+    line-height: $boxSize;
+    content: "\2713";
+    color: $neutral;
+    color: $completedColor;
+    transition: all $duration;
   }
 
   /* checked mark aspect changes */
@@ -155,6 +172,7 @@
   padding: $padding;
   @include border();
   background-color: $white;
+
   .details__header {
     color: $black;
     margin: 0;
@@ -167,16 +185,21 @@
 }
 
 .show {
-  display: block;
+  display: inline-block;
+}
+
+.hide {
+  display: none;
 }
 
 .more {
   display: inline;
-  // padding: $padding;
   cursor: pointer;
 }
 
 .hasRecurrence {
+  margin: 0;
+  padding: 0;
   visibility: hidden;
   .show {
     visibility: visible;
@@ -186,4 +209,8 @@
 .topbar {
   display: flex;
   justify-content: space-between;
+
+  & button {
+    color: inherit;
+  }
 }

@@ -1,1 +1,1 @@
-export { AspectManagerLink, AssetManagerLink, HomeManagerLink, MealManagerLink, LifeManagerLink, BackLink } from './Links';
+export { NavLinkWrapper, BackLink } from "./Links";

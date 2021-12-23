@@ -1,40 +1,544 @@
-label {
-  display: block;
-  font-size: .618em;
-  padding: var(--padding);
+@import "styles";
+
+.Input {
+  label {
+    display: block;
+    font-size: 0.76em;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  select,
+  textarea {
+    @include input;
+  }
+
+  .input-check__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--padding);
+  }
+
+  .input-check__container label {
+    font-size: 1em;
+  }
+
+  .placeholder {
+    color: get-color("neutral");
+  }
+
+  // option {
+  //   background-color: rgba($primary, 0.1);
+  // }
+
+  // option:selected {
+  //   background-color: rgba($primary, 0.6);
+  // }
 }
 
-input[type=text],
-input[type=email],
-input[type=password],
-select,
-textarea {
-  width: 100%;
-  padding: var(--padding);
-  margin: 0 0 var(--margin) 0;
-  border-radius: var(--borderRadius);
-  font-family: var(--fontStackSans)
-}
+.select {
+  $select-border: #777;
+  $select-focus: blue;
+  $select-arrow: $select-border;
 
-.input-check__container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-areas: "select";
   align-items: center;
-  padding: var(--padding);
+  position: relative;
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid $select-border;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+  &::after {
+    grid-area: select;
+    justify-self: end;
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: $select-arrow;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+
+  & select {
+    grid-area: select;
+    // A reset of styles, including removing the default dropdown arrow
+    appearance: none;
+    // Additional resets for further consistency
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+
+    select:focus + .focus {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      border: 2px solid $select-focus;
+      border-radius: inherit;
+    }
+  }
 }
 
-.input-check__container label {
-  font-size: 1em;
+.HiddenInput {
+  & > .label {
+    cursor: pointer;
+    padding: get-size(200) * 1rem 0;
+
+    .labelText {
+      margin-right: get-size(300) * 1rem;
+      font-size: get-size(400) * 1rem;
+
+      &::after {
+        content: ":";
+      }
+    }
+
+    .selected {
+      border-bottom: get-size(100) * 1rem solid get-color("neutral");
+      vertical-align: baseline;
+      display: inline;
+      font-size: get-size(500) * 1rem;
+      font-weight: 700;
+    }
+
+    .icon {
+      font-size: get-size(500) * 1rem;
+      margin-left: get-size(300) * 1rem;
+    }
+  }
+
+  .hideInput {
+    display: none;
+  }
+
+  .displayInput {
+    display: block;
+  }
 }
 
-.placeholder {
-  color: var(--medium);
+.HiddenInputSelector {
+  display: block;
+
+  & > .label {
+    cursor: pointer;
+    padding: get-size(200) * 1rem 0;
+
+    .labelText {
+      margin-right: get-size(300) * 1rem;
+      font-size: get-size(400) * 1rem;
+
+      &::after {
+        content: ":";
+      }
+    }
+
+    .selected {
+      border-bottom: get-size(100) * 1rem solid get-color("neutral");
+      vertical-align: baseline;
+      display: inline;
+      font-size: get-size(500) * 1rem;
+      font-weight: 700;
+    }
+
+    .icon {
+      font-size: get-size(500) * 1rem;
+      margin-left: get-size(300) * 1rem;
+    }
+  }
+
+  option {
+    display: none;
+  }
+
+  .list {
+    @include borderRadius;
+    background-color: get-color("neutral");
+    max-height: 0;
+    overflow: hidden;
+    transition: all $duration ease-in-out;
+
+    &.displayList {
+      overflow-y: auto;
+      max-height: 60vh;
+      @include boxShadow;
+    }
+
+    li {
+      @include paddingBox;
+      cursor: pointer;
+
+      &:hover {
+        color: get-color("app-white");
+        background-color: get-color("primary");
+      }
+    }
+  }
 }
 
-option {
-  background-color:rgba(var(--greenRGB), .1);
+.InputComponent {
+  $transition: all 0.18s ease-in-out;
+  position: relative;
+
+  & .labelWrapper {
+    display: block;
+    & .label {
+      display: inline;
+      cursor: pointer;
+      margin: $margin $margin 0;
+      font-size: get-size(400) * 1rem;
+      font-weight: 400;
+      max-width: fit-content;
+      transition: $transition;
+
+      &::after {
+        content: ":";
+      }
+
+      &.labelChange {
+        max-width: fit-content;
+        opacity: 0.76;
+      }
+    }
+  }
+
+  & .editorControls {
+    transition: $transition;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+
+    & button {
+      @include btnPill();
+      opacity: 0;
+      margin-bottom: $margin;
+      margin-right: 0;
+
+      &[type="button"] {
+        background: get-color(base, light);
+      }
+    }
+
+    &.editorControlsChange {
+      max-height: 4rem;
+
+      & button {
+        opacity: 1;
+      }
+    }
+  }
+
+  & .inputWrapper {
+    display: inline-grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+
+    column-gap: 1rem;
+    margin: 0 $margin;
+
+    & .editBtn {
+      padding: 0;
+      font-size: get-size(500) * 1rem;
+
+      &.editBtnChange {
+        opacity: 0;
+      }
+    }
+
+    & .input {
+      max-width: 60ch;
+      background: get-color(base, light);
+      @include borderRadius;
+      @include paddingBox;
+      text-overflow: ellipsis;
+      font-size: get-size(500) * 1.12rem;
+      font-weight: 500;
+      box-shadow: inset 0 0 1rem rgba(get-color("app-black"), 0.047);
+      transition: $transition;
+
+      &.inputChange {
+        box-shadow: inset 0 0 1rem rgba(get-color("app-black"), 0.076);
+        padding-top: 1.618rem;
+      }
+    }
+
+    & textarea.input {
+      width: 100%;
+      font-weight: 400;
+      font-size: get-size(500) * 1rem;
+    }
+  }
 }
 
-option:selected {
-  background-color: rgba(var(--greenRGB), .6);
+@mixin dropdownList() {
+  position: absolute;
+  @include borderRadius;
+  background-color: get-color("neutral");
+  max-height: 0;
+  overflow: hidden;
+  transition: all $duration ease-in-out;
+  left: 0;
+  right: 0;
+}
+
+@mixin displayList() {
+  z-index: 1;
+  overflow-y: auto;
+  max-height: 60vh;
+  @include boxShadow;
+}
+
+@mixin seperator() {
+  $lightColorStop: rgba(get-color("primary"), 0.047);
+  $darkColorStop: rgba(get-color("primary"), 0.1);
+
+  margin: 0 $margin;
+  border: 0;
+  height: 1px;
+  background: $darkColorStop;
+  background-image: linear-gradient(to right, $lightColorStop, $darkColorStop, $lightColorStop);
+}
+
+.SelectorComponent {
+  $transition: all 0.18s ease-in-out;
+  position: relative;
+
+  & .label {
+    display: block;
+    cursor: pointer;
+    margin: $margin $margin 0;
+    font-size: get-size(400) * 1rem;
+    font-weight: 400;
+    transition: $transition;
+
+    &::after {
+      content: ":";
+    }
+
+    &.labelChange {
+      opacity: 0.76;
+    }
+  }
+
+  & .inputWrapper {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: 1fr auto;
+    margin: 0 $margin;
+
+    & .input {
+      max-width: 60ch;
+      background: get-color(base, light);
+      border-bottom: get-size(100) * 1rem solid get-color("neutral");
+      @include borderRadius;
+      @include paddingBox;
+      text-overflow: ellipsis;
+      font-size: get-size(500) * 1.12rem;
+      font-weight: 500;
+      transition: $transition;
+
+      &.inputChange {
+        box-shadow: inset 0 0 1rem rgba(get-color("app-black"), 0.076);
+        color: rgba(get-color(base, dark), 0.47);
+        padding-top: 1.618rem;
+      }
+    }
+
+    & .icon {
+      cursor: pointer;
+      border-top-right-radius: 5rem;
+      border-bottom-right-radius: 5rem;
+      // background: get-color(base, light);
+      text-align: center;
+      padding: 0 1rem;
+      font-size: get-size(600) * 1rem;
+      transform-origin: center;
+      transition: $transition;
+
+      &.iconChange > svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .list {
+    @include dropdownList;
+
+    &.displayList {
+      @include displayList;
+    }
+
+    & li {
+      $transition: all 100ms ease-in-out;
+      cursor: pointer;
+      background-color: get-color("neutral");
+      transition: $transition;
+
+      &.selected {
+        font-style: oblique;
+      }
+
+      &:hover {
+        color: get-color("app-white");
+        background-color: get-color("primary");
+      }
+
+      & p {
+        @include paddingBox;
+        pointer-events: none;
+      }
+
+      &.selected > p {
+        color: rgba(get-color("primary"), 0.29);
+      }
+
+      & .seperator {
+        @include seperator;
+      }
+    }
+  }
+}
+
+.SearchTextComponent {
+  $transition: all 0.18s ease-in-out;
+  position: relative;
+
+  & .label {
+    display: block;
+    cursor: pointer;
+    margin: $margin $margin 0;
+    font-size: get-size(400) * 1rem;
+    font-weight: 400;
+    transition: $transition;
+
+    &::after {
+      content: ":";
+    }
+
+    &.labelChange {
+      opacity: 0.76;
+    }
+  }
+
+  & .editorControls {
+    transition: $transition;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 0;
+    overflow: hidden;
+
+    & button {
+      @include button;
+      opacity: 0;
+      margin: 0 $margin 0 0;
+    }
+
+    &.editorControlsChange {
+      height: 4em;
+
+      & button {
+        opacity: 1;
+      }
+    }
+  }
+
+  & .inputWrapper {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: 1fr auto;
+    margin: 0 $margin;
+
+    & .editBtn {
+      display: flex;
+      width: 2.5rem;
+      justify-content: center;
+      align-items: center;
+      font-size: get-size(500) * 1rem;
+
+      &.editBtnChange {
+        opacity: 0.76;
+      }
+    }
+
+    & .input {
+      max-width: 60ch;
+      background: get-color(base, light);
+      @include borderRadius;
+      @include paddingBox;
+      text-overflow: ellipsis;
+      font-size: get-size(500) * 1.12rem;
+      font-weight: 500;
+      transition: $transition;
+
+      &.inputChange {
+        box-shadow: inset 0 0 1rem rgba(get-color("app-black"), 0.076);
+        padding-top: 1.618rem;
+      }
+    }
+
+    & textarea.input {
+      font-weight: 400;
+      font-size: get-size(500) * 1rem;
+      box-shadow: inset 0 0 1rem rgba(get-color("app-black"), 0.076);
+    }
+  }
+
+  .line {
+    margin-right: 100%;
+    background: get-color("primary");
+    height: 2px;
+    transition: $transition;
+
+    &.lineChange {
+      margin-right: 0;
+    }
+  }
+}
+
+.DropdownList {
+  @include dropdownList;
+
+  &.displayList {
+    @include displayList;
+  }
+
+  & .listItem {
+    $transition: all 100ms ease-in-out;
+    cursor: pointer;
+    background-color: get-color("neutral");
+    transition: $transition;
+
+    &.selected {
+      font-style: oblique;
+    }
+
+    &:hover {
+      color: get-color(base, light);
+      background-color: get-color("primary");
+    }
+
+    & .seperator {
+      @include seperator;
+    }
+  }
 }

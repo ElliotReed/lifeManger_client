@@ -2,6 +2,6 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "exclude": [".archive", "node_modules", "dist"],
+  "exclude": [".archive", "build", "dist", "node_modules"],
   "include": ["src"]
 }

@@ -1,11 +1,11 @@
 @import "../abstracts/colors";
+@import "../abstracts/themes";
 @import "../abstracts/mixins";
 @import "../abstracts/variables";
 
 /* #region Variables */
 :root {
-  /* animations */
-  --softIn: softIn 0.33s ease-in;
+  --placeholder: 42;
 }
 
 html {
@@ -16,18 +16,12 @@ html {
 /* mobile */
 html {
   font-size: 16px;
-}
-
-/* tablet */
-@media only screen and (min-width: 768px) {
-  html {
+  /* tablet min-width: 768px */
+  @include respondTo(tablet) {
     font-size: 18px;
   }
-}
-
-/* desktop */
-@media only screen and (min-width: 1080px) {
-  html {
+  /* desktop min-width: 1080px*/
+  @include respondTo(desktop) {
     font-size: 22px;
   }
 }
@@ -37,13 +31,15 @@ html {
 *:after {
   box-sizing: inherit;
   user-select: none;
+  // animation: var(--softIn);
 }
 
 body {
   font-family: $fontStackSans;
   line-height: 1.618rem;
-  background-color: $white;
-  color: $neutral;
+  background-color: get-color(base, light);
+  color: get-color("primary");
+
   // @include appFixedContainer;
 }
 
@@ -53,6 +49,7 @@ body {
   min-height: 100%;
   width: 100%;
   min-width: 320px;
+  min-block-size: 100vh;
 }
 
 h1 {
@@ -110,12 +107,48 @@ cite {
   font-size: 0.618rem;
 }
 
-@keyframes softIn {
-  from {
-    opacity: 0;
-  }
+// newline ideas to test
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
 
-  to {
-    opacity: 1;
-  }
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+blockquote,
+figcaption {
+  max-width: 60ch;
+}
+
+:focus {
+  @include focus;
 }

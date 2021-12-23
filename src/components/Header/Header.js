@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavigationMenu } from '../Navigation';
-import { UserProfile } from '../User';
+import { UserProfile } from 'screens/User';
 import { LifeManagerLink } from '../Links';
 import styles from './header.module.scss';
 

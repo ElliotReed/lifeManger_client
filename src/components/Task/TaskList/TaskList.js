@@ -1,12 +1,12 @@
-import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as React from "react";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import AddEditTask from "../AddEditTask";
 import DateDisplay from "components/common/datetime/DateDisplay";
-
+import MainPortal from "components/common/MainPortal";
 import Toolbar from "components/common/Toolbar";
 import ToolbarButton from "components/common/Button/ToolbarButton";
-import Modal from "components/common/Modal";
 
 import styles from "./task_list.module.scss";
 
@@ -38,82 +38,87 @@ function TaskDetails({ task }) {
   );
 }
 
-function HasRecurrence({ task }) {
-  return (
-    <p className={styles.hasRecurrence}>
-      <span title="Recurring" className={task.rrule?.rule ? styles.show : ""}>
-        <FontAwesomeIcon icon={["fas", "sync-alt"]} />
-      </span>
-    </p>
-  );
-}
-
 export default function TaskList({
   tasks,
   updateTasks,
   handleCheckCompleted,
   updateTask,
 }) {
-  const [selectedTask, setSelectedTask] = useState();
-  const modal = useRef(null);
+  const [selectedTask, setSelectedTask] = React.useState();
+  const history = useHistory();
+  const match = useRouteMatch("/aspects/tasks/edit/:id");
 
   const handleEditTaskClick = (e) => {
-    modal.current.open();
     // Targets the input id
-    const id = e.currentTarget.parentElement.previousSibling.firstChild.id;
+    const id = e.currentTarget.parentElement.dataset.id;
     const task = tasks.filter((task) => task.id === id)[0];
 
     setSelectedTask(task);
+    history.push(`aspects/tasks/edit/${task.id}`);
   };
 
   return (
     <>
-      <ul className={styles.task__list}>
-        {tasks.map((task) => {
-          return (
-            <li key={task.id} data-id={task.id}>
-              <section className={styles.topbar}>
-                <DateDisplay>{task.dtStart}</DateDisplay>
-                <HasRecurrence task={task} />
-              </section>
-              <section className={styles.taskInfo}>
-                <div className={styles.checkbox}>
-                  <input
-                    type="checkbox"
-                    name={task.id}
-                    id={task.id}
-                    onChange={() => handleCheckCompleted(task)}
-                    checked={task.dtCompleted !== null ? true : false}
-                  />
-                  <label
-                    // className={styles.checkbox}
-                    htmlFor={task.id}
-                    title="Check to complete"
-                    // className={task.dtCompleted ? styles.strike : styles.task}
-                  >
-                    {task.task}
-                  </label>
-                </div>
-                <Toolbar>
-                  <ToolbarButton onClick={handleEditTaskClick}>
-                    <FontAwesomeIcon icon={["fas", "edit"]} />
-                  </ToolbarButton>
-                </Toolbar>
-                <TaskDetails task={task} />
-              </section>
-            </li>
-          );
-        })}
-      </ul>
-      <Modal ref={modal} fade={true}>
-        <AddEditTask
-          closeModal={() => modal.current.close()}
-          defaultTask={selectedTask}
-          updateTasks={updateTasks}
-          updateTask={updateTask}
-          mode="edit"
-        />
-      </Modal>
+      {!match && (
+        <section className={styles.taskList__container}>
+          <ul className={styles.task__list}>
+            {tasks.map((task) => {
+              return (
+                <li key={task.id}>
+                  <section className={styles.topbar}>
+                    <DateDisplay>{task.dtStart}</DateDisplay>
+
+                    <Toolbar>
+                      <div data-id={task.id}>
+                        <ToolbarButton onClick={handleEditTaskClick}>
+                          <FontAwesomeIcon icon={["fas", "edit"]} />
+                        </ToolbarButton>
+                        <span
+                          title="Recurring"
+                          className={
+                            task.rrule?.rule ? styles.show : styles.hide
+                          }
+                        >
+                          <ToolbarButton onClick={handleEditTaskClick}>
+                            <FontAwesomeIcon icon={["fas", "sync-alt"]} />
+                          </ToolbarButton>
+                        </span>
+                      </div>
+                    </Toolbar>
+                  </section>
+                  <section className={styles.taskInfo}>
+                    <div className={styles.checkbox}>
+                      <input
+                        type="checkbox"
+                        name={task.id}
+                        id={task.id}
+                        onChange={() => handleCheckCompleted(task)}
+                        checked={task.dtCompleted !== null ? true : false}
+                      />
+                      <label htmlFor={task.id} title="Check to complete">
+                        {task.task}
+                      </label>
+                    </div>
+                    <TaskDetails task={task} />
+                  </section>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
+      {match && (
+        <MainPortal>
+          <AddEditTask
+            defaultTask={selectedTask}
+            updateTasks={updateTasks}
+            updateTask={updateTask}
+            mode="edit"
+          />
+        </MainPortal>
+      )}
+      {/* <Modal ref={modal} fade={true}>
+      </Modal> */}
       {/* <TodoList
         todos={todos}
         setTodos={setTodos}

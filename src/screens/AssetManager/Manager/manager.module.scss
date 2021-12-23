@@ -1,0 +1,73 @@
+@import "styles";
+
+.assetManager {
+	position: relative;
+	min-height: 100%;
+	overflow: hidden;
+	// @include backgroundImage($size: 200%);
+}
+
+.addBtn {
+	$size: get-size(800) * 1rem;
+	$distanceFromEdge: 0.618rem;
+	border-radius: 50%;
+	text-align: center;
+	height: $size;
+	width: $size;
+	font-size: get-size(600) * 1rem;
+	background: get-color("primary");
+	position: absolute;
+	bottom: $distanceFromEdge;
+	right: $distanceFromEdge;
+	color: get-color("app-white");
+	transition: all $duration ease-in-out;
+
+	&:hover,
+	&:active {
+		transform: scale(1.12);
+		cursor: pointer;
+		@include boxShadow;
+	}
+}
+
+.count {
+	display: inline;
+	@include paddingBox;
+	border-radius: get-size(600) * 1rem;
+	margin: $margin;
+	background: get-color("neutral");
+
+	& > span {
+		font-weight: 700;
+	}
+}
+
+.header {
+	& > h1 {
+		margin: $margin;
+		font-size: get-size(600) * 1rem;
+		font-weight: 700;
+	}
+}
+
+.search {
+	margin-top: $margin;
+}
+
+.tasks {
+	display: none;
+}
+
+.dataItem {
+	color: inherit;
+	@include paddingBox;
+	display: block;
+}
+
+// refactor
+
+// .AssetSelector {
+// 	flex-shrink: 0;
+// 	width: 100%;
+// 	min-height: 100%;
+// }

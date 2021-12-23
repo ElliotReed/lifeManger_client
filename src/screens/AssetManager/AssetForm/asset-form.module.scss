@@ -1,0 +1,32 @@
+.container-location {
+  margin: var(--margin) 0;
+  border: thin groove rgba(var(--greenComplimentRGB), 0.3);
+  border-radius: var(--borderRadius);
+  padding: var(--padding);
+}
+
+.container-location__imperative {
+  margin: var(--margin);
+}
+
+.create-update-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--light);
+  padding: var(--padding);
+  overflow: hidden;
+}
+
+.scroll-wrapper {
+  padding: var(--padding);
+  overflow: auto;
+}
+
+.AssetTypeSelector {
+  display: block;
+
+  option {
+    display: none;
+  }
+}

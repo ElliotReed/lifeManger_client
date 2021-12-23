@@ -1,0 +1,43 @@
+#User {
+  position: relative;
+  /* display: block; */
+  /* background: url('Logo.jpg') no-repeat fixed center; */
+  height: 100%;
+  padding: var(--padding);
+  overflow: hidden;
+}
+
+#User::after {
+  content: "";
+  // background: url("components/common/Logo/Logo.jpg") no-repeat fixed center;
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+#User h1 {
+  margin: 1rem;
+}
+
+.index-page {
+}
+
+.index-page button {
+  background: white;
+  height: 2em;
+  border: 3px solid white;
+}
+
+.index-page span {
+  margin: 0.5em;
+}
+
+#user__password {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

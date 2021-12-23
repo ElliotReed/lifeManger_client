@@ -1,0 +1,42 @@
+@import "styles";
+
+.lifeFlow {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  @include border();
+  background: get-color("neutral");
+  padding: $padding;
+
+  .currentAspect {
+    @include enterAnimation;
+    & button {
+      @include button();
+    }
+
+    .name {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 1rem * $goldenRatio;
+      margin: 0 1rem * $goldenRatioDecrease 0 0;
+    }
+
+    .value {
+      display: inline-block;
+      font-size: 1rem * $smaller;
+      span {
+        font-weight: 500;
+      }
+    }
+
+    .info {
+      font-size: 1rem * $smaller;
+      p {
+        margin: 0;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}

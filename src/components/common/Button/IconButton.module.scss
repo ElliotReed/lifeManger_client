@@ -1,0 +1,16 @@
+@import "styles/";
+
+.bgColor {
+  background: transparent;
+  @include border(transparent);
+  color: inherit;
+  transition: all $duration ease-in-out;
+
+  &:hover:enabled {
+    background: transparent;
+  }
+}
+
+.iconMargin {
+  margin-right: 1rem;
+}

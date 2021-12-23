@@ -1,11 +1,13 @@
 @import "styles";
 
 .mainWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 
   & main {
+    min-height: 100%;
     overflow-y: auto;
   }
 }
