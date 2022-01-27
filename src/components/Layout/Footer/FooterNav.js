@@ -1,6 +1,6 @@
 import { NavLinkWrapper } from "components/Links";
 
-import styles from "./footer-nav.module.scss";
+import styles from "./footer__nav.module.scss";
 
 const FooterNav = ({ background }) => (
   <nav className={background ? styles.backgroundNav : styles.nav}>

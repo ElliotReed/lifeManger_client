@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import * as Inputs from "components/common/Input";
 import FieldForm from "components/common/FieldForm";
@@ -10,13 +10,13 @@ import styles from "./asset-type.module.scss";
 import AssetTypeSelector from "../AssetTypeSelector";
 
 export default function AssetType() {
-  const history = useHistory();
+  const navigation = useNavigate();
   const inventory = useAsset();
   const [showAdd, setShowAdd] = React.useState(false);
 
   return (
     <div className={styles.AssetType}>
-      <button onClick={() => history.goBack()}>back</button>
+      <button onClick={() => navigation.goBack()}>back</button>
       <h1>asset types</h1>
       <button onClick={() => setShowAdd(true)}>+</button>
       {showAdd && (

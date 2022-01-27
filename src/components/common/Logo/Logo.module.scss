@@ -1,9 +1,13 @@
 @import "styles";
 
 .logo {
+  &:hover {
+    cursor: pointer;
+  }
+
   a {
     font-size: 1em;
-    font-weight: 400;
+    font-weight: 700;
     color: $white;
 
     span {

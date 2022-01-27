@@ -22,11 +22,11 @@
 }
 
 .theme__light {
-  background-color: $white;
-  color: $primary;
+  background: get-color(base, light);
+  color: get-color(base, dark);
 }
 
 .theme__dark {
-  background-color: $black;
-  color: $white;
+  background: get-color(base, dark);
+  color: get-color(base, light);
 }

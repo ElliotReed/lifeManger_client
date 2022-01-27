@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 import Button from "components/common/Button/Button";
 // import ErrorMessage from '../../common/ErrorMessage';
@@ -29,7 +29,7 @@ function AssetTypeSelector({
   placeholder,
 }) {
   const [value, setValue] = React.useState(initialValue);
-  const [selectedLabel, setSelectedLabel]= React.useState()
+  const [selectedLabel, setSelectedLabel] = React.useState();
 
   const handleOnChange = (e) => {
     console.log(".dataset.value: ", e.target.dataset.value);
@@ -77,7 +77,7 @@ export default function AssetForm({
 }) {
   const assetHook = useAsset();
   // const [item, setItem] = React.useState(selectedAsset || defaultItem);
-  const history = useHistory();
+  const navigation = useNavigate();
 
   // const handleInputChange = (event) => {
   //   const target = event.target;

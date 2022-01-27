@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { useAuth } from "./useAuth";
 
 const initialState = {
@@ -7,9 +6,10 @@ const initialState = {
   password: "",
 };
 
-export default function AuthForm({ mode }) {
-  const auth = useAuth();
+export default function AuthForm({ mode, backToOrigin }) {
   const [authData, setAuthData] = React.useState(initialState);
+  const auth = useAuth();
+
   const modeText = mode === "login" ? "sign in" : "create account";
 
   function handleChange(e) {
@@ -22,11 +22,11 @@ export default function AuthForm({ mode }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (mode === "login") {
-      auth.login(authData);
+      auth.login(authData, backToOrigin);
     }
 
     if (mode === "register") {
-      auth.register(authData);
+      auth.register(authData, backToOrigin);
     }
 
     setAuthData(initialState);

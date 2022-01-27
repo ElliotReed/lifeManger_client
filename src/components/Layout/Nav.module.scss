@@ -9,7 +9,7 @@
       display: block;
       @include paddingBox;
       text-align: end;
-      color: $white;
+      color: inherit;
 
       @include respondTo(tabletLandscape) {
         display: inline-flex;

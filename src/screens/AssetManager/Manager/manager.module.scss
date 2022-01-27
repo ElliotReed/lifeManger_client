@@ -15,11 +15,11 @@
 	height: $size;
 	width: $size;
 	font-size: get-size(600) * 1rem;
-	background: get-color("primary");
+	background: get-color(main, darkest);
 	position: absolute;
 	bottom: $distanceFromEdge;
 	right: $distanceFromEdge;
-	color: get-color("app-white");
+	color: get-color(base, light);
 	transition: all $duration ease-in-out;
 
 	&:hover,

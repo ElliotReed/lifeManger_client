@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import ControlledRoute from "libs/authentication/ControlledRoute";
 
@@ -14,27 +14,78 @@ import MealManager from "screens/MealManager";
 
 import NotFound from "screens/NotFound";
 import { User } from "screens/User";
+import RequireAuth from "libs/authentication/RequireAuth";
+
+import Welcome from "screens/Welcome";
+import Auth from "screens/Auth";
 
 export default function RouterConfig() {
   return (
-    <Switch>
-      <ControlledRoute path="/assets/:assetId" component={AssetScreen} />
-      <ControlledRoute path="/assets" component={AssetManager} />
-      <ControlledRoute path="/inventory/asset-types" component={AssetType} />
-      <ControlledRoute
-        path="/inventory/asset/:assetId"
-        component={AssetScreen}
+    // <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Welcome />} />
+      <Route path="authorization">
+        <Route path="sign-in" element={<Auth mode="login" />} />
+        <Route path="create-account" element={<Auth mode="register" />} />
+      </Route>
+      <Route
+        path="assets"
+        element={
+          <RequireAuth>
+            <AssetManager />
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path="assets/:assetId"
+        element={
+          <RequireAuth>
+            <AssetScreen />
+          </RequireAuth>
+        }
       />
-      <ControlledRoute path="/inventory" component={Inventory} />
-      <ControlledRoute path="assets/asset-types" component={AssetType} />
-      <ControlledRoute exact path="/aspects" component={AspectManager} />
-      <ControlledRoute path="/aspects/tasks/" component={AspectManager} />
-      <ControlledRoute path="/overview" exact component={Dashboard} />
-      <ControlledRoute exact path="/household" component={HomeManager} />
-      <ControlledRoute exact path="/meals" component={MealManager} />
-      <ControlledRoute exact path="/user" component={User} />
-      <ControlledRoute exact path="/" component={Gate} />
-      <Route path="/" component={NotFound} />
-    </Switch>
+      <Route
+        path="aspects"
+        element={
+          <RequireAuth>
+            <AspectManager />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="household"
+        element={
+          <RequireAuth>
+            <HomeManager />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="meals"
+        element={
+          <RequireAuth>
+            <MealManager />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="overview"
+        element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }
+      />
+
+      <Route path="inventory/asset-types" element={<AssetType />} />
+      <Route path="inventory/asset/:assetId" element={<AssetScreen />} />
+      <Route path="inventory" element={<Inventory />} />
+      <Route path="assets/asset-types" element={<AssetType />} />
+      <Route path="aspects/tasks/" element={<AspectManager />} />
+      <Route path="user" element={<User />} />
+      {/* <Route path="/" element={<Gate />} /> */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    // </BrowserRouter>
   );
 }

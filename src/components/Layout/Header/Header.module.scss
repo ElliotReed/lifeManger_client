@@ -7,7 +7,9 @@
   padding: (1rem * $goldenRatioDecrease) (1.618rem * $goldenRatioDecrease);
   position: relative;
   line-height: 0;
-  background-color: $primary;
+  background: get-color(main, darkest);
+  color: get-color(base, light);
+  font-weight: 500;
 }
 
 .logo {

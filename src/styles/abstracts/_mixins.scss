@@ -1,3 +1,5 @@
+@use "styles/base/typography";
+
 // mixins
 @mixin appFixedContainer {
   display: grid;
@@ -51,9 +53,9 @@
 
 @mixin btnPill($bg-color: get-color("neutral"), $text-color: $text_light) {
   flex-grow: 0.25;
+  background-color: get-color("neutral");
   @include boxShadow(get-color(base, dark));
   border-radius: 100px;
-  background-color: get-color("neutral");
   @include paddingBox;
   margin: $margin;
   text-align: center;
@@ -66,21 +68,48 @@
   }
 }
 
-@mixin button($bg-color: $primary, $text-color: $text_light) {
-  // outline: none;
-  margin: $margin;
-  @include border($bg-color);
-  background-color: $bg-color;
-  @include paddingBox;
+@mixin pill {
+  border-radius: 47rem;
+}
+
+@mixin leaf {
+  border-radius: 76% 12% / 200%;
+}
+
+@mixin btnLink($bg-color: get-color(main, main-500), $text-color: get-color(base, dark), $shape: "default") {
+  font-family: typography.$fontStackSans;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.618;
   color: $text-color;
-  // font-weight: 600;
-  // position: relative;
+  text-align: center;
+  // white-space: nowrap;
+  // @include border(shade($bg-color, 12%));
+  @include borderRadius();
+  @if $shape == "pill" {
+    @include pill;
+  }
+  @if $shape == "leaf" {
+    @include leaf;
+  }
+
+  @include paddingBox;
+  background: $bg-color;
+  // margin: $margin;
+  // margin: var(--margin) 0;
+  // background-image: linear-gradient(180deg, $bg-color 0%, tint($bg-color, 47%) 18%, $bg-color 100%);
+  user-select: none;
   transition: all $duration ease-in-out;
+  @include boxShadow(get-color(base, dark));
+  // box-shadow: inset 0 0 3px rgba(shade($bg-color, 18%), 18%);
+
+  // text-decoration: if($link-decoration == none, null, none);
+  // cursor: if($enable-button-pointers, pointer, null);
 
   &:hover {
-    @include gradient(scale-color($primary, $lightness: 10%));
+    box-shadow: 0 3px 5px rgba(get-color(base, dark), 0.29);
     cursor: pointer;
-    letter-spacing: 0.038rem;
+    transform: scaleX(1.03);
   }
 
   &:hover:disabled {
@@ -94,13 +123,80 @@
   }
 
   &:focus {
+    @include focus(shade($bg-color, 47%));
+
     &:active {
-      transition: all 0.15s;
-      transform: scale(0.9, 0.9);
+      @include boxShadow(get-color(base, dark));
+      transform: scale(1.012);
     }
 
     &.primary {
-      @include gradient($primary);
+      // @include gradient($primary);
+    }
+
+    &::after {
+      position: absolute;
+      bottom: -0.618em;
+      left: -5%;
+      content: "";
+      background-color: rgba($bg-color, 47%);
+      width: 110%;
+    }
+  }
+}
+@mixin button($bg-color: get-color(main, main-500), $text-color: get-color(base, dark)) {
+  // position: relative;
+  display: inline-flex;
+  // width: 100%;
+  font-family: typography.$fontStackSans;
+  font-size: 1rem;
+  font-weight: 500;
+  // font-weight: 600;
+  line-height: 1.618;
+  color: $text-color;
+  text-align: center;
+  vertical-align: middle;
+  // white-space: nowrap;
+  // @include border(shade($bg-color, 12%));
+  @include borderRadius();
+  @include paddingBox;
+  background: $bg-color;
+  // margin: $margin;
+  // margin: var(--margin) 0;
+  // background-image: linear-gradient(180deg, $bg-color 0%, tint($bg-color, 47%) 18%, $bg-color 100%);
+  user-select: none;
+  transition: all $duration ease-in-out;
+  @include boxShadow(get-color(base, dark));
+  // box-shadow: inset 0 0 3px rgba(shade($bg-color, 18%), 18%);
+
+  // text-decoration: if($link-decoration == none, null, none);
+  // cursor: if($enable-button-pointers, pointer, null);
+
+  &:hover {
+    box-shadow: 0 3px 5px rgba(get-color(base, dark), 0.29);
+    cursor: pointer;
+  }
+
+  &:hover:disabled {
+    letter-spacing: normal;
+  }
+
+  &:disabled {
+    $disabledColor: rgba($neutral, 0.47);
+    color: $disabledColor;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    @include focus(shade($bg-color, 47%));
+
+    &:active {
+      @include boxShadow(get-color(base, dark));
+      transform: scale(1.012);
+    }
+
+    &.primary {
+      // @include gradient($primary);
     }
 
     &::after {
@@ -114,9 +210,9 @@
   }
 }
 
-@mixin focus {
-  outline: thin dotted colors(primary);
-  outline-offset: 0.34em;
+@mixin focus($color: get-color(main, main-500)) {
+  outline: thin dotted $color;
+  outline-offset: 0.12rem;
 }
 
 @mixin gradient($color) {

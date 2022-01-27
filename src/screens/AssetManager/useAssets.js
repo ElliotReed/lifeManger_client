@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { replaceItemInArray } from "utils/array";
 import AssetService from "services/AssetService";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 const assetContext = React.createContext({});
 
@@ -49,7 +49,6 @@ export function useAssetProvider() {
 
   const getAssetById = async (itemId) => {
     const asset = await AssetService.getAssetById(itemId);
-    console.log("asset: ", asset);
     setAsset(asset);
   };
 

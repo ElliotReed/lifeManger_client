@@ -46,29 +46,84 @@ $primary: #225522;
 $secondary: #887354;
 $tertiary: #552222;
 
-$main: scale-color($primary, $lightness: 92%);
+$main: #e7f5e5;
 $support: $secondary;
 $accent: scale-color($main, $green: -12%, $red: 12%);
 
 $opacity: 29%;
 
+@function tint($color, $percentage) {
+  $tintWhite: scale-color($main, $lightness: 76%);
+  @return mix($tintWhite, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  $tintBlack: scale-color($main, $lightness: -76%);
+  @return mix($tintBlack, $color, $percentage);
+}
+
+$base-light: scale-color($main, $lightness: 76%);
+$base-dark: scale-color($main, $lightness: -76%);
+$base-neutral: mix($base-light, $base-dark, 76);
+
+$main-100: tint($main, 76%);
+$main-200: tint($main, 47%);
+$main-300: tint($main, 29%);
+$main-400: tint($main, 18%);
+$main-500: $main;
+$main-600: shade($main, 18%);
+$main-700: shade($main, 29%);
+$main-800: shade($main, 47%);
+$main-900: shade($main, 76%);
+
+$support-100: tint($support, 76%);
+$support-200: tint($support, 47%);
+$support-300: tint($support, 29%);
+$support-400: tint($support, 18%);
+$support-500: $support;
+$support-600: shade($support, 18%);
+$support-700: shade($support, 29%);
+$support-800: shade($support, 47%);
+$support-900: shade($support, 76%);
+
 $colors: (
   base: (
-    light: scale-color($main, $lightness: 76%),
-    neutral: scale-color($main, $saturation: -76%),
-    dark: scale-color($main, $lightness: -29%),
+    light: $base-light,
+    neutral: $base-neutral,
+    dark: $base-dark,
   ),
   main: (
     base: $main,
+    darkest: $main-900,
+    ld: mix(scale-color($main, $lightness: -76%), scale-color($main, $lightness: 76%), 47),
     light: scale-color($main, $lightness: 76%),
-    dark: scale-color($primary, $lightness: 83%),
+    dark: scale-color($main, $lightness: -7.6%),
+    darker: scale-color($main, $lightness: -76%),
     alpha: rgba($main, $opacity),
+    main-100: $main-100,
+    main-200: $main-200,
+    main-300: $main-300,
+    main-400: $main-400,
+    main-500: $main-500,
+    main-600: $main-600,
+    main-700: $main-700,
+    main-800: $main-800,
+    main-900: $main-900,
   ),
   support: (
     base: $support,
     light: scale-color($support, $lightness: 92%),
     dark: scale-color($support, $lightness: -29%),
     alpha: rgba($support, $opacity),
+    support-100: $support-100,
+    support-200: $support-200,
+    support-300: $support-300,
+    support-400: $support-400,
+    support-500: $support-500,
+    support-600: $support-600,
+    support-700: $support-700,
+    support-800: $support-800,
+    support-900: $support-900,
   ),
   accent: (
     base: $accent,

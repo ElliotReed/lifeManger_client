@@ -1,26 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import { useAsset } from "../useAssets";
 import AssetService from "services/AssetService";
 
+import Background from "components/common/Background";
 import Drawer from "components/common/Drawer";
 import * as Inputs from "components/common/Input";
-// import LoadingSpinner from "components/common/LoadingSpinner";
+import LoadingSpinner from "components/common/LoadingSpinner";
 import MaxWidthContainer from "components/common/MaxWidthContainer";
 // import Selector from "components/common/Selector";
 
 import AddItemScreen from "./AddItemScreen";
+import RootSelector from "./RootSelector";
 // import AssetManagerSelectorList from "./SelectorList";
 // import AssetTypeSelector from "./AssetTypeSelector";
 
 import styles from "./manager.module.scss";
-import Background from "components/common/Background";
 
 export default function Manager() {
   const asset = useAsset();
-  let history = useHistory();
+  // let navigation = useNavigate();
 
   const [selectedType, setSelectedType] = React.useState("");
   const [shouldShowAddAssetType, setShouldShowAssetType] =
@@ -30,7 +31,7 @@ export default function Manager() {
     asset.setSelectedAssetTypeObjById(e.target.dataset.id);
 
     asset.getAssetsByType(e.target.dataset.id);
-    history.push("/assets");
+    // navigation("/assets");
   };
 
   const getAssets = (text) => {
@@ -81,6 +82,7 @@ export default function Manager() {
           />
         </section>
       </MaxWidthContainer>
+      <RootSelector />
     </div>
   );
 }

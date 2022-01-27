@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useNavigate, useMatch } from "react-router-dom";
 
 import useTask from "./useTask";
 import MainPortal from "components/common/MainPortal";
@@ -14,12 +14,12 @@ import ToolbarButton from "components/common/Button/ToolbarButton";
 
 import styles from "./task.module.scss";
 
-function TaskHeader({ history }) {
+function TaskHeader({ navigate }) {
   return (
     <header>
       <h3>Tasks</h3>
       <Toolbar>
-        <ToolbarButton onClick={() => history.push("aspects/tasks/add")}>
+        <ToolbarButton onClick={() => navigate("tasks/add")}>
           <FontAwesomeIcon icon={["fas", "plus"]} />
         </ToolbarButton>
       </Toolbar>
@@ -29,14 +29,14 @@ function TaskHeader({ history }) {
 export default function Task({ foreignId, theme = "theme__light" }) {
   const { tasks, addTask, handleCheckCompleted, updateTasks, updateTask } =
     useTask(foreignId);
-  let history = useHistory();
-  const match = useRouteMatch("/aspects/tasks/add");
+  let navigate = useNavigate();
+  const match = useMatch("/aspects/tasks/add");
 
   return (
     <>
       {!match && (
         <div className={classnames(styles.task, styles[theme])}>
-          <TaskHeader history={history} />
+          <TaskHeader navigate={navigate} />
           <TaskList
             tasks={tasks}
             updateTasks={updateTasks}

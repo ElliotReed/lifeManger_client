@@ -59,7 +59,7 @@ function composeHistoryObject(array, type) {
 }
 
 export default function History({ array, type }) {
-  const history = composeHistoryObject(array, type);
+  const navigation = composeHistoryObject(array, type);
   return (
     <section className={styles.display}>
       {console.log("history: ", history)}

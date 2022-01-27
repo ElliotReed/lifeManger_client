@@ -1,23 +1,28 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import AssetManager from "screens/AssetManager";
 
 import Auth from "screens/Auth";
 import Welcome from "screens/Welcome";
 
 export default function PublicRouterConfig() {
   return (
-    <Switch>
-      <Route
+    // <BrowserRouter>
+    <Routes>
+      {/* <Route
         path="/sign-in"
-        exact
         render={(props) => <Auth {...props} mode="login" />}
       />
       <Route
         path="/create-account"
-        exact
         render={(props) => <Auth {...props} mode="register" />}
-      />
-      <Route path="/" exact component={Welcome} />
-    </Switch>
+      /> */}
+      <Route path="/" element={<Welcome />} />
+      <Route path="authorization">
+        <Route path="sign-in" element={<Auth mode="login" />} />
+        <Route path="create-account" element={<Auth mode="register" />} />
+      </Route>
+    </Routes>
+    // </BrowserRouter>
   );
 }

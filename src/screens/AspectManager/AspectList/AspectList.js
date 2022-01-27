@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 import Background from "components/common/Background";
 
 import styles from "./aspect-list.module.scss";
@@ -13,6 +15,8 @@ export default function AspectList({ aspectId, setAspectId, aspects }) {
     };
     return aspectStyle;
   }
+
+let labelStyle = styles.label
 
   return (
     <section className={styles.list}>
@@ -32,7 +36,7 @@ export default function AspectList({ aspectId, setAspectId, aspects }) {
                 style={aspectStyle.li}
                 tabIndex="0"
               >
-                <span>{aspect.name} life</span>
+                <span className={classNames(styles.label, aspectId === aspect.id ? styles.selectedLabel : null)}>{aspect.name} life</span>
               </li>
             </div>
           );

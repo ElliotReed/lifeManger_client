@@ -4,15 +4,11 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  @include border();
-  background: get-color("neutral");
+  // background: get-color(main, main-100);
   padding: $padding;
 
   .currentAspect {
     @include enterAnimation;
-    & button {
-      @include button();
-    }
 
     .name {
       display: inline-block;

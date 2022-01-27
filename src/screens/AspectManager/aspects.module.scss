@@ -2,6 +2,7 @@
 
 .aspectManager {
   min-height: 100%;
+  overflow: hidden;
 
   .container {
     @include respondTo(desktop) {

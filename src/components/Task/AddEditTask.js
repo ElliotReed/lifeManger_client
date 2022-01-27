@@ -1,13 +1,13 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
-import Button from "components/common/Button/Button";
+import Button, { ButtonGroup } from "components/common/Button/Button";
 import Form from "components/common/Form";
 import MaxWidthContainer from "components/common/MaxWidthContainer";
 import RRule from "./RRule";
 
-import styles from "./add-edit-task.module.scss";
+import styles from "./addEditTask.module.scss";
 
 export default function AddEditTask({
   foreignId,
@@ -21,7 +21,7 @@ export default function AddEditTask({
   addTask,
   mode = "add",
 }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [dirty, setDirty] = React.useState(false);
   const [task, setTask] = React.useState({ ...defaultTask });
 
@@ -32,7 +32,7 @@ export default function AddEditTask({
     } else {
       addTask(task);
     }
-    history.goBack();
+    navigate.goBack();
   };
 
   const handleChange = (e) => {
@@ -96,10 +96,12 @@ export default function AddEditTask({
             <RRule task={task} handleRRuleDirty={handleRRuleDirty} />
           </Form.Body>
           <Form.Footer>
-            <Button onClick={() => history.goBack()}>Cancel</Button>
-            <Button type="submit" disabled={!dirty}>
-              Save
-            </Button>
+            <ButtonGroup>
+              <Button onClick={() => navigate(-1)}>Cancel</Button>
+              <Button type="submit" disabled={!dirty}>
+                Save
+              </Button>
+            </ButtonGroup>
           </Form.Footer>
         </Form>
       </MaxWidthContainer>

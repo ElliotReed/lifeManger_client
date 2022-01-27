@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory, useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 import Fields from "./TaskFormFields";
 
@@ -18,7 +18,7 @@ export default function AddEditTask({
   },
 }) {
   const [dirty, setDirty] = React.useState(false);
-  let history = useHistory();
+  let navigate = useNavigate();
   let location = useLocation();
   // let foreignId = location.state.foreignId;
   // const mode = location.state.mode;
@@ -40,7 +40,7 @@ export default function AddEditTask({
       addTask(task);
     }
 
-    history.push("/aspects");
+    navigate("aspects");
   };
 
   const handleChange = (e) => {

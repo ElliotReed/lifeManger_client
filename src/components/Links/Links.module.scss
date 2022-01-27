@@ -7,12 +7,13 @@
   padding: 0;
 
   &.active {
-    opacity: 0.55;
+    opacity: 0.47;
   }
 
   &:hover {
-    color: lighten($white, 32);
-    letter-spacing: 1px;
+    cursor: pointer;
+    color: get-color(main, base);
+    transform: scaleX(1.03);
   }
 
   svg {

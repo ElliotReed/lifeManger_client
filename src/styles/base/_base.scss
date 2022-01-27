@@ -38,7 +38,7 @@ body {
   font-family: $fontStackSans;
   line-height: 1.618rem;
   background-color: get-color(base, light);
-  color: get-color("primary");
+  color: get-color(base, dark);
 
   // @include appFixedContainer;
 }

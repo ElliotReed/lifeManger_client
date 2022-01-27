@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "components/common/Button";
 
 import DateDisplay from "components/common/datetime/DateDisplay";
 
@@ -31,9 +32,9 @@ export default function LifeFlow({
             ) : null}
           </p>
         </div>
-        <button onClick={(e) => handleCompletedClick(e, currentAspect)}>
+        <Button onClick={(e) => handleCompletedClick(e, currentAspect)}>
           Click to complete
-        </button>
+        </Button>
       </div>
       <FontAwesomeIcon
         icon="ellipsis-v"

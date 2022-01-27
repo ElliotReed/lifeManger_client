@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useNavigate, useMatch } from "react-router-dom";
 
 import AddEditTask from "../AddEditTask";
 import DateDisplay from "components/common/datetime/DateDisplay";
@@ -45,8 +45,8 @@ export default function TaskList({
   updateTask,
 }) {
   const [selectedTask, setSelectedTask] = React.useState();
-  const history = useHistory();
-  const match = useRouteMatch("/aspects/tasks/edit/:id");
+  const navigate = useNavigate();
+  const match = useMatch("aspects/tasks/edit/:id");
 
   const handleEditTaskClick = (e) => {
     // Targets the input id
@@ -54,7 +54,7 @@ export default function TaskList({
     const task = tasks.filter((task) => task.id === id)[0];
 
     setSelectedTask(task);
-    history.push(`aspects/tasks/edit/${task.id}`);
+    navigate(`tasks/edit/${task.id}`);
   };
 
   return (

@@ -6,7 +6,7 @@ import Nav from "../Nav";
 import NavPublic from "../NavPublic";
 import UserMenu from "./UserMenu";
 
-import styles from "./Header.module.scss";
+import styles from "./header.module.scss";
 
 // Hamburger menu button deactivated in favor of footer nav
 const Header = ({ siteTitle, isActive, setIsActive }) => {

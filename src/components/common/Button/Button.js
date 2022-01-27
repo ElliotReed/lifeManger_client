@@ -1,9 +1,14 @@
 import React from "react";
-import cn from "classnames";
+import classNames from "classnames";
 
-import styles from "./Button.module.scss";
+import styles from "./button.module.scss";
 
-const Button = ({
+export function ButtonGroup({ children, position = "end" }) {
+  const buttonGroupClass = classNames(styles.buttonGroup, styles[position]);
+  return <div className={buttonGroupClass}>{children}</div>;
+}
+
+export default function Button({
   title = "",
   type = "button",
   disabled = false,
@@ -11,11 +16,14 @@ const Button = ({
   onClick,
   bgColor = styles.primary,
   style = "default",
-}) => {
-  const buttonClass = cn(
+  ariaLabel = "",
+  shape = "pill",
+}) {
+  const buttonClass = classNames(
     styles.button,
     bgColor,
-    style === "icon" ? styles.icon : null
+    style === "icon" ? styles.icon : null,
+    shape === "pill" ? styles.pill : null
   );
   return (
     <button
@@ -24,10 +32,9 @@ const Button = ({
       disabled={disabled}
       className={buttonClass}
       onClick={onClick}
+      aria-label={ariaLabel}
     >
       {children}
     </button>
   );
-};
-
-export default Button;
+}

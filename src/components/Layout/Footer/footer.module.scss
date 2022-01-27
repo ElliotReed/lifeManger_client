@@ -3,9 +3,10 @@
 .footer {
   overflow: hidden;
   font-size: min(18px, 1rem);
-  background: $primary;
-  color: $white;
+  background: get-color(main, darkest);
+  color: get-color(base, light);
   font-size: 1rem * $smaller;
+  font-weight: 500;
 
   .container {
     display: none;

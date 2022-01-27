@@ -1,3 +1,4 @@
+import Button, { ButtonGroup } from "components/common/Button";
 import { useState } from "react";
 import TaskService from "services/TaskService";
 
@@ -69,7 +70,7 @@ export default function RRule({ task, handleRRuleDirty }) {
         <p>Recurrence</p>
         <div className={styles.radioGroup}>
           {frequencyOptions.map((option, i) => (
-            <div className={styles.radioItem}>
+            <div className={styles.radioItem} key={i}>
               <input
                 id={i}
                 type="radio"
@@ -96,12 +97,14 @@ export default function RRule({ task, handleRRuleDirty }) {
             />
             <span>{getRecurrenceQualifier()}</span>
           </div>
-          <button type="button" onClick={setTaskRule}>
-            Set Recurrence
-          </button>
-          <button type="button" onClick={removeRecurrence}>
-            Remove Recurrence
-          </button>
+          <ButtonGroup position="start">
+            <Button type="button" onClick={setTaskRule}>
+              Set Recurrence
+            </Button>
+            <Button type="button" onClick={removeRecurrence}>
+              Remove Recurrence
+            </Button>
+          </ButtonGroup>
         </div>
       </section>
     </div>

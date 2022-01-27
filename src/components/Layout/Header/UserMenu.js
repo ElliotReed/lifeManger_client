@@ -1,6 +1,7 @@
 import * as React from "react";
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth } from "libs/authentication/useAuth";
 
@@ -9,6 +10,8 @@ import styles from "./user-menu.module.scss";
 
 export default function UserMenu() {
   const auth = useAuth();
+  let navigate = useNavigate();
+  let location = useLocation();
   const [displayMenu, setDisplayMenu] = React.useState(false);
 
   React.useEffect(() => {
@@ -46,7 +49,16 @@ export default function UserMenu() {
             <DateDisplay>{auth.user.createdAt}</DateDisplay>
           </li>
 
-          <li className={styles.signout} onClick={auth.logout}>
+          <li
+            className={styles.signout}
+            onClick={() =>
+              auth.logout(
+                navigate("authorization/sign-in", {
+                  state: { from: { pathname: location } },
+                })
+              )
+            }
+          >
             <p>Sign Out</p>
           </li>
         </ul>

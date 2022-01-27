@@ -56,9 +56,7 @@
   }
 
   .FormFooter {
-    display: flex;
-    justify-content: flex-end;
+    padding: $padding;
     border-top: $neutral;
-    flex-wrap: wrap;
   }
 }

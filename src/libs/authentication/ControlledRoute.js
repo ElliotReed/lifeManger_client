@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Auth from "screens/Auth";
 import { useAuth } from "./useAuth";
 
-export default function ControlledRoute({ component: Component, ...rest }) {
+export default function ControlledRoute({ element: Element, ...rest }) {
   const auth = useAuth();
 
   return (
@@ -13,7 +13,7 @@ export default function ControlledRoute({ component: Component, ...rest }) {
         if (!auth.user) {
           return <Auth mode="login" />;
         }
-        return <Component {...props} />;
+        return <Element {...props} />;
       }}
     ></Route>
   );

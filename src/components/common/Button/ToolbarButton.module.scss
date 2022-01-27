@@ -3,10 +3,13 @@
 .bgColor {
   background: transparent;
   @include border(transparent);
-  color: $primary;
+  color: get-color(base, dark);
+  box-shadow: none;
 
   &:hover:enabled {
+    color: get-color(main, main-700);
     background: transparent;
-    color: $neutral;
+    box-shadow: none;
+    transform: scaleX(1.03);
   }
 }

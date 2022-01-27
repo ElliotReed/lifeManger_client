@@ -4,12 +4,21 @@
   @include button;
 
   &.primary {
-    @include gradient($primary);
+    // @include gradient(get-color(main, darkest));
+  }
+
+  &.pill {
+    border-radius: 47rem;
   }
 
   &.icon {
     margin: 0;
     padding: 0.29rem;
+  }
+
+  &:disabled {
+    background: get-color(main, main-100);
+    color: get-color(main, main-600);
   }
 }
 
@@ -21,5 +30,23 @@
   &:hover:enabled {
     background: transparent;
     color: $neutral;
+  }
+}
+
+.buttonGroup {
+  display: flex;
+  gap: $margin;
+  flex-wrap: wrap;
+
+  &.end {
+    justify-content: flex-end;
+  }
+
+  &.start {
+    justify-content: flex-start;
+  }
+
+  &.center {
+    justify-content: center;
   }
 }

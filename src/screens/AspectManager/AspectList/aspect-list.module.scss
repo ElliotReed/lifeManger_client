@@ -3,7 +3,7 @@
 .list {
   position: relative;
   min-height: 100%;
-  background-color: get-get-color("white");
+  // background-color: get-color("white");
   padding: 0.47em;
 
   & ul {
@@ -29,10 +29,10 @@
 
     & li {
       @include enterAnimation;
-      z-index: 2;
+      @include btnLink($bg-color: transparent, $shape: "leaf");
       position: absolute;
+      z-index: 2;
       left: 50%;
-      @include button($bg-color: transparent);
       margin: 0;
       font-size: 1rem * $smaller;
       font-weight: 500;
@@ -41,8 +41,12 @@
       pointer-events: auto;
       transition: all $duration ease;
 
-      & span {
-        text-shadow: 2px 2px 0px $black, 2px 2px 1px $primary, -2px -2px 1px $primary;
+      & .label {
+        &.selectedLabel {
+          text-shadow: 2px 2px 0px get-color(main, main-900), 2px 2px 1px get-color(main, main-900),
+            -2px -2px 1px get-color(main, main-900);
+          color: get-color(base, light);
+        }
       }
 
       &::before {
@@ -52,13 +56,13 @@
         left: 0;
         bottom: 0;
         right: 0;
-        background-color: rgba($primary, 76%);
+        background: rgba(get-color(main, main-500), 29%);
         z-index: -1;
         filter: blur(1px);
       }
 
       &.selected {
-        background-color: $primary;
+        background: get-color(main, main-900);
       }
     }
   }

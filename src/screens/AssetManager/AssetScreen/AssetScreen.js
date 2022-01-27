@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import { useHistory, useRouteMatch, Link } from "react-router-dom";
+import { useNavigate, useMatch, Link } from "react-router-dom";
 
 import { useAsset } from "../useAssets";
+import AssetService from "services/AssetService";
 
 import Background from "components/common/Background";
 // import IconButton from "components/common/Button/IconButton";
@@ -14,16 +15,61 @@ import LocationTree from "./LocationTree";
 import styles from "./asset-screen.module.scss";
 import MaxWidthContainer from "components/common/MaxWidthContainer";
 
+async function callUpdateService(event) {
+  console.log("event: ", event);
+  let id;
+  let fieldValues;
+
+  if (!event.nonevent) {
+    event.preventDefault();
+    const target = event.currentTarget;
+    id = target.dataset.id;
+    const formData = new FormData(target);
+    fieldValues = Object.fromEntries(formData.entries());
+  } else {
+    id = event.id;
+    fieldValues = event.fieldValues;
+  }
+  console.log("fieldValues: ", fieldValues);
+  // return; // to prevent actually submit, remove when ready
+
+  fieldValues.id = id;
+  const updatedAsset = await AssetService.updateAsset(fieldValues);
+  return updatedAsset;
+}
+
 export default function AssetScreen() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const inventory = useAsset();
   const componentIsMounted = React.useRef(true);
-  const routeMatch = useRouteMatch("/assets/:assetId");
+  const routeMatch = useMatch("assets/:assetId");
+  const [asset, setAsset] = React.useState({});
+
+  function isLocationInDescendants(newLocationId) {
+    if (
+      asset.descendants?.filter((descendant) => {
+        return descendant.id === newLocationId;
+      }).length > 0
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  const getAssetById = async (itemId) => {
+    const asset = await AssetService.getAssetById(itemId);
+    setAsset(asset);
+  };
+
+  const handleSubmit = async (event) => {
+    const updatedAsset = await callUpdateService(event);
+    setAsset(updatedAsset);
+  };
 
   React.useEffect(() => {
     if (routeMatch?.params?.assetId) {
-      inventory.getAssetById(routeMatch.params.assetId);
-      history.push(`/assets/${routeMatch.params.assetId}`);
+      getAssetById(routeMatch.params.assetId);
+      navigate(`/assets/${routeMatch.params.assetId}`);
     }
 
     return () => {
@@ -45,10 +91,10 @@ export default function AssetScreen() {
       <MaxWidthContainer>
         <section>
           <Inputs.InputComponent
-            dataId={inventory.asset?.id}
-            onSubmit={inventory.handleSubmit}
+            dataId={asset?.id}
+            onSubmit={handleSubmit}
             label="asset"
-            initialValue={inventory.asset?.label}
+            initialValue={asset?.label}
             name="label"
             placeholder="enter asset (desk, photo album, etc.)"
           />
@@ -56,29 +102,29 @@ export default function AssetScreen() {
 
         <section>
           <LocationTree
-            handleSubmit={inventory.handleSubmit}
-            assetAncestors={inventory.asset?.ancestors}
-            assetDescendants={inventory.asset?.children}
-            dataId={inventory.asset?.id}
+            handleSubmit={handleSubmit}
+            assetAncestors={asset?.ancestors}
+            assetDescendants={asset?.descendants}
+            dataId={asset?.id}
           />
         </section>
 
         <Inputs.SelectorComponent
-          dataId={inventory.asset?.id}
-          initialValue={inventory.asset?.typeId}
+          dataId={asset?.id}
+          initialValue={asset?.typeId}
           label="type"
           name="typeId"
-          onSubmit={inventory.handleSubmit}
+          onSubmit={handleSubmit}
           options={inventory.assetTypes}
           placeholder="select an asset type"
         />
 
         <Inputs.InputComponent
-          dataId={inventory.asset?.id}
-          initialValue={inventory.asset?.description}
+          dataId={asset?.id}
+          initialValue={asset?.description}
           label="description"
           name="description"
-          onSubmit={inventory.handleSubmit}
+          onSubmit={handleSubmit}
           placeholder="enter a description"
           rows="4"
           cols="400"

@@ -20,6 +20,7 @@ export default function LocationTree({
   assetDescendants,
   assetAncestors,
 }) {
+  const [showChangeLocation, setShowChangeLocation] = React.useState(false);
   // const handleAssetTypeClick = (e) => {
   //   assets.setSelectedAssetTypeObjById(e.target.dataset.id);
 
@@ -30,9 +31,17 @@ export default function LocationTree({
     <LocationTreeContainer>
       <AssetAncestors
         assetAncestors={assetAncestors}
-        dataId={dataId}
-        handleSubmit={handleSubmit}
-      />
+        showChangeLocation={showChangeLocation}
+        setShowChangeLocation={setShowChangeLocation}
+      >
+        <LocationPickerWrapper show={showChangeLocation}>
+          <LocationPicker
+            handleSubmit={handleSubmit}
+            dataId={dataId}
+            setShowChangeLocation={setShowChangeLocation}
+          />
+        </LocationPickerWrapper>
+      </AssetAncestors>
       <AssetDescendants assetDescendants={assetDescendants} />
     </LocationTreeContainer>
   );
@@ -47,55 +56,74 @@ function LocationTreeContainer({ children }) {
   );
 }
 
-function AssetAncestors({ dataId, assetAncestors, handleSubmit }) {
-  const [showChangeLocation, setShowChangeLocation] = React.useState(false);
+function AssetAncestors({
+  assetAncestors,
+  children,
+  showChangeLocation,
+  setShowChangeLocation,
+}) {
   const ancestorsClass = cx(
     styles.ancestors,
     showChangeLocation && styles.hide
   );
 
+  let renderedElement;
+
+  const handleMainElementClick = () => {
+    setShowChangeLocation(!showChangeLocation);
+  };
+
+  (!assetAncestors?.length &&
+    (renderedElement = (
+      <DefaultMainListElement handleMainElementClick={handleMainElementClick} />
+    ))) ||
+    (renderedElement = (
+      <AncestorsList
+        assetAncestors={assetAncestors}
+        handleMainElementClick={handleMainElementClick}
+      />
+    ));
+
   return (
     <>
-      <ul className={ancestorsClass}>
-        {assetAncestors?.length === 0 && (
-          <MainListElement
-            handleClick={() => setShowChangeLocation(!showChangeLocation)}
-            showAngleIcon={false}
-          />
-        )}
-        {assetAncestors?.length > 0 &&
-          assetAncestors.map((location, index) => (
-            <MainListElement
-              key={location?.id || index}
-              index={index}
-              item={location}
-              handleClick={() => setShowChangeLocation(!showChangeLocation)}
-              showAngleIcon={index + 1 < assetAncestors.length}
-            />
-          ))}
-      </ul>
-
-      <LocationPickerWrapper
-        dataId={dataId}
-        handleSubmit={handleSubmit}
-        show={showChangeLocation}
-        setShowChangeLocation={setShowChangeLocation}
-      />
+      <ul className={ancestorsClass}>{renderedElement}</ul>
+      {children}
     </>
   );
 }
 
-function MainListElement({ item, handleClick, index = 0, showAngleIcon }) {
+function AncestorsList({ assetAncestors, handleMainElementClick }) {
+  return assetAncestors.map((ancestor, index) => (
+    <MainListElement
+      key={ancestor?.id || index}
+      index={index}
+      handleClick={handleMainElementClick}
+      showAngleIcon={index + 1 < assetAncestors.length}
+    >
+      <LinkToRender item={ancestor} />
+    </MainListElement>
+  ));
+}
+
+function MainListElement({ children, handleClick, index = 0, showAngleIcon }) {
   return (
     <li className={styles.li}>
       <div className={styles.mainListElement}>
         <div className={styles.linkWrapper}>
-          <LinkToRender item={item} />
+          {children}
           {index === 0 && <IconButton icon="edit" onClick={handleClick} />}
         </div>
         {showAngleIcon ? <AngleIcon /> : null}
       </div>
     </li>
+  );
+}
+
+function DefaultMainListElement({ handleMainElementClick }) {
+  return (
+    <MainListElement handleClick={handleMainElementClick} showAngleIcon={false}>
+      <LinkToRender />
+    </MainListElement>
   );
 }
 
@@ -160,21 +188,10 @@ function DescendantsHeader({ onClick, descendants }) {
   );
 }
 
-function LocationPickerWrapper({
-  show,
-  handleSubmit,
-  dataId = null,
-  setShowChangeLocation,
-}) {
+function LocationPickerWrapper({ show, children }) {
   return (
     <div className={styles.bottomBar}>
-      <ShowHideContainer show={show}>
-        <LocationPicker
-          handleSubmit={handleSubmit}
-          dataId={dataId}
-          setShowChangeLocation={setShowChangeLocation}
-        />
-      </ShowHideContainer>
+      <ShowHideContainer show={show}>{children}</ShowHideContainer>
     </div>
   );
 }

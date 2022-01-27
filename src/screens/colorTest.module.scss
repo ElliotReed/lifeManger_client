@@ -1,0 +1,52 @@
+@import "styles";
+
+.colorTest {
+  & > ul {
+    margin: $margin;
+
+    & > li {
+      display: flex;
+      align-items: center;
+      & > div {
+        margin: $margin;
+        min-width: 5rem;
+        min-height: 2rem;
+      }
+
+      & > p {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .main {
+    border: 3px solid get-color(main, main-500);
+    .main100 {
+      background: get-color(main, main-100);
+    }
+    .main200 {
+      background: get-color(main, main-200);
+    }
+    .main300 {
+      background: get-color(main, main-300);
+    }
+    .main400 {
+      background: get-color(main, main-400);
+    }
+    .main500 {
+      background: get-color(main, main-500);
+    }
+    .main600 {
+      background: get-color(main, main-600);
+    }
+    .main700 {
+      background: get-color(main, main-700);
+    }
+    .main800 {
+      background: get-color(main, main-800);
+    }
+    .main900 {
+      background: get-color(main, main-900);
+    }
+  }
+}

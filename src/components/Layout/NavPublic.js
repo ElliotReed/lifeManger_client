@@ -7,7 +7,10 @@ const NavPublic = ({ background }) => (
   <nav className={background ? style.backgroundNav : style.nav}>
     <ul>
       <li>
-        <NavLink to="/" activeClassName={style.active}>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? style.active : null)}
+        >
           Home
         </NavLink>
       </li>

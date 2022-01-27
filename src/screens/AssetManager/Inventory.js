@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import SearchBar from "components/common/SearchBar";
 
@@ -16,14 +16,14 @@ function AssetRow({ asset }) {
 }
 
 export default function Inventory() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const inventory = useAsset();
 
   const handleAssetTypeClick = (e) => {
     inventory.setSelectedAssetTypeObjById(e.target.dataset.id);
 
     inventory.getAssetsByType(e.target.dataset.id);
-    history.push("/inventory/assets");
+    navigate("inventory/assets");
   };
 
   return (

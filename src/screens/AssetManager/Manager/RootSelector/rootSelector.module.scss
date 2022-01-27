@@ -1,0 +1,80 @@
+@import "styles";
+
+$radius: 100px;
+
+@mixin rootSelectorLink {
+  @include paddingBox;
+  cursor: pointer;
+  white-space: nowrap;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin item {
+  @include boxShadow(get-color(base, dark));
+  @include paddingBox;
+  border-radius: $radius;
+  background: get-color(main, base);
+  text-align: center;
+  font-weight: 500;
+  transition: all $duration ease-in-out;
+
+  &:hover {
+    box-shadow: 0 3px 5px rgba(get-color(base, dark), 0.29);
+    background: get-color(main, neutral);
+    color: get-color(base, dark);
+  }
+}
+
+.rootSelector {
+  position: relative;
+
+  .sectionHeading {
+    margin: 0 1rem;
+    font-size: get-size(400) * 1rem;
+    text-transform: uppercase;
+  }
+
+  .propertyList {
+    .propertyListItem {
+      max-width: 100%;
+
+      .propertyHeading {
+        @include item;
+        display: inline-block;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        font-size: get-size(500) * 1.12rem;
+        font-weight: 700;
+
+        .propertyLink {
+          @include rootSelectorLink;
+        }
+      }
+
+      .descendantList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        padding: $padding;
+
+        .descendantListItem {
+          @include item;
+          flex-grow: 0.29;
+          
+          &:hover {
+            transform: scaleX(1.03);
+          }
+          
+          .descendantListLink {
+            @include rootSelectorLink;
+          }
+        }
+      }
+    }
+  }
+}

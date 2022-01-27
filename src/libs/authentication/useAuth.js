@@ -16,6 +16,7 @@ export const useAuth = () => {
 function useAuthProvider() {
   const axiosInstance = useAxios();
   const [user, setUser] = React.useState(null);
+  const [initialized, setInitialized] = React.useState(false);
 
   const initializeApp = async () => {
     try {
@@ -24,40 +25,54 @@ function useAuthProvider() {
       if (authenticatedUser.error) {
         console.error(authenticatedUser.error.message);
         setUser(null);
+        setInitialized(true);
+        return;
+      }
+      if (!authenticatedUser) {
+        setUser(null);
+        setInitialized(true);
         return;
       }
 
       setUser(authenticatedUser);
+      setInitialized(true);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const login = async (authData) => {
+  const login = async (authData, callback) => {
     try {
       const response = await axiosInstance.post("auth/login", authData);
       const authenticatedUser = response.data;
       setUser(authenticatedUser);
+      callback();
+      return true;
     } catch (err) {
       console.error(err);
+      return false;
     }
   };
 
-  const logout = async () => {
+  const logout = async (callback) => {
     try {
       const response = await axiosInstance.post("auth/logout");
       response.status === 204 && setUser(null);
+      callback();
+      return true;
     } catch (err) {
       console.error(err);
+      return false;
     }
   };
 
-  const register = async (authData) => {
+  const register = async (authData, callback) => {
     console.log("authData: ", authData);
     try {
       const response = await axiosInstance.post("auth/register", authData);
       const authenticatedUser = response.data;
       setUser(authenticatedUser);
+      callback();
     } catch (err) {
       console.error(err);
     }
@@ -73,5 +88,6 @@ function useAuthProvider() {
     logout,
     register,
     user,
+    initialized,
   };
 }

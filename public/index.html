@@ -15,11 +15,101 @@
   <title>Life Manager</title>
 </head>
 
+<style>
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* display: grid; */
+    /* place-content: center; */
+  }
+
+  .initial-view {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .loadingSpinnerContainer {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    place-content: center;
+  }
+
+  @supports (backdrop-filter: blur()) {
+    .loadingSpinnerContainer {
+      backdrop-filter: blur(1px);
+    }
+  }
+
+  .loadingSpinner {
+    display: block;
+    fill: #887354;
+  }
+
+  .loadingSpinner circle {
+    animation-name: upAndDown;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0.05, 0.2, 0.35, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .loadingSpinner circle:nth-child(2) {
+    animation-delay: 0.18s;
+  }
+
+  .loadingSpinner circle:nth-child(3) {
+    animation-delay: 0.36s;
+  }
+
+  @keyframes upAndDown {
+    0% {
+      fill: #887354;
+      opacity: 0;
+      transform: translateY(0);
+    }
+
+    25% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+
+    50% {
+      fill: #e9f6e9;
+
+    }
+
+    75% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+
+    100% {
+      fill: #887354;
+      opacity: 0;
+      transform: translateY(0);
+    }
+  }
+</style>
+
 <body>
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <div id="life-manager"></div>
+  <div id="life-manager">
+    <div class="loadingSpinnerContainer">
+      <svg class="loadingSpinner" width="60" height="20" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="15" r="4" />
+        <circle cx="30" cy="15" r="4" />
+        <circle cx="53" cy="15" r="4" />
+      </svg>
+    </div>
+    <img class="initial-view" src="https://lifemanager.elliotreed.net/static/media/tree_2c.231e51a7.svg" />
+  </div>
   <div id="modal-root"></div>
 </body>
 
