@@ -1,6 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useNavigate,
+  useMatch,
+  useLocation,
+} from "react-router-dom";
 
 import { useAsset } from "../useAssets";
 import AssetService from "services/AssetService";
@@ -21,7 +27,9 @@ import styles from "./manager.module.scss";
 
 export default function Manager() {
   const asset = useAsset();
-  // let navigation = useNavigate();
+  let navigate = useNavigate();
+  let match = useMatch("assets");
+  const location = useLocation();
 
   const [selectedType, setSelectedType] = React.useState("");
   const [shouldShowAddAssetType, setShouldShowAssetType] =
@@ -49,15 +57,23 @@ export default function Manager() {
     asset.getAssetsByType(e.target.value);
   };
 
+  React.useEffect(() => {
+    console.log(location);
+    if (location.pathname === "/assets") {
+      asset.setShowAddItemScreen(false);
+    }
+
+    if (location.pathname === "/asset/add") {
+      asset.setShowAddItemScreen(true);
+    }
+  }, [location]);
+
   return (
     <div id="AssetManager" className={styles.assetManager}>
       <Background x={-200} y={-100} size={3} />
-      <Drawer
-        isOpen={asset.showAddItemScreen}
-        setIsOpen={asset.setShowAddItemScreen}
-      >
-        <AddItemScreen />
-      </Drawer>
+
+      <Outlet />
+
       <MaxWidthContainer>
         <header className={styles.header}>
           <h1>assetManager</h1>
@@ -68,7 +84,10 @@ export default function Manager() {
         <section className={styles.tasks}>top tasks</section>
         <button
           className={styles.addBtn}
-          onClick={() => asset.setShowAddItemScreen(true)}
+          onClick={() => {
+            asset.setShowAddItemScreen(true);
+            navigate("add");
+          }}
         >
           <FontAwesomeIcon icon={["fas", "plus"]} />
         </button>

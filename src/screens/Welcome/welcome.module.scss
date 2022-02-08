@@ -10,7 +10,6 @@
 .jumbotron {
   font-size: 1.618rem;
   // padding: 5em;
-  background-color: $primary;
   max-width: 76%;
   justify-self: center;
   // min-height: 61.8vh;
@@ -25,23 +24,24 @@
   // }
 
   header {
+    background: get-color(main, main-900);
     padding: 1em;
     text-align: center;
   }
 
   .body {
+    min-height: 76%;
     padding: 2em;
-    background-color: $white;
-    color: $primary;
+    background: get-color(base, light);
+    color: get-color(main, main-900);
   }
 
   footer {
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
     font-size: initial;
     a {
-      @include button($bg-color: $white, $text-color: $primary);
-      @include button($bg-color: $white, $text-color: $primary);
+      @include btnLink($shape: "pill");
     }
   }
 }

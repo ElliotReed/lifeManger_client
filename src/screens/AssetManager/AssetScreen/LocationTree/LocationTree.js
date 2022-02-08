@@ -19,6 +19,7 @@ export default function LocationTree({
   handleSubmit,
   assetDescendants,
   assetAncestors,
+  isProperty,
 }) {
   const [showChangeLocation, setShowChangeLocation] = React.useState(false);
   // const handleAssetTypeClick = (e) => {
@@ -29,19 +30,21 @@ export default function LocationTree({
 
   return (
     <LocationTreeContainer>
-      <AssetAncestors
-        assetAncestors={assetAncestors}
-        showChangeLocation={showChangeLocation}
-        setShowChangeLocation={setShowChangeLocation}
-      >
-        <LocationPickerWrapper show={showChangeLocation}>
-          <LocationPicker
-            handleSubmit={handleSubmit}
-            dataId={dataId}
-            setShowChangeLocation={setShowChangeLocation}
-          />
-        </LocationPickerWrapper>
-      </AssetAncestors>
+      {!isProperty() && (
+        <AssetAncestors
+          assetAncestors={assetAncestors}
+          showChangeLocation={showChangeLocation}
+          setShowChangeLocation={setShowChangeLocation}
+        >
+          <LocationPickerWrapper show={showChangeLocation}>
+            <LocationPicker
+              handleSubmit={handleSubmit}
+              dataId={dataId}
+              setShowChangeLocation={setShowChangeLocation}
+            />
+          </LocationPickerWrapper>
+        </AssetAncestors>
+      )}
       <AssetDescendants assetDescendants={assetDescendants} />
     </LocationTreeContainer>
   );
@@ -239,7 +242,7 @@ function ListItemRow({ item, handleSubmit, dataId }) {
     >
       <input readOnly hidden name="locationId" value={item.id} />
 
-      <IconButton icon="check-circle" type="submit">
+      <IconButton icon="check-circle" type="submit" shape="default">
         {item.label}
       </IconButton>
     </form>

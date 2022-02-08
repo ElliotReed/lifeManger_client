@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Children } from "react/cjs/react.production.min";
 
 import Button from "./Button";
 
 import styles from "./IconButton.module.scss";
+
 export default function IconButton({
   title = "",
   type = "button",
@@ -11,6 +11,7 @@ export default function IconButton({
   onClick = null,
   icon,
   children,
+  shape = null,
 }) {
   const displayedIcon = (icon) => {
     return <FontAwesomeIcon icon={["fas", `${icon}`]} />;
@@ -18,6 +19,7 @@ export default function IconButton({
 
   return (
     <Button
+      shape={shape}
       style="icon"
       title={title}
       type={type}

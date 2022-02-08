@@ -314,6 +314,8 @@ export function SearchTextComponent({
   const [selectedOption, setSelectedOption] = React.useState({ id: "" });
   const [options, setOptions] = React.useState([]);
 
+  const items = listItems({ options, dataId, handleSubmit, ListItemComponent });
+
   let labelClass = classNames(styles.label, {
     [styles.labelChange]: displayList,
   });
@@ -440,14 +442,7 @@ export function SearchTextComponent({
           )}
         </button>
         <div>
-          <DropdownList
-            displayList={displayList}
-            options={options}
-            selectedOption={selectedOption}
-            ListItemComponent={ListItemComponent}
-            dataId={dataId}
-            handleSubmit={handleSubmit}
-          />
+          <List displayList={displayList}>{items}</List>
         </div>
       </div>
     </div>
@@ -456,34 +451,27 @@ export function SearchTextComponent({
 
 export const SearchTextComponentWithLoading = WithLoading(SearchTextComponent);
 
-function DropdownList({
-  options,
-  selectedOption,
-  ListItemComponent,
-  dataId,
-  handleSubmit,
-  displayList,
-}) {
+function List({ children, displayList }) {
   let listClass = classNames(styles.DropdownList, {
     [styles.displayList]: displayList,
   });
 
-  return (
-    <ul className={listClass}>
-      {options.map((option) => (
-        <li className={styles.listItem} key={option.id}>
-          <ListItemComponent
-            item={option}
-            dataId={dataId}
-            handleSubmit={handleSubmit}
-          />
-          <hr className={styles.seperator} />
-        </li>
-      ))}
-    </ul>
-  );
+  return <ul className={listClass}>{children}</ul>;
 }
 
+function listItems({ options, dataId, handleSubmit, ListItemComponent }) {
+  const items = options?.map((option) => (
+    <li className={styles.listItem} key={option.id}>
+      <ListItemComponent
+        item={option}
+        dataId={dataId}
+        handleSubmit={handleSubmit}
+      />
+      <hr className={styles.seperator} />
+    </li>
+  ));
+  return items;
+}
 export function HiddenInputSelector({
   name,
   initialValue = "",

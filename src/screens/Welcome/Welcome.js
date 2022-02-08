@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "components/common/Logo";
 
 import styles from "./welcome.module.scss";
+import { ButtonGroup } from "components/common/Button";
 
 const siteTitle = process.env.REACT_APP_SITE_TITLE;
 export default function Welcome() {
@@ -19,8 +20,10 @@ export default function Welcome() {
           </p>
         </div>
         <footer>
-          <NavLink to="authorization/sign-in">Sign In</NavLink>
-          <NavLink to="authorization/create-account">Create Account</NavLink>
+          <ButtonGroup>
+            <NavLink to="authorization/sign-in">Sign In</NavLink>
+            <NavLink to="authorization/create-account">Create Account</NavLink>
+          </ButtonGroup>
         </footer>
       </div>
     </section>

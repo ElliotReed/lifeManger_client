@@ -10,23 +10,29 @@
 .addBtn {
 	$size: get-size(800) * 1rem;
 	$distanceFromEdge: 0.618rem;
-	border-radius: 50%;
-	text-align: center;
-	height: $size;
-	width: $size;
-	font-size: get-size(600) * 1rem;
-	background: get-color(main, darkest);
+	z-index: 1;
+
 	position: absolute;
-	bottom: $distanceFromEdge;
 	right: $distanceFromEdge;
+	bottom: $distanceFromEdge;
+
+	width: $size;
+	height: $size;
+
+	font-size: get-size(600) * 1rem;
 	color: get-color(base, light);
+	text-align: center;
+
+	background: get-color(main, darkest);
+	border-radius: 50%;
+
 	transition: all $duration ease-in-out;
 
 	&:hover,
 	&:active {
-		transform: scale(1.12);
-		cursor: pointer;
 		@include boxShadow;
+		cursor: pointer;
+		transform: scale(1.12);
 	}
 }
 

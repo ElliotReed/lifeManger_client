@@ -61,7 +61,22 @@ export default function AssetScreen() {
     setAsset(asset);
   };
 
+  const isProperty = () => {
+    const typeIdOfProperty = inventory.assetTypes?.filter(
+      (type) => type.label === "property"
+    )[0].id;
+
+    if (asset.typeId === typeIdOfProperty) {
+      return true;
+    }
+    return false;
+  };
+
   const handleSubmit = async (event) => {
+    if (isProperty()) {
+      event.preventDefault();
+      return;
+    }
     const updatedAsset = await callUpdateService(event);
     setAsset(updatedAsset);
   };
@@ -102,6 +117,7 @@ export default function AssetScreen() {
 
         <section>
           <LocationTree
+            isProperty={isProperty}
             handleSubmit={handleSubmit}
             assetAncestors={asset?.ancestors}
             assetDescendants={asset?.descendants}

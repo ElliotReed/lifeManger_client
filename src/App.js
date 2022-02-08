@@ -7,6 +7,7 @@ import RequireAuth from "libs/authentication/RequireAuth";
 import Auth from "screens/Auth";
 import AssetManager from "screens/AssetManager/Manager";
 import AssetScreen from "screens/AssetManager/AssetScreen";
+import AddItemScreen from "screens/AssetManager/Manager/AddItemScreen";
 import AssetType from "screens/AssetManager/AssetType";
 import AspectManager from "screens/AspectManager";
 import Dashboard from "screens/Dashboard";
@@ -30,7 +31,9 @@ export default function App() {
         </Route>
         <Route element={<RequireAuth />}>
           <Route path="aspects/*" element={<AspectManager />} />
-          <Route path="assets" element={<AssetManager />} />
+          <Route path="assets" element={<AssetManager />}>
+            <Route path="add" element={<AddItemScreen />} />
+          </Route>
           <Route path="assets/:assetId" element={<AssetScreen />} />
           <Route path="household" element={<HomeManager />} />
           <Route path="meals" element={<MealManager />} />

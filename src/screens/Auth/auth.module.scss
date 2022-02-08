@@ -2,6 +2,8 @@
 
 .Auth {
   padding: $padding;
+  overflow-x: hidden;
+
   form {
     padding: 4rem 0;
     display: grid;
@@ -17,7 +19,7 @@
       display: block;
       color: $black;
       @include paddingBox;
-      @include border();
+      @include border($color: get-color(main, main-500));
 
       &[type="checkbox"] {
         display: inline-block;
@@ -26,12 +28,12 @@
       }
 
       &:not([type="submit"]) {
-        min-width: 25rem;
+        min-width: 30ch;
         user-select: auto;
       }
 
       &[type="submit"] {
-        @include button();
+        @include btnLink($shape: "pill");
         margin-left: 0;
         margin-right: 0;
       }
