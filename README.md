@@ -1,4 +1,8 @@
-# life Manager
+
+
+# life Manager 
+
+![life Manager](tree.svg)
 
 ## Needs
 

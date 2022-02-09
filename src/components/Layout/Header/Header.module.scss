@@ -7,7 +7,7 @@
   padding: (1rem * $goldenRatioDecrease) (1.618rem * $goldenRatioDecrease);
   position: relative;
   line-height: 0;
-  background: get-color(main, darkest);
+  background: get-color(main, main-900);
   color: get-color(base, light);
   font-weight: 500;
 }
