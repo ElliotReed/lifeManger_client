@@ -11,8 +11,6 @@ import {
 import { useAsset } from "../useAssets";
 import AssetService from "services/AssetService";
 
-import tree from "components/common/Background/tree.svg";
-
 import Background from "components/common/Background";
 import Drawer from "components/common/Drawer";
 import * as Inputs from "components/common/Input";
@@ -104,7 +102,6 @@ export default function Manager() {
         </section>
       </MaxWidthContainer>
       <RootSelector />
-      <img src={tree} width="634" height="608" />
     </div>
   );
 }
