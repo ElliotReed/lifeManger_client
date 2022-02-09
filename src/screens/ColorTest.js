@@ -1,46 +1,32 @@
 import styles from "screens/colorTest.module.scss";
 
+const shades = ["100", "200", "300", "400", "500", "600", "700", "800", "900"];
+
+function ListItem({ baseName, shade }) {
+  return (
+    <li>
+      <div className={styles[baseName + shade]}></div>
+      <p>{`${baseName}-${shade}`}</p>
+    </li>
+  );
+}
+
+function makeList(baseName) {
+  const list = shades.map((shade) => (
+    <ListItem baseName={baseName} shade={shade} />
+  ));
+  return list;
+}
 export function ColorTest() {
+  const mainColorList = () => makeList("main");
+  const supportColorList = () => makeList("support");
+  const accentColorList = () => makeList("accent");
+
   return (
     <div className={styles.colorTest}>
-      <ul className={styles.main}>
-        <li>
-          <div className={styles.main100}></div>
-          <p>main-100</p>
-        </li>
-        <li>
-          <div className={styles.main200}></div>
-          <p>main-200</p>
-        </li>
-        <li>
-          <div className={styles.main300}></div>
-          <p>main-300</p>
-        </li>
-        <li>
-          <div className={styles.main400}></div>
-          <p>main-400</p>
-        </li>
-        <li>
-          <div className={styles.main500}></div>
-          <p>main-500</p>
-        </li>
-        <li>
-          <div className={styles.main600}></div>
-          <p>main-600</p>
-        </li>
-        <li>
-          <div className={styles.main700}></div>
-          <p>main-700</p>
-        </li>
-        <li>
-          <div className={styles.main800}></div>
-          <p>main-800</p>
-        </li>
-        <li>
-          <div className={styles.main900}></div>
-          <p>main-900</p>
-        </li>
-      </ul>
+      <ul className={styles.main}>{mainColorList()}</ul>
+      <ul className={styles.support}>{supportColorList()}</ul>
+      <ul className={styles.accent}>{accentColorList()}</ul>
     </div>
   );
 }

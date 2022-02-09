@@ -1,11 +1,14 @@
-import { ReactComponent as Image } from "./tree_2c.svg";
-
 import styles from "./background.module.scss";
+import getColor from "../../../styles/abstracts/_colors.scss";
+import * as React from "react";
 
 export default function Background({ x = 0, y = 0, size = 1 }) {
   let viewString = `${x} ${y} 600 585`;
   let scaleString = `scale(${size})`;
 
+  const { leaf, leafShade, wood, woodShade } = getColor;
+
+  React.useEffect(() => console.log("leaf: ", leaf));
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,29 +19,14 @@ export default function Background({ x = 0, y = 0, size = 1 }) {
     >
       <title>tree</title>
       <defs>
-        <radialGradient
-          id="leafGradient"
-          cx="0.25"
-          cy="0.25"
-          r="0.5"
-          // fx="0.25"
-          // fy="0.25"
-        >
-          <stop offset="0%" stopColor="#e9f6e9" />
-          {/* <stop offset="95%" stopColor="#e9f6e9" /> */}
-          <stop offset="100%" stopColor="#e1f1e1" />
+        <radialGradient id="leafGradient" cx="0.29" cy="0.29" r="0.76">
+          <stop offset="0%" stopColor={leaf} />
+          <stop offset="100%" stopColor={leafShade} />
         </radialGradient>
-        <radialGradient
-          id="woodGradient"
-          cx="0.5"
-          cy="0.5"
-          r="0.5"
-          fx="0.25"
-          fy="0.25"
-        >
-          <stop offset="0%" stopColor="#887354" />
-          <stop offset="95%" stopColor="#887354" />
-          <stop offset="100%" stopColor="#776254" />
+        <radialGradient id="woodGradient" cx="0.29" cy="0.29" r="0.76">
+          <stop offset="0%" stopColor={wood} />
+          <stop offset="76%" stopColor={wood} />
+          <stop offset="100%" stopColor={woodShade} />
         </radialGradient>
       </defs>
 

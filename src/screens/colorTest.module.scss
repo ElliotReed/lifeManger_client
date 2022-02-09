@@ -1,6 +1,9 @@
 @import "styles";
 
 .colorTest {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
   & > ul {
     margin: $margin;
 
@@ -47,6 +50,68 @@
     }
     .main900 {
       background: get-color(main, main-900);
+    }
+  }
+
+  .support {
+    border: 3px solid get-color(support, support-500);
+    .support100 {
+      background: get-color(support, support-100);
+    }
+    .support200 {
+      background: get-color(support, support-200);
+    }
+    .support300 {
+      background: get-color(support, support-300);
+    }
+    .support400 {
+      background: get-color(support, support-400);
+    }
+    .support500 {
+      background: get-color(support, support-500);
+    }
+    .support600 {
+      background: get-color(support, support-600);
+    }
+    .support700 {
+      background: get-color(support, support-700);
+    }
+    .support800 {
+      background: get-color(support, support-800);
+    }
+    .support900 {
+      background: get-color(support, support-900);
+    }
+  }
+
+  .accent {
+    border: 3px solid get-color(accent, accent-500);
+    .accent100 {
+      background: get-color(accent, accent-100);
+    }
+    .accent200 {
+      background: get-color(accent, accent-200);
+    }
+    .accent300 {
+      background: get-color(accent, accent-300);
+    }
+    .accent400 {
+      background: get-color(accent, accent-400);
+    }
+    .accent500 {
+      background: get-color(accent, accent-500);
+    }
+    .accent600 {
+      background: get-color(accent, accent-600);
+    }
+    .accent700 {
+      background: get-color(accent, accent-700);
+    }
+    .accent800 {
+      background: get-color(accent, accent-800);
+    }
+    .accent900 {
+      background: get-color(accent, accent-900);
     }
   }
 }

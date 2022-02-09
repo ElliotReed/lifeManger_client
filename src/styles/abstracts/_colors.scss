@@ -47,18 +47,18 @@ $secondary: #887354;
 $tertiary: #552222;
 
 $main: #e7f5e5;
-$support: $secondary;
+$support: #d8d1c4;
 $accent: scale-color($main, $green: -12%, $red: 12%);
 
 $opacity: 29%;
 
 @function tint($color, $percentage) {
-  $tintWhite: scale-color($main, $lightness: 76%);
+  $tintWhite: scale-color($color, $lightness: 76%);
   @return mix($tintWhite, $color, $percentage);
 }
 
 @function shade($color, $percentage) {
-  $tintBlack: scale-color($main, $lightness: -76%);
+  $tintBlack: scale-color($color, $lightness: -76%);
   @return mix($tintBlack, $color, $percentage);
 }
 
@@ -85,6 +85,16 @@ $support-600: shade($support, 18%);
 $support-700: shade($support, 29%);
 $support-800: shade($support, 47%);
 $support-900: shade($support, 76%);
+
+$accent-100: tint($accent, 76%);
+$accent-200: tint($accent, 47%);
+$accent-300: tint($accent, 29%);
+$accent-400: tint($accent, 18%);
+$accent-500: $accent;
+$accent-600: shade($accent, 18%);
+$accent-700: shade($accent, 29%);
+$accent-800: shade($accent, 47%);
+$accent-900: shade($accent, 76%);
 
 $colors: (
   base: (
@@ -130,6 +140,15 @@ $colors: (
     light: scale-color($accent, $lightness: 47%),
     dark: scale-color($accent, $lightness: -29%),
     trans: scale-color($accent, $alpha: -$opacity),
+    accent-100: $accent-100,
+    accent-200: $accent-200,
+    accent-300: $accent-300,
+    accent-400: $accent-400,
+    accent-500: $accent-500,
+    accent-600: $accent-600,
+    accent-700: $accent-700,
+    accent-800: $accent-800,
+    accent-900: $accent-900,
   ),
   primary: $primary,
   primary-light: scale-color($primary, $lightness: 83%),
@@ -153,4 +172,11 @@ $colors: (
   }
 
   @return $value;
+}
+
+:export {
+  leaf: $main-100;
+  leafShade: $main-500;
+  wood: $support-600;
+  woodShade: $support-700;
 }
