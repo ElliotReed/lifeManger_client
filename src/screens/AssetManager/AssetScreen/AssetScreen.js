@@ -62,9 +62,9 @@ export default function AssetScreen() {
   };
 
   const isProperty = () => {
-    const typeIdOfProperty = inventory.assetTypes?.filter(
+    const typeIdOfProperty = inventory?.assetTypes?.filter(
       (type) => type.label === "property"
-    )[0].id;
+    )[0]?.id;
 
     if (asset.typeId === typeIdOfProperty) {
       return true;
@@ -82,6 +82,7 @@ export default function AssetScreen() {
   };
 
   React.useEffect(() => {
+    console.log("routeMatch: ", routeMatch);
     if (routeMatch?.params?.assetId) {
       getAssetById(routeMatch.params.assetId);
       navigate(`/assets/${routeMatch.params.assetId}`);

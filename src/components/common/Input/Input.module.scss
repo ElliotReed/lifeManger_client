@@ -378,41 +378,21 @@
         transform: rotate(180deg);
       }
     }
-  }
 
-  .list {
-    @include dropdownList;
+    & > ul {
+      & .selectorComponentListItem {
+        cursor: pointer;
 
-    &.displayList {
-      @include displayList;
-    }
-
-    & li {
-      $transition: all 100ms ease-in-out;
-      cursor: pointer;
-      background-color: get-color("neutral");
-      transition: $transition;
-
-      &.selected {
-        font-style: oblique;
-      }
-
-      &:hover {
-        color: get-color("app-white");
-        background-color: get-color("primary");
-      }
-
-      & p {
-        @include paddingBox;
-        pointer-events: none;
-      }
-
-      &.selected > p {
-        color: rgba(get-color("primary"), 0.29);
-      }
-
-      & .seperator {
-        @include seperator;
+        &.selected {
+          font-style: oblique;
+          & > p {
+            color: get-color(main, main-600);
+          }
+        }
+        & p {
+          @include paddingBox;
+          pointer-events: none;
+        }
       }
     }
   }
@@ -511,34 +491,6 @@
 
     &.lineChange {
       margin-right: 0;
-    }
-  }
-}
-
-.DropdownList {
-  @include dropdownList;
-
-  &.displayList {
-    @include displayList;
-  }
-
-  & .listItem {
-    $transition: all 100ms ease-in-out;
-    cursor: pointer;
-    background-color: get-color("neutral");
-    transition: $transition;
-
-    &.selected {
-      font-style: oblique;
-    }
-
-    &:hover {
-      color: get-color(base, light);
-      background-color: get-color("primary");
-    }
-
-    & .seperator {
-      @include seperator;
     }
   }
 }

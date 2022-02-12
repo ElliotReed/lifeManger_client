@@ -1,8 +1,7 @@
 
+<img src="https://lifemanager.elliotreed.net/tree.svg" alt="tree" width="100"/>
 
-# life Manager 
-
-![life Manager](tree.svg)
+# life Manager
 
 ## Needs
 
@@ -11,4 +10,3 @@
 ### 404
 
 ### Manifest
-

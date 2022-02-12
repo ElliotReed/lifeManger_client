@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import ErrorMessage from "../ErrorMessage";
 
 import WithLoading from "components/WithLoading";
+import Dropdown from "components/common/Dropdown";
 
 import styles from "./Input.module.scss";
 
@@ -234,7 +235,6 @@ export function SelectorComponent({
             className={inputClass}
             value={selectedOption?.label ? selectedOption.label : placeholder}
           />
-
           <button
             type="button"
             className={iconClass}
@@ -242,14 +242,16 @@ export function SelectorComponent({
           >
             <FontAwesomeIcon icon={["fas", "caret-down"]} />
           </button>
-          <div>
-            <SelectorComponentDropdownList
-              displayList={displayList}
-              options={options}
-              selectedOption={selectedOption}
-              handleOnChange={handleOnChange}
-            />
-          </div>
+          <Dropdown shouldPresent={displayList}>
+            {options.map((option) => (
+              <SelectorComponentListItem
+                key={option.id}
+                option={option}
+                selected={selectedOption}
+                handleOnChange={handleOnChange}
+              />
+            ))}
+          </Dropdown>
           <input type="hidden" name={name} value={selectedOption?.id || ""} />
         </div>
       </form>
@@ -257,41 +259,21 @@ export function SelectorComponent({
   );
 }
 
-function SelectorComponentDropdownList({
-  displayList,
-  options,
-  selectedOption,
-  handleOnChange,
-}) {
-  let listClass = classNames(styles.list, {
-    [styles.displayList]: displayList,
+function SelectorComponentListItem({ option, selected, handleOnChange }) {
+  const isSelectedOption = option.id === selected?.id;
+  const listClass = classNames(styles.selectorComponentListItem, {
+    [styles.selected]: isSelectedOption,
   });
 
   return (
-    <ul className={listClass}>
-      {options.map((option) => (
-        <SelectorComponentListItem
-          key={option.id}
-          option={option}
-          selected={selectedOption}
-          handleOnChange={handleOnChange}
-        />
-      ))}
-    </ul>
-  );
-}
-
-function SelectorComponentListItem({ option, selected, handleOnChange }) {
-  return (
     <li
-      className={option.id === selected?.id ? styles.selected : null}
+      className={listClass}
       key={option.id}
       data-value={option.id}
       label={option.name}
-      onClick={handleOnChange}
+      onClick={isSelectedOption ? () => null : handleOnChange}
     >
       <p>{option.label}</p>
-      <hr className={styles.seperator} />
     </li>
   );
 }
@@ -326,10 +308,6 @@ export function SearchTextComponent({
 
   const editBtnClass = classNames(styles.editBtn, {
     [styles.editBtnChange]: hasFocus,
-  });
-
-  const lineClass = classNames(styles.line, {
-    [styles.lineChange]: hasFocus,
   });
 
   const handleInputChange = (e) => {
@@ -441,9 +419,7 @@ export function SearchTextComponent({
             />
           )}
         </button>
-        <div>
-          <List displayList={displayList}>{items}</List>
-        </div>
+        <Dropdown shouldPresent={displayList}>{items}</Dropdown>
       </div>
     </div>
   );

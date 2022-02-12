@@ -1,0 +1,38 @@
+@import "styles";
+
+.dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  max-height: 0;
+
+  @include borderRadius;
+  background: get-color(main, main-500);
+
+  transition: all $duration ease-in-out;
+  overflow-x: hidden;
+  z-index: 1;
+
+  &.shouldPresent {
+    max-height: 60vh;
+    @include boxShadow;
+  }
+
+  & > li {
+    $transition: all 100ms ease-in-out;
+    background: get-color(main, main-500);
+    transition: $transition;
+    @include boxShadow;
+    // border-bottom: 1px solid get-color(main, main-600);
+
+    &.isSelected {
+      font-style: oblique;
+    }
+
+    &:hover {
+      color: get-color(base, light);
+      background-color: get-color(main, main-900);
+    }
+  }
+}

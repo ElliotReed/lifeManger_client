@@ -1,6 +1,6 @@
-# Notes & Ideas
+<img src="https://lifemanager.elliotreed.net/tree.svg" alt="tree" width="47"/>
 
-![lifeManager](https://lifemanager.elliotreed.net/favicon-32x32.png)
+# Notes & Ideas
 
 ## Sign in
 
@@ -14,12 +14,16 @@
 ## Deployment
 
     run "build" command
-    copy build directory to server
-    spa needs .htaccess for routing
-    delete all but
-    - .htaccess
-    - cgi-bin
-    - robots.txt
+    delete static folder on host
+    copy build directory contents to host (lifemanager.elliotreed.net)
+
+    notes
+      spa needs .htaccess for routing
+      delete all but
+      - .htaccess
+      - cgi-bin
+      - robots.txt
+      - images if replacing
 
 ---
 
