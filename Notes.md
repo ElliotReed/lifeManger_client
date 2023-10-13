@@ -2,15 +2,6 @@
 
 # Notes & Ideas
 
-## Sign in
-
-    {
-      "email": "elliot@elliotreed.net",
-      "password": "3llington"
-    }
-
----
-
 ## Deployment
 
     run "build" command

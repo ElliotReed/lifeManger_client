@@ -69,6 +69,7 @@ export default function Dropdown({ children, shouldPresent }) {
       windowHeight
     );
     setVerticleOffset(parentRect.height + additionalOffset);
+    const offset = verticleOffset; // TODO fix verticle offset to update
     setDropdownMaxHeight(
       windowHeight,
       parentRect,
