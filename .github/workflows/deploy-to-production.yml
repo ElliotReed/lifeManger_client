@@ -1,4 +1,4 @@
-name: Deploy Static Site to VPS
+name: Deploy Client to Production (VPS)
 
 on:
   push:
