@@ -1,4 +1,6 @@
 @use "styles/base/typography";
+@use "colors" as *;
+@use "variables" as *;
 
 // mixins
 @mixin appFixedContainer {
@@ -86,10 +88,12 @@
   // white-space: nowrap;
   // @include border(shade($bg-color, 12%));
   @include borderRadius();
-  @if $shape == "pill" {
+
+  @if $shape =="pill" {
     @include pill;
   }
-  @if $shape == "leaf" {
+
+  @if $shape =="leaf" {
     @include leaf;
   }
 
@@ -144,6 +148,7 @@
     }
   }
 }
+
 @mixin button($bg-color: get-color(main, main-500), $text-color: get-color(base, dark)) {
   // position: relative;
   display: inline-flex;
@@ -216,14 +221,12 @@
 }
 
 @mixin gradient($color) {
-  background-image: linear-gradient(
-    173deg,
-    scale-color($color, $lightness: 10%) 0%,
-    scale-color($color, $lightness: 15%) 10%,
-    $color 62%,
-    scale-color($color, $lightness: -15%) 90%,
-    scale-color($color, $lightness: -10%) 100%
-  );
+  background-image: linear-gradient(173deg,
+      scale-color($color, $lightness: 10%) 0%,
+      scale-color($color, $lightness: 15%) 10%,
+      $color 62%,
+      scale-color($color, $lightness: -15%) 90%,
+      scale-color($color, $lightness: -10%) 100%);
 }
 
 @mixin input {
@@ -246,19 +249,26 @@
   position: absolute;
   height: 0;
   width: 0;
-  @if ($direction == "up") {
+
+  @if ($direction =="up") {
     border-bottom: $size solid $color;
     border-left: 1/2 * $size solid transparent;
     border-right: 1/2 * $size solid transparent;
-  } @else if ($direction == "down") {
+  }
+
+  @else if ($direction =="down") {
     border-top: $size solid $color;
     border-left: 1/2 * $size solid transparent;
     border-right: 1/2 * $size solid transparent;
-  } @else if ($direction == "left") {
+  }
+
+  @else if ($direction =="left") {
     border-top: 1/2 * $size solid transparent;
     border-bottom: 1/2 * $size solid transparent;
     border-right: $size solid $color;
-  } @else if ($direction == "right") {
+  }
+
+  @else if ($direction =="right") {
     border-top: 1/2 * $size solid transparent;
     border-bottom: 1/2 * $size solid transparent;
     border-left: $size solid $color;
@@ -271,29 +281,39 @@ $tablet: 768px;
 $tabletLandscape: 900px;
 $desktop: 1080px;
 $largeScreen: 1800px;
+
 @mixin respondTo($media) {
-  @if $media == smartphone {
+  @if $media ==smartphone {
     @media (max-width: $smartphone) {
       @content;
     }
-  } @else if $media == tablet {
+  }
+
+  @else if $media ==tablet {
     @media (min-width: $tablet) {
       @content;
     }
-  } @else if $media == tabletLandscape {
+  }
+
+  @else if $media ==tabletLandscape {
     @media (min-width: $tabletLandscape) {
       @content;
     }
-  } @else if $media == desktop {
+  }
+
+  @else if $media ==desktop {
     @media (min-width: $desktop) {
       @content;
     }
-  } @else if $media == largeScreen {
+  }
+
+  @else if $media ==largeScreen {
     @media (min-width: $largeScreen) {
       @content;
     }
   }
 }
+
 /* Example usage div {
   // regular styles here
   @include respondTo(desktop) {
@@ -308,6 +328,7 @@ This can be done
 
 @mixin enterAnimation() {
   animation: softIn 305ms ease-out;
+
   @keyframes softIn {
     from {
       opacity: 0;

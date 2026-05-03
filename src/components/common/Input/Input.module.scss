@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .Input {
   label {
@@ -85,7 +85,7 @@
     line-height: inherit;
     outline: none;
 
-    select:focus + .focus {
+    select:focus+.focus {
       position: absolute;
       top: -1px;
       left: -1px;
@@ -98,7 +98,7 @@
 }
 
 .HiddenInput {
-  & > .label {
+  &>.label {
     cursor: pointer;
     padding: get-size(200) * 1rem 0;
 
@@ -137,7 +137,7 @@
 .HiddenInputSelector {
   display: block;
 
-  & > .label {
+  &>.label {
     cursor: pointer;
     padding: get-size(200) * 1rem 0;
 
@@ -199,6 +199,7 @@
 
   & .labelWrapper {
     display: block;
+
     & .label {
       display: inline;
       cursor: pointer;
@@ -374,21 +375,23 @@
       transform-origin: center;
       transition: $transition;
 
-      &.iconChange > svg {
+      &.iconChange>svg {
         transform: rotate(180deg);
       }
     }
 
-    & > ul {
+    &>ul {
       & .selectorComponentListItem {
         cursor: pointer;
 
         &.selected {
           font-style: oblique;
-          & > p {
+
+          &>p {
             color: get-color(main, main-600);
           }
         }
+
         & p {
           @include paddingBox;
           pointer-events: none;

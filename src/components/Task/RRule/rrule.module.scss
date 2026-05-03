@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .recurrence {
   display: grid;
@@ -51,16 +51,15 @@
         cursor: pointer;
         padding: 0;
 
-        &:checked + *::before {
+        &:checked+*::before {
           border-color: get-color(base, light);
-          background: radial-gradient(
-            get-color(base, light) 0%,
-            get-color(base, light) 40%,
-            transparent 50%,
-            transparent
-          );
+          background: radial-gradient(get-color(base, light) 0%,
+              get-color(base, light) 40%,
+              transparent 50%,
+              transparent);
         }
-        &:checked + * {
+
+        &:checked+* {
           color: get-color(base, light);
         }
       }
@@ -74,12 +73,13 @@
     color: get-color(base, dark);
     font-size: 1rem * $smaller;
 
-    & > * {
+    &>* {
       margin: $margin;
     }
 
     & button {
       font-size: 1rem * $smaller;
+
       @include respondTo(tablet) {
         font-size: 1rem;
       }

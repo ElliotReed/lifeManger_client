@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .taskList__container {
   position: relative;
@@ -32,6 +32,7 @@
       font-size: 1rem;
       font-weight: 400;
     }
+
     time {
       display: inline-flex;
       margin: 0;
@@ -45,6 +46,7 @@
   grid-template-columns: 1fr auto auto;
 
   gap: $margin;
+
   & :nth-child(2) {
     align-self: start;
   }
@@ -58,6 +60,7 @@
 
   /* ???? */
   [type="checkbox"] {
+
     &:active,
     &:checked:active {
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -73,14 +76,15 @@
     top: 0;
     opacity: 0.01;
   }
-  [type="checkbox"]:not(:checked) + label,
-  [type="checkbox"]:checked + label {
+
+  [type="checkbox"]:not(:checked)+label,
+  [type="checkbox"]:checked+label {
     position: relative;
     font-weight: 400;
     cursor: pointer;
   }
 
-  [type="checkbox"]:checked + label {
+  [type="checkbox"]:checked+label {
     text-decoration: line-through;
     font-weight: 400;
     color: $completedColor;
@@ -88,8 +92,8 @@
   }
 
   /* checkbox aspect */
-  [type="checkbox"]:not(:checked) + label:before,
-  [type="checkbox"]:checked + label:before {
+  [type="checkbox"]:not(:checked)+label:before,
+  [type="checkbox"]:checked+label:before {
     position: relative;
     display: inline-block;
     margin-right: $margin * 0.5;
@@ -103,14 +107,15 @@
     transition: all $duration;
     vertical-align: -7.6%;
   }
-  [type="checkbox"]:checked + label:before {
+
+  [type="checkbox"]:checked+label:before {
     @include border();
     background-color: transparent;
   }
 
   /* checked mark aspect */
-  [type="checkbox"]:not(:checked) + label:after,
-  [type="checkbox"]:checked + label:after {
+  [type="checkbox"]:not(:checked)+label:after,
+  [type="checkbox"]:checked+label:after {
     position: absolute;
     top: -0.2em;
     left: 0.075em;
@@ -125,12 +130,12 @@
   }
 
   /* checked mark aspect changes */
-  [type="checkbox"]:not(:checked) + label:after {
+  [type="checkbox"]:not(:checked)+label:after {
     opacity: 0;
     transform: scale(0);
   }
 
-  [type="checkbox"]:checked + label:after {
+  [type="checkbox"]:checked+label:after {
     opacity: 1;
     transform: scale(1);
   }
@@ -198,6 +203,7 @@
   margin: 0;
   padding: 0;
   visibility: hidden;
+
   .show {
     visibility: visible;
   }

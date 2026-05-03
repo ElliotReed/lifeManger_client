@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .lifeFlow {
   position: relative;
@@ -20,6 +20,7 @@
     .value {
       display: inline-block;
       font-size: 1rem * $smaller;
+
       span {
         font-weight: 500;
       }
@@ -27,9 +28,11 @@
 
     .info {
       font-size: 1rem * $smaller;
+
       p {
         margin: 0;
       }
+
       span {
         font-weight: 500;
       }

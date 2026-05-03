@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .dropdown {
   position: absolute;
@@ -19,7 +19,7 @@
     @include boxShadow;
   }
 
-  & > li {
+  &>li {
     $transition: all 100ms ease-in-out;
     background: get-color(main, main-500);
     transition: $transition;

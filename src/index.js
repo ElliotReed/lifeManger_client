@@ -1,24 +1,24 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 
 import App from "./App";
 import AppProviders from "./context";
 
 import "react-datepicker/dist/react-datepicker.css";
 import "./utils/fontawesome";
-import "./styles/main.scss";
+import "styles/main.scss";
 
 import reportWebVitals from "./reportWebVitals";
 
-const rootElement = document.getElementById("life-manager");
+const domNode = document.getElementById("life-manager");
+const root = createRoot(domNode);
 
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <AppProviders>
       <App />
     </AppProviders>
-  </React.StrictMode>,
-  rootElement
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

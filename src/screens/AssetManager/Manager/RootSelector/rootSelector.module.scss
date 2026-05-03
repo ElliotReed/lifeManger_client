@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 $radius: 100px;
 
@@ -65,11 +65,11 @@ $radius: 100px;
         .descendantListItem {
           @include item;
           flex-grow: 0.29;
-          
+
           &:hover {
             transform: scaleX(1.03);
           }
-          
+
           .descendantListLink {
             @include rootSelectorLink;
           }

@@ -1,7 +1,8 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .AssetTypeSelector {
   padding: 1rem;
+
   ul {
     @include border($color: $primary);
     padding: 1rem;

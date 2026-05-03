@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .assetManager {
 	position: relative;
@@ -43,13 +43,13 @@
 	margin: $margin;
 	background: get-color("neutral");
 
-	& > span {
+	&>span {
 		font-weight: 700;
 	}
 }
 
 .header {
-	& > h1 {
+	&>h1 {
 		margin: $margin;
 		font-size: get-size(600) * 1rem;
 		font-weight: 700;

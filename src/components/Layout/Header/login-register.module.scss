@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .LoginRegister {
   color: $primary;
@@ -14,6 +14,7 @@
       color: $white;
       text-decoration: underline;
     }
+
     & span {
       margin: 0 $margin * 0.38;
     }

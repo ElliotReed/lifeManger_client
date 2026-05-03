@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .AssetScreen {
   min-height: 100%;
@@ -11,10 +11,12 @@
 
   .location {
     display: flex;
+
     li {
       display: flex;
       align-items: center;
       margin-right: 1rem;
+
       p {
         margin-right: 1rem;
       }

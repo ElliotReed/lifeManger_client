@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .Welcome {
   width: 100%;
@@ -40,6 +40,7 @@
     // display: flex;
     // justify-content: center;
     font-size: initial;
+
     a {
       @include btnLink($shape: "pill");
     }

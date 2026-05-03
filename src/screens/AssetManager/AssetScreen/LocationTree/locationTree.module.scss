@@ -1,4 +1,4 @@
-@import "styles";
+@use "styles/abstracts" as *;
 
 .locationTreeContainer {
   position: relative;
@@ -41,7 +41,7 @@
             box-shadow: 0 3px 5px rgba(get-color("app-black"), 0.29);
           }
 
-          & > a {
+          &>a {
             white-space: nowrap;
             padding: 1rem;
             color: get-color("app-white");
@@ -61,7 +61,7 @@
     }
 
     &.hide {
-      & > .li:not(:first-child) {
+      &>.li:not(:first-child) {
         display: none;
       }
     }
@@ -116,7 +116,7 @@
       background: get-color("primary-light");
     }
 
-    & > a {
+    &>a {
       white-space: nowrap;
       cursor: pointer;
       padding: 1rem;
@@ -134,7 +134,7 @@
 .listItemRow {
   @include paddingBox;
 
-  & > button {
+  &>button {
     width: 100%;
     box-shadow: none;
   }

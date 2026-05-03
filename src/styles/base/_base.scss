@@ -1,14 +1,12 @@
-@import "../abstracts/colors";
-@import "../abstracts/themes";
-@import "../abstracts/mixins";
-@import "../abstracts/variables";
+@use "styles/abstracts" as *;
+@use "typography" as *;
 
 /* #region Variables */
 :root {
   --placeholder: 42;
 }
 
-html {
+* {
   box-sizing: border-box;
 }
 
@@ -16,10 +14,12 @@ html {
 /* mobile */
 html {
   font-size: 16px;
+
   /* tablet min-width: 768px */
   @include respondTo(tablet) {
     font-size: 18px;
   }
+
   /* desktop min-width: 1080px*/
   @include respondTo(desktop) {
     font-size: 22px;

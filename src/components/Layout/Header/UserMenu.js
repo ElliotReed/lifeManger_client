@@ -1,6 +1,6 @@
+import * as React from "react";
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { useAuth } from "libs/authentication/useAuth";
@@ -17,14 +17,15 @@ export default function UserMenu() {
   const [displayMenu, setDisplayMenu] = React.useState(false);
 
   React.useEffect(() => {
+    console.log(displayMenu)
     const hideUserMenu = () => setDisplayMenu(false);
 
     if (displayMenu) {
-      window.addEventListener("click", hideUserMenu);
+      document.addEventListener("click", hideUserMenu);
     }
 
     return () => {
-      window.removeEventListener("click", hideUserMenu);
+      document.removeEventListener("click", hideUserMenu);
     };
   }, [displayMenu]);
 
