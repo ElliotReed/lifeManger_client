@@ -1,9 +1,9 @@
-@import "styles";
+@use "abstracts";
 
 .FieldForm {
   // border: 1px solid lavender;
 
-  & > form {
+  &>form {
     // border: 2px dashed violet;
   }
 }

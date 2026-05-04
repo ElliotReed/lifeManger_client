@@ -1,9 +1,13 @@
-@use "styles/abstracts" as *;
+@use "../abstracts" as *;
 @use "typography" as *;
 
 /* #region Variables */
 :root {
   --placeholder: 42;
+  --leaf: #{$main-100};
+  --leaf-shade: #{$main-500};
+  --wood: #{$support-600};
+  --wood-shade: #{$support-700};
 }
 
 * {

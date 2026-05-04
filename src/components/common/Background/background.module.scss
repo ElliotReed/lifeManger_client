@@ -1,4 +1,4 @@
-@import "styles";
+@use "abstracts";
 
 .background {
   z-index: -1;
@@ -13,9 +13,11 @@
   right: 0;
   overflow: hidden;
 }
+
 .leaf {
   fill: url(#leafGradient);
 }
+
 .wood {
   fill: url(#woodGradient);
 }

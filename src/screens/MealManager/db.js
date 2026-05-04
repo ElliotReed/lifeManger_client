@@ -1,4 +1,4 @@
-module.exports = {
+const db = {
   meals: [
     {
       id: 0,
@@ -231,3 +231,5 @@ module.exports = {
     dinner: [13, 0, 16, 0, 17, 0, 0, 12, 0, 16, 0, 17, 0, 0],
   },
 };
+
+export default db;

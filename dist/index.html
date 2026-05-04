@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="msapplication-TileColor" content="#54794F">
+  <meta name="theme-color" content="#54794F">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6b947a">
+  <title>Life Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-CVHAidtp.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-7rb6Nz2x.css">
+</head>
+
+<style>
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    /* display: grid; */
+    /* place-content: center; */
+  }
+
+  .initial-view {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .loadingSpinnerContainer {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    place-content: center;
+  }
+
+  @supports (backdrop-filter: blur()) {
+    .loadingSpinnerContainer {
+      backdrop-filter: blur(1px);
+    }
+  }
+
+  .loadingSpinner {
+    display: block;
+    fill: #887354;
+  }
+
+  .loadingSpinner circle {
+    animation-name: upAndDown;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0.05, 0.2, 0.35, 1);
+    animation-iteration-count: infinite;
+  }
+
+  .loadingSpinner circle:nth-child(2) {
+    animation-delay: 0.18s;
+  }
+
+  .loadingSpinner circle:nth-child(3) {
+    animation-delay: 0.36s;
+  }
+
+  @keyframes upAndDown {
+    0% {
+      fill: #887354;
+      opacity: 0;
+      transform: translateY(0);
+    }
+
+    25% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+
+    50% {
+      fill: #e9f6e9;
+
+    }
+
+    75% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+
+    100% {
+      fill: #887354;
+      opacity: 0;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="life-manager">
+    <div class="loadingSpinnerContainer">
+      <svg class="loadingSpinner" width="60" height="20" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="7" cy="15" r="4" />
+        <circle cx="30" cy="15" r="4" />
+        <circle cx="53" cy="15" r="4" />
+      </svg>
+    </div>
+    <img class="initial-view" src="https://lifemanager.elliotreed.dev/tree.svg" />
+  </div>
+  <div id="modal-root"></div>
+</body>
+
+</html>

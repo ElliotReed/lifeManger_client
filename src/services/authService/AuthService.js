@@ -1,4 +1,4 @@
-import axiosInstance from "services/authService/axios";
+import axiosInstance from "~/services/authService/axios";
 
 class AuthService {
   constructor() {

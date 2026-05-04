@@ -1,1 +1,1 @@
-export { default } from "./Background.js";
+export { default } from "./Background";

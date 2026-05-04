@@ -1,8 +1,8 @@
 import Axios from "axios";
-import AuthService from "services/authService/AuthService.js";
+import AuthService from "~/services/authService/AuthService.js";
 
 const axiosInstance = Axios.create({
-  baseURL: process.env.REACT_APP_API_ENDPOINT,
+  baseURL: import.meta.env.VITE_API_ENDPOINT,
   withCredentials: true,
 });
 

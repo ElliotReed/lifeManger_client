@@ -1,5 +1,5 @@
 
-<img src="https://lifemanager.elliotreed.net/tree.svg" alt="tree" width="100"/>
+<img src="https://lifemanager.elliotreed.dev/tree.svg" alt="tree" width="100"/>
 
 # life Manager
 
