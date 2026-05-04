@@ -10,13 +10,6 @@ export default defineConfig({
             '/api': 'http://localhost:3112'  // your server port
         }
     },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                loadPaths: [path.resolve("./src/styles")]
-            }
-        }
-    },
     resolve: {
         alias: {
             '~': path.resolve(import.meta.dirname, 'src')

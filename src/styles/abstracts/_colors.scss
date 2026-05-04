@@ -97,13 +97,11 @@ $accent-800: shade($accent, 47%);
 $accent-900: shade($accent, 76%);
 
 $colors: (
-  base: (
-    light: $base-light,
+  base: (light: $base-light,
     neutral: $base-neutral,
     dark: $base-dark,
   ),
-  main: (
-    base: $main,
+  main: (base: $main,
     darkest: $main-900,
     ld: mix(scale-color($main, $lightness: -76%), scale-color($main, $lightness: 76%), 47),
     light: scale-color($main, $lightness: 76%),
@@ -120,8 +118,7 @@ $colors: (
     main-800: $main-800,
     main-900: $main-900,
   ),
-  support: (
-    base: $support,
+  support: (base: $support,
     light: scale-color($support, $lightness: 92%),
     dark: scale-color($support, $lightness: -29%),
     alpha: rgba($support, $opacity),
@@ -135,8 +132,7 @@ $colors: (
     support-800: $support-800,
     support-900: $support-900,
   ),
-  accent: (
-    base: $accent,
+  accent: (base: $accent,
     light: scale-color($accent, $lightness: 47%),
     dark: scale-color($accent, $lightness: -29%),
     trans: scale-color($accent, $alpha: -$opacity),
@@ -156,8 +152,7 @@ $colors: (
   app-black: scale-color($primary, $lightness: -29%),
   app-white: scale-color($primary, $lightness: 98%),
   neutral: scale-color($primary, $lightness: 92%),
-  state: (
-    info: #e9f1f9,
+  state: (info: #e9f1f9,
     error: #884455,
     warning: #888800,
     success: #448855,
@@ -174,9 +169,9 @@ $colors: (
   @return $value;
 }
 
-:export {
-  leaf: $main-100;
-  leafShade: $main-500;
-  wood: $support-600;
-  woodShade: $support-700;
-}
+// :export {
+//   leaf: $main-100;
+//   leafShade: $main-500;
+//   wood: $support-600;
+//   woodShade: $support-700;
+// }
