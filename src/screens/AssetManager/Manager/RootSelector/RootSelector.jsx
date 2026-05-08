@@ -11,10 +11,15 @@ export default function RootSelector() {
 
   React.useEffect(() => {
     setIsLoading(true);
-    return AssetService.getAssets(`/assets/roots`).then((data) => {
-      setPropertyAssets(data);
-      setIsLoading(false);
-    });
+    AssetService.getAssets(`/assets/roots`)
+      .then((data) => {
+        setPropertyAssets(data ?? []);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsLoading(false);
+      });
   }, []);
 
   return (

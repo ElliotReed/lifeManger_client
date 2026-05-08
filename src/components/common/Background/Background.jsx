@@ -17,8 +17,8 @@ export default function Background({ x = 0, y = 0, size = 1 }) {
       <title>tree</title>
       <defs>
         <radialGradient id="leafGradient" cx="0.29" cy="0.29" r="0.76">
-          <stop offset="0%" stopColor="var(--leaf))" />
-          <stop offset="100%" stopColor="var()--leafShade" />
+          <stop offset="0%" stopColor="var(--leaf)" />
+          <stop offset="100%" stopColor="var(--leaf-shade)" />
         </radialGradient>
         <radialGradient id="woodGradient" cx="0.29" cy="0.29" r="0.76">
           <stop offset="0%" stopColor="var(--wood)" />

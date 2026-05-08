@@ -50,7 +50,7 @@ export default function Flow() {
   const [loading, setLoading] = React.useState(false);
   // const [lifePoints, setLifePoints] = useState({});
   // const [lifeUnits, setLifeUnits] = useState([]);
-  const [showSettings, setShowSettings] = React.useState(false);
+  const [showSettings, setShowSettings] = React.useState(true);
 
   // const modal = useRef(null);
 

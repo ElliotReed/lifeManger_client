@@ -16,6 +16,11 @@ export default function UserMenu() {
   let location = useLocation();
   const [displayMenu, setDisplayMenu] = React.useState(false);
 
+  const handleMenuToggle = (e) => {
+    e.stopPropagation();
+    setDisplayMenu(prev => !prev)
+  }
+
   React.useEffect(() => {
     console.log(displayMenu)
     const hideUserMenu = () => setDisplayMenu(false);
@@ -34,7 +39,7 @@ export default function UserMenu() {
       <div className={styles.logged}>
         <button
           className={styles.icon}
-          onClick={() => setDisplayMenu(!displayMenu)}
+          onClick={handleMenuToggle}
         >
           <FontAwesomeIcon icon={["fas", "user-circle"]} size="lg" />
         </button>
